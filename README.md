@@ -75,8 +75,9 @@ Deploys never overwrite `app/config.php`, `uploads/` or `storage/`.
 
 The site used to run as a preview in `public_html/yeni/` next to the old WordPress site and now lives in `public_html/`.
 
-- The first deploy to `public_html/` copies `app/config.php`, uploaded images and request attachments from
-  `public_html/yeni/` (once; `storage/.moved` marks it as done), so the database, content and admin users stay the same.
+- The first deploy to `public_html/` copied `app/config.php`, uploaded images and request attachments from
+  `public_html/yeni/`, so the database, content and admin users stayed the same. `/yeni` was deleted afterwards and the
+  one-time copy step was removed from `.cpanel.yml`.
 - Old addresses answer with a **301**: `/yeni/…` → `/…`, the WordPress pages (AZ and WPML `/en/…`) → the matching new
   pages (`LEGACY_URLS` in `app/site/content.php`), `/page/` → `/page`.
 - WordPress leftovers (anything starting with `wp-`, `xmlrpc.php`, `readme.html`, `license.txt`, `/category/`, `/tag/`,

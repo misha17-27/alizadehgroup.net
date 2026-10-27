@@ -2,13 +2,8 @@
 # cPanel → Git™ Version Control → "Deploy HEAD Commit" runs these tasks.
 # The site is copied into DEPLOYPATH (the main domain). Server-only data is never touched:
 #   app/config.php (written by install.php), storage/* (logs, attachments, sessions), uploads/* (admin images).
-# OLDPATH is the former /yeni preview. On the first deploy here its app/config.php, uploaded images, request
-# attachments and logs are copied over once, before the site files (storage/.moved marks it as done).
-# That task does nothing once public_html/yeni is deleted and can then be removed.
 deployment:
   tasks:
     - export DEPLOYPATH=/home/alizadehgroup/public_html/
-    - export OLDPATH=/home/alizadehgroup/public_html/yeni/
     - /bin/mkdir -p $DEPLOYPATH/app $DEPLOYPATH/storage/logs $DEPLOYPATH/storage/requests $DEPLOYPATH/storage/sessions $DEPLOYPATH/uploads
-    - if test -f $OLDPATH/app/config.php && test ! -f $DEPLOYPATH/storage/.moved; then test -f $DEPLOYPATH/app/config.php || /bin/cp -p $OLDPATH/app/config.php $DEPLOYPATH/app/config.php; /usr/bin/rsync -rt --include='*/' --include='*.jpg' --include='*.jpeg' --include='*.png' --include='*.webp' --include='*.gif' --exclude='*' $OLDPATH/uploads/ $DEPLOYPATH/uploads/ || true; /usr/bin/rsync -rt $OLDPATH/storage/requests $OLDPATH/storage/logs $DEPLOYPATH/storage/ || true; /bin/touch $DEPLOYPATH/storage/.moved; fi
     - /usr/bin/rsync -rlt --exclude='.git/' --exclude='.gitignore' --exclude='.gitattributes' --exclude='.cpanel.yml' --exclude='README.md' --exclude='app/config.php' --exclude='app/dev-router.php' ./ $DEPLOYPATH
