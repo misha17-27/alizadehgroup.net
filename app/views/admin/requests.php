@@ -28,11 +28,12 @@ $all = array_sum($counts);
     <div class="bulk">
       <?= select_html('bulk_status', ['' => __('bulk_status')] + $statuses, '') ?>
       <button class="btn sm navy" type="submit"><?= e(__('apply')) ?></button>
+      <button class="btn sm red" type="submit" name="bulk_delete" value="1" data-confirm="<?= e(__('confirm_delete')) ?>"><?= icon('x') ?><?= e(__('delete_selected')) ?></button>
     </div>
   </div>
   <?php if (!$list): ?><p class="empty"><?= e(__('no_requests')) ?></p><?php else: ?>
   <div class="tablewrap"><table class="tbl tbl-req">
-    <thead><tr><th class="w-cb"><input type="checkbox" data-check-all aria-label="all"></th><th>#</th><th><?= e(__('date')) ?></th><th><?= e(__('f_service')) ?></th><th><?= e(__('c_name')) ?></th><th><?= e(__('contacts')) ?></th><th><?= e(__('status')) ?></th></tr></thead>
+    <thead><tr><th class="w-cb"><input type="checkbox" data-check-all aria-label="all"></th><th>#</th><th><?= e(__('date')) ?></th><th><?= e(__('f_service')) ?></th><th><?= e(__('c_name')) ?></th><th><?= e(__('contacts')) ?></th><th><?= e(__('status')) ?></th><th></th></tr></thead>
     <tbody><?php foreach ($list as $r): $u = admin_url('requests', ['id' => $r['id']]); ?>
       <tr class="<?= $r['status'] === 'new' ? 'is-new' : '' ?>">
         <td class="w-cb"><input type="checkbox" name="ids[]" value="<?= (int)$r['id'] ?>" aria-label="#<?= (int)$r['id'] ?>"></td>
@@ -42,6 +43,7 @@ $all = array_sum($counts);
         <td><a href="<?= e($u) ?>"><b><?= e($r['name']) ?></b></a><?= $r['company'] ? '<br><span class="muted">' . e($r['company']) . '</span>' : '' ?></td>
         <td class="nowrap"><a href="<?= e(tel_href($r['phone'])) ?>"><?= e($r['phone']) ?></a><br><a class="muted" href="mailto:<?= e($r['email']) ?>"><?= e($r['email']) ?></a></td>
         <td><span class="st st-<?= e($r['status']) ?>"><?= e($statuses[$r['status']] ?? $r['status']) ?></span></td>
+        <td class="right"><button class="ib ib-del" type="submit" name="del" value="<?= (int)$r['id'] ?>" title="<?= e(__('delete')) ?>" aria-label="<?= e(__('delete')) ?> #<?= (int)$r['id'] ?>" data-confirm="<?= e(__('confirm_delete')) ?>"><?= icon('x') ?></button></td>
       </tr>
     <?php endforeach; ?></tbody>
   </table></div>

@@ -31,6 +31,7 @@ return [
     // requests
     'request' => 'Sorğu', 'status' => 'Status', 'date' => 'Tarix', 'contacts' => 'Əlaqə', 'details' => 'Sorğu detalları', 'files' => 'Fayllar',
     'st_new' => 'Yeni', 'st_progress' => 'İcrada', 'st_done' => 'Tamamlandı', 'st_spam' => 'Spam', 'bulk_status' => 'Statusu dəyiş…',
+    'delete_selected' => 'Seçilənləri sil', 'none_selected' => 'Heç bir sorğu seçilməyib.',
     'processing' => 'İcra', 'note' => 'Daxili qeyd', 'note_ph' => 'Yalnız admin paneldə görünür…', 'call' => 'Zəng et', 'reply' => 'Cavab yaz',
     'tech_info' => 'Texniki məlumat', 'site_lang' => 'Sayt dili', 'updated' => 'Yeniləndi', 'file_missing' => 'Fayl tapılmadı.',
     'c_name' => 'Ad soyad', 'c_company' => 'Şirkət', 'c_phone' => 'Telefon', 'c_email' => 'E-poçt', 'c_message' => 'Mesaj',

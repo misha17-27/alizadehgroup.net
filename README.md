@@ -19,7 +19,7 @@ Also: `/sitemap.xml`, `/robots.txt`, 404 page. Request form posts to `/api/reque
 
 ## Admin panel
 
-`/admin/` — sections: Dashboard, Requests (status, notes, attachments, CSV export), Slider, Request cards,
+`/admin/` — sections: Dashboard, Requests (status, notes, attachments, delete, CSV export), Slider, Request cards,
 About us, Why us, Services (texts per language, images, target groups, offers, process, FAQ, extra block),
 Partners, Texts (every label on the site), Pages & SEO, Settings (contacts, socials, notification e-mail,
 Google Analytics, Cloudflare Turnstile), Users (admin / editor roles), Profile.

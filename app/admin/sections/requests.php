@@ -22,6 +22,17 @@ if (isset($_GET['file'], $_GET['id'])) {
 }
 
 /* ---------- actions ---------- */
+/** deletes requests together with their attached files */
+$deleteRequests = function (array $ids): void {
+    $in = implode(',', array_map('intval', $ids));
+    foreach (rows('SELECT files FROM requests WHERE id IN (' . $in . ')') as $r) {
+        foreach (jlist($r['files']) as $f) {
+            $p = STORAGE_DIR . '/' . $f['path'];
+            if (is_file($p) && strpos($f['path'], '..') === false) @unlink($p);
+        }
+    }
+    q('DELETE FROM requests WHERE id IN (' . $in . ')');
+};
 if (is_post() && admin_post_ok()) {
     $id = (int)($_POST['id'] ?? 0);
     $do = (string)($_POST['do'] ?? '');
@@ -32,19 +43,21 @@ if (is_post() && admin_post_ok()) {
         redirect(admin_url('requests', ['id' => $id]));
     }
     if ($do === 'delete' && $id) {
-        $r = row('SELECT files FROM requests WHERE id=?', [$id]);
-        foreach ($r ? jlist($r['files']) : [] as $f) {
-            $p = STORAGE_DIR . '/' . $f['path'];
-            if (is_file($p) && strpos($f['path'], '..') === false) @unlink($p);
-        }
-        q('DELETE FROM requests WHERE id=?', [$id]);
+        $deleteRequests([$id]);
         flash(__('deleted'));
         redirect(admin_url('requests'));
     }
     if ($do === 'bulk') {
-        $ids = array_filter(array_map('intval', (array)($_POST['ids'] ?? [])));
+        // list actions: the × of one row, "delete selected", or a new status for the ticked rows
+        $one = (int)($_POST['del'] ?? 0);
+        $ids = $one ? [$one] : array_filter(array_map('intval', (array)($_POST['ids'] ?? [])));
         $st = (string)($_POST['bulk_status'] ?? '');
-        if ($ids && isset($statuses[$st])) {
+        if (!$ids) {
+            flash(__('none_selected'), 'err');
+        } elseif ($one || !empty($_POST['bulk_delete'])) {
+            $deleteRequests($ids);
+            flash(__('deleted'));
+        } elseif (isset($statuses[$st])) {
             q('UPDATE requests SET status=?, updated_at=? WHERE id IN (' . implode(',', $ids) . ')', [$st, now()]);
             flash(__('saved'));
         }

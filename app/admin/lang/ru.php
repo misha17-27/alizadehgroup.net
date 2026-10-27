@@ -31,6 +31,7 @@ return [
     // requests
     'request' => 'Заявка', 'status' => 'Статус', 'date' => 'Дата', 'contacts' => 'Контакты', 'details' => 'Детали заявки', 'files' => 'Файлы',
     'st_new' => 'Новая', 'st_progress' => 'В работе', 'st_done' => 'Выполнена', 'st_spam' => 'Спам', 'bulk_status' => 'Сменить статус…',
+    'delete_selected' => 'Удалить выбранные', 'none_selected' => 'Не выбрано ни одной заявки.',
     'processing' => 'Обработка', 'note' => 'Внутренняя заметка', 'note_ph' => 'Видна только в админ-панели…', 'call' => 'Позвонить', 'reply' => 'Ответить',
     'tech_info' => 'Техническая информация', 'site_lang' => 'Язык сайта', 'updated' => 'Обновлено', 'file_missing' => 'Файл не найден.',
     'c_name' => 'Имя и фамилия', 'c_company' => 'Компания', 'c_phone' => 'Телефон', 'c_email' => 'E-mail', 'c_message' => 'Сообщение',

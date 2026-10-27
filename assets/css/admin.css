@@ -158,7 +158,7 @@ main{flex:1;min-width:0}
 .fl-f{min-width:200px}
 .fl-grow{flex:1}
 .fl-b{display:flex;gap:8px}
-.bulk{display:flex;gap:8px;align-items:center}
+.bulk{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .bulk select{width:auto;padding:7px 10px}
 .pager{display:flex;flex-wrap:wrap;gap:6px}
 .pager a{min-width:36px;height:36px;display:grid;place-items:center;border-radius:9px;background:#fff;border:1px solid var(--line);font-weight:700}

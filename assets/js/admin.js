@@ -5,10 +5,14 @@
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var iconSvg = function (n) { return '<svg class="ico" aria-hidden="true"><use href="#i-' + (n || "check") + '"/></svg>'; };
 
-  /* confirm before destructive actions */
+  /* confirm before destructive actions (data-confirm on a form or on one of its buttons) */
   document.addEventListener("submit", function (e) {
     var f = e.target, msg = f.getAttribute && f.getAttribute("data-confirm");
     if (msg && !window.confirm(msg)) e.preventDefault();
+  }, true);
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("button[data-confirm]");
+    if (b && !window.confirm(b.getAttribute("data-confirm"))) e.preventDefault();
   }, true);
 
   /* icon picker preview */
