@@ -1,0 +1,2574 @@
+{
+ "settings": {
+  "phone": "+994 55 409 11 00",
+  "email": "info@alizadehgroup.net",
+  "whatsapp": "994554091100",
+  "address_az": "Heydər Əliyev prospekti, Çinar Plaza, Bakı, Azərbaycan",
+  "address_en": "Heydar Aliyev Avenue, Chinar Plaza, Baku, Azerbaijan",
+  "instagram": "https://www.instagram.com/alizadehgroupnet/",
+  "facebook": "https://www.facebook.com/alizadehgroupmmc",
+  "linkedin": "https://www.linkedin.com/company/alizadeh-group/",
+  "notify_email": "info@alizadehgroup.net",
+  "map_query": "Çinar Plaza, Heydər Əliyev prospekti, Bakı",
+  "turnstile_site": "",
+  "turnstile_secret": "",
+  "ga_id": ""
+ },
+ "texts": [
+  {
+   "k": "nav.home",
+   "grp": "nav",
+   "az": "Ana səhifə",
+   "en": "Home"
+  },
+  {
+   "k": "nav.about",
+   "grp": "nav",
+   "az": "Haqqımızda",
+   "en": "About us"
+  },
+  {
+   "k": "nav.services",
+   "grp": "nav",
+   "az": "Xidmətlər",
+   "en": "Services"
+  },
+  {
+   "k": "nav.partners",
+   "grp": "nav",
+   "az": "Partnyorlar",
+   "en": "Partners"
+  },
+  {
+   "k": "nav.contact",
+   "grp": "nav",
+   "az": "Əlaqə",
+   "en": "Contact"
+  },
+  {
+   "k": "nav.request",
+   "grp": "nav",
+   "az": "Sorğu göndər",
+   "en": "Send a request"
+  },
+  {
+   "k": "nav.lang",
+   "grp": "nav",
+   "az": "Dil",
+   "en": "Language"
+  },
+  {
+   "k": "nav.open",
+   "grp": "nav",
+   "az": "Menyunu aç",
+   "en": "Open menu"
+  },
+  {
+   "k": "nav.close",
+   "grp": "nav",
+   "az": "Menyunu bağla",
+   "en": "Close menu"
+  },
+  {
+   "k": "ui.more",
+   "grp": "ui",
+   "az": "Ətraflı",
+   "en": "Learn more"
+  },
+  {
+   "k": "ui.prev",
+   "grp": "ui",
+   "az": "Əvvəlki",
+   "en": "Previous"
+  },
+  {
+   "k": "ui.next",
+   "grp": "ui",
+   "az": "Növbəti",
+   "en": "Next"
+  },
+  {
+   "k": "ui.all_services",
+   "grp": "ui",
+   "az": "Bütün xidmətlər",
+   "en": "All services"
+  },
+  {
+   "k": "ui.other_services",
+   "grp": "ui",
+   "az": "Digər xidmətlər",
+   "en": "Other services"
+  },
+  {
+   "k": "ui.write",
+   "grp": "ui",
+   "az": "Bizə yazın",
+   "en": "Write to us"
+  },
+  {
+   "k": "ui.write_text",
+   "grp": "ui",
+   "az": "Sorğunuzu göndərin — komandamız qısa müddətdə sizinlə əlaqə saxlayacaq.",
+   "en": "Send your request — our team will get back to you shortly."
+  },
+  {
+   "k": "ui.call",
+   "grp": "ui",
+   "az": "Zəng edin",
+   "en": "Call us"
+  },
+  {
+   "k": "ui.top",
+   "grp": "ui",
+   "az": "Yuxarı qayıt ↑",
+   "en": "Back to top ↑"
+  },
+  {
+   "k": "meta.title",
+   "grp": "meta",
+   "az": "Alizadeh Group — Logistika və korporativ xidmət həlləri",
+   "en": "Alizadeh Group — Logistics and corporate service solutions"
+  },
+  {
+   "k": "hero.eyebrow",
+   "grp": "hero",
+   "az": "Bakı, Azərbaycan · 7/24",
+   "en": "Baku, Azerbaijan · 24/7"
+  },
+  {
+   "k": "hero.title",
+   "grp": "hero",
+   "az": "Biznesinizin bütün logistika və korporativ xidmət həllərini bir tərəfdaşdan alın",
+   "en": "Get all your business logistics and corporate service solutions from one partner"
+  },
+  {
+   "k": "hero.text",
+   "grp": "hero",
+   "az": "Təchizat, sənaye avadanlıqları, logistika, nəqliyyat, tədbirlərin təşkili, otel yerləşdirmə və korporativ xidmətlər — vahid idarəetmə altında.",
+   "en": "Supply, industrial equipment, logistics, transport, event management, hotel accommodation and corporate services — under single management."
+  },
+  {
+   "k": "hero.cta2",
+   "grp": "hero",
+   "az": "Xidmətlərimiz",
+   "en": "Our services"
+  },
+  {
+   "k": "info.go",
+   "grp": "info",
+   "az": "Sorğu göndər",
+   "en": "Send a request"
+  },
+  {
+   "k": "about.title",
+   "grp": "about",
+   "az": "Təchizatdan tədbirə — bir komandada tam xidmət",
+   "en": "From supply to events — full service from one team"
+  },
+  {
+   "k": "about.text",
+   "grp": "about",
+   "az": "Alizadeh Group sərnişin daşınması, hava limanı transferi, tədbir təşkili, təchizat zənciri, otel yerləşdirmə və korporativ məsləhət sahələrində müştəri ehtiyaclarını ön planda saxlayan, fərdi yanaşma ilə xidmət göstərən şirkətdir.",
+   "en": "Alizadeh Group puts client needs first and takes a personal approach across passenger transport, airport transfers, event management, supply chain, hotel accommodation and corporate consulting."
+  },
+  {
+   "k": "why.title",
+   "grp": "why",
+   "az": "Niyə Alizadeh Group?",
+   "en": "Why Alizadeh Group?"
+  },
+  {
+   "k": "why.sub",
+   "grp": "why",
+   "az": "Etibar, çeviklik və tək əlaqə nöqtəsi",
+   "en": "Reliability, flexibility and a single point of contact"
+  },
+  {
+   "k": "services.title",
+   "grp": "services",
+   "az": "Dörd istiqamət, vahid həll",
+   "en": "Four directions, one solution"
+  },
+  {
+   "k": "services.text",
+   "grp": "services",
+   "az": "Alizadeh Group biznes və layihələr üçün lazım olan əsas xidmətləri vahid idarəetmə altında təqdim edir.",
+   "en": "Alizadeh Group provides the core services that businesses and projects need — under single management."
+  },
+  {
+   "k": "inner.tg_eyebrow",
+   "grp": "inner",
+   "az": "Hədəf qrup",
+   "en": "Target audience"
+  },
+  {
+   "k": "inner.tg_title",
+   "grp": "inner",
+   "az": "Kimlər üçün nəzərdə tutulub?",
+   "en": "Who is it for?"
+  },
+  {
+   "k": "inner.of_title",
+   "grp": "inner",
+   "az": "Təklif etdiyimiz xidmətlər",
+   "en": "Services we offer"
+  },
+  {
+   "k": "inner.pr_eyebrow",
+   "grp": "inner",
+   "az": "İş prosesi",
+   "en": "Our process"
+  },
+  {
+   "k": "inner.pr_title",
+   "grp": "inner",
+   "az": "Necə işləyirik?",
+   "en": "How do we work?"
+  },
+  {
+   "k": "inner.faq_eyebrow",
+   "grp": "inner",
+   "az": "FAQ",
+   "en": "FAQ"
+  },
+  {
+   "k": "inner.faq_title",
+   "grp": "inner",
+   "az": "Tez-tez soruşulan suallar",
+   "en": "Frequently asked questions"
+  },
+  {
+   "k": "partners.title",
+   "grp": "partners",
+   "az": "Bizə etibar edən qurum və şirkətlər",
+   "en": "Organizations and companies that trust us"
+  },
+  {
+   "k": "contact.title",
+   "grp": "contact",
+   "az": "Bizimlə əlaqə saxlayın",
+   "en": "Get in touch"
+  },
+  {
+   "k": "contact.text",
+   "grp": "contact",
+   "az": "Sorğu formasını doldurun və ya birbaşa əlaqə saxlayın.",
+   "en": "Fill in the request form or contact us directly."
+  },
+  {
+   "k": "contact.phone",
+   "grp": "contact",
+   "az": "Telefon",
+   "en": "Phone"
+  },
+  {
+   "k": "contact.email",
+   "grp": "contact",
+   "az": "E-poçt",
+   "en": "Email"
+  },
+  {
+   "k": "contact.address",
+   "grp": "contact",
+   "az": "Ünvan",
+   "en": "Address"
+  },
+  {
+   "k": "contact.addr",
+   "grp": "contact",
+   "az": "Heydər Əliyev prospekti, Çinar Plaza, Bakı, Azərbaycan",
+   "en": "Heydar Aliyev Avenue, Chinar Plaza, Baku, Azerbaijan"
+  },
+  {
+   "k": "contact.hours",
+   "grp": "contact",
+   "az": "7/24 əlaqə",
+   "en": "Available 24/7"
+  },
+  {
+   "k": "f.title",
+   "grp": "f",
+   "az": "Sorğu formu",
+   "en": "Request form"
+  },
+  {
+   "k": "f.step1",
+   "grp": "f",
+   "az": "Xidmət seçimi",
+   "en": "Choose a service"
+  },
+  {
+   "k": "f.step2",
+   "grp": "f",
+   "az": "Sorğu detalları",
+   "en": "Request details"
+  },
+  {
+   "k": "f.step3",
+   "grp": "f",
+   "az": "Əlaqə məlumatları",
+   "en": "Contact details"
+  },
+  {
+   "k": "f.service",
+   "grp": "f",
+   "az": "Xidmət",
+   "en": "Service"
+  },
+  {
+   "k": "f.choose",
+   "grp": "f",
+   "az": "Xidmət seçin",
+   "en": "Select a service"
+  },
+  {
+   "k": "f.other",
+   "grp": "f",
+   "az": "Digər sorğu",
+   "en": "Other request"
+  },
+  {
+   "k": "f.name",
+   "grp": "f",
+   "az": "Ad və soyad",
+   "en": "Full name"
+  },
+  {
+   "k": "f.company",
+   "grp": "f",
+   "az": "Şirkət adı",
+   "en": "Company name"
+  },
+  {
+   "k": "f.phone",
+   "grp": "f",
+   "az": "Telefon",
+   "en": "Phone"
+  },
+  {
+   "k": "f.email",
+   "grp": "f",
+   "az": "E-poçt",
+   "en": "Email"
+  },
+  {
+   "k": "f.message",
+   "grp": "f",
+   "az": "Mesaj",
+   "en": "Message"
+  },
+  {
+   "k": "f.ph_name",
+   "grp": "f",
+   "az": "Adınız və soyadınız",
+   "en": "Your full name"
+  },
+  {
+   "k": "f.ph_company",
+   "grp": "f",
+   "az": "Şirkətinizin adı",
+   "en": "Your company"
+  },
+  {
+   "k": "f.ph_email",
+   "grp": "f",
+   "az": "ad@sirket.az",
+   "en": "name@company.com"
+  },
+  {
+   "k": "f.ph_message",
+   "grp": "f",
+   "az": "Sorğunuz barədə əlavə məlumat…",
+   "en": "Any additional details about your request…"
+  },
+  {
+   "k": "f.send",
+   "grp": "f",
+   "az": "Sorğu göndər",
+   "en": "Send request"
+  },
+  {
+   "k": "f.privacy",
+   "grp": "f",
+   "az": "Göndərməklə məlumatlarınızın sorğunun icrası üçün istifadəsinə razılıq verirsiniz.",
+   "en": "By submitting, you agree that we may use your details to process the request."
+  },
+  {
+   "k": "f.ok",
+   "grp": "f",
+   "az": "Təşəkkür edirik! Sorğunuz qəbul edildi — komandamız tezliklə sizinlə əlaqə saxlayacaq.",
+   "en": "Thank you! Your request has been received — our team will contact you shortly."
+  },
+  {
+   "k": "f.req",
+   "grp": "f",
+   "az": "* məcburi xanalar",
+   "en": "* required fields"
+  },
+  {
+   "k": "f.hint",
+   "grp": "f",
+   "az": "Xidmət seçdikdən sonra uyğun xanalar açılacaq.",
+   "en": "Fields for your request appear once you choose a service."
+  },
+  {
+   "k": "f.tr_type",
+   "grp": "f",
+   "az": "Transfer növü",
+   "en": "Transfer type"
+  },
+  {
+   "k": "f.tr_air",
+   "grp": "f",
+   "az": "Hava limanı",
+   "en": "Airport"
+  },
+  {
+   "k": "f.tr_city",
+   "grp": "f",
+   "az": "Şəhərdaxili",
+   "en": "City"
+  },
+  {
+   "k": "f.tr_inter",
+   "grp": "f",
+   "az": "Şəhərlərarası",
+   "en": "Intercity"
+  },
+  {
+   "k": "f.from",
+   "grp": "f",
+   "az": "Haradan",
+   "en": "From"
+  },
+  {
+   "k": "f.to",
+   "grp": "f",
+   "az": "Hara",
+   "en": "To"
+  },
+  {
+   "k": "f.ph_from",
+   "grp": "f",
+   "az": "Məs.: Heydər Əliyev Hava Limanı",
+   "en": "e.g. Heydar Aliyev Airport"
+  },
+  {
+   "k": "f.ph_to",
+   "grp": "f",
+   "az": "Məs.: Çinar Plaza, Bakı",
+   "en": "e.g. Chinar Plaza, Baku"
+  },
+  {
+   "k": "f.date",
+   "grp": "f",
+   "az": "Tarix",
+   "en": "Date"
+  },
+  {
+   "k": "f.time",
+   "grp": "f",
+   "az": "Saat",
+   "en": "Time"
+  },
+  {
+   "k": "f.pax",
+   "grp": "f",
+   "az": "Sərnişin sayı",
+   "en": "Passengers"
+  },
+  {
+   "k": "f.flight",
+   "grp": "f",
+   "az": "Uçuş nömrəsi",
+   "en": "Flight number"
+  },
+  {
+   "k": "f.ph_flight",
+   "grp": "f",
+   "az": "Məs.: J2 012",
+   "en": "e.g. J2 012"
+  },
+  {
+   "k": "f.car",
+   "grp": "f",
+   "az": "Avtomobil kateqoriyası",
+   "en": "Vehicle class"
+  },
+  {
+   "k": "f.car_any",
+   "grp": "f",
+   "az": "Fərq etməz",
+   "en": "No preference"
+  },
+  {
+   "k": "f.car_vip",
+   "grp": "f",
+   "az": "VIP sinif",
+   "en": "VIP class"
+  },
+  {
+   "k": "f.roundtrip",
+   "grp": "f",
+   "az": "Gediş-dönüş",
+   "en": "Round trip"
+  },
+  {
+   "k": "f.return",
+   "grp": "f",
+   "az": "Dönüş tarixi",
+   "en": "Return date"
+  },
+  {
+   "k": "f.ev_type",
+   "grp": "f",
+   "az": "Tədbir növü",
+   "en": "Event type"
+  },
+  {
+   "k": "f.ev_date",
+   "grp": "f",
+   "az": "Tədbir tarixi",
+   "en": "Event date"
+  },
+  {
+   "k": "f.ev_guests",
+   "grp": "f",
+   "az": "İştirakçı sayı",
+   "en": "Participants"
+  },
+  {
+   "k": "f.ev_city",
+   "grp": "f",
+   "az": "Şəhər / məkan",
+   "en": "City / venue"
+  },
+  {
+   "k": "f.ph_ev_city",
+   "grp": "f",
+   "az": "Məs.: Bakı",
+   "en": "e.g. Baku"
+  },
+  {
+   "k": "f.city",
+   "grp": "f",
+   "az": "Şəhər / ərazi",
+   "en": "City / area"
+  },
+  {
+   "k": "f.ph_city",
+   "grp": "f",
+   "az": "Məs.: Bakı, mərkəz",
+   "en": "e.g. Baku, city centre"
+  },
+  {
+   "k": "f.checkin",
+   "grp": "f",
+   "az": "Giriş tarixi",
+   "en": "Check-in"
+  },
+  {
+   "k": "f.checkout",
+   "grp": "f",
+   "az": "Çıxış tarixi",
+   "en": "Check-out"
+  },
+  {
+   "k": "f.nights",
+   "grp": "f",
+   "az": "Gecə sayı",
+   "en": "Nights"
+  },
+  {
+   "k": "f.guests",
+   "grp": "f",
+   "az": "Qonaq sayı",
+   "en": "Guests"
+  },
+  {
+   "k": "f.room",
+   "grp": "f",
+   "az": "Otaq kateqoriyası",
+   "en": "Room category"
+  },
+  {
+   "k": "f.room_std",
+   "grp": "f",
+   "az": "Standart",
+   "en": "Standard"
+  },
+  {
+   "k": "f.room_biz",
+   "grp": "f",
+   "az": "Biznes",
+   "en": "Business"
+  },
+  {
+   "k": "f.room_lux",
+   "grp": "f",
+   "az": "Lüks / VIP",
+   "en": "Luxury / VIP"
+  },
+  {
+   "k": "f.budget",
+   "grp": "f",
+   "az": "Büdcə aralığı",
+   "en": "Budget range"
+  },
+  {
+   "k": "f.ph_budget",
+   "grp": "f",
+   "az": "Məs.: 100–150 AZN / gecə",
+   "en": "e.g. 100–150 AZN / night"
+  },
+  {
+   "k": "f.products",
+   "grp": "f",
+   "az": "Məhsullar",
+   "en": "Products"
+  },
+  {
+   "k": "f.product",
+   "grp": "f",
+   "az": "Məhsul",
+   "en": "Product"
+  },
+  {
+   "k": "f.prod_name",
+   "grp": "f",
+   "az": "Məhsul adı",
+   "en": "Product name"
+  },
+  {
+   "k": "f.ph_prod",
+   "grp": "f",
+   "az": "Məs.: CNC freze dəzgahı",
+   "en": "e.g. CNC milling machine"
+  },
+  {
+   "k": "f.qty",
+   "grp": "f",
+   "az": "Miqdar",
+   "en": "Quantity"
+  },
+  {
+   "k": "f.doc",
+   "grp": "f",
+   "az": "Texniki sənəd",
+   "en": "Technical document"
+  },
+  {
+   "k": "f.doc_hint",
+   "grp": "f",
+   "az": "Şəkil, kataloq və ya spesifikasiya",
+   "en": "Photo, catalogue or specification"
+  },
+  {
+   "k": "f.add_prod",
+   "grp": "f",
+   "az": "Başqa məhsul əlavə et",
+   "en": "Add another product"
+  },
+  {
+   "k": "f.remove",
+   "grp": "f",
+   "az": "Sil",
+   "en": "Remove"
+  },
+  {
+   "k": "footer.text",
+   "grp": "footer",
+   "az": "Biznesiniz üçün logistika və korporativ xidmət həlləri — vahid idarəetmə altında.",
+   "en": "Logistics and corporate service solutions for your business — under single management."
+  },
+  {
+   "k": "footer.menu",
+   "grp": "footer",
+   "az": "Menyu",
+   "en": "Menu"
+  },
+  {
+   "k": "footer.rights",
+   "grp": "footer",
+   "az": "Bütün hüquqlar qorunur.",
+   "en": "All rights reserved."
+  },
+  {
+   "k": "partners.text",
+   "grp": "partners",
+   "az": "Dövlət qurumları, beynəlxalq təşkilatlar və özəl şirkətlərlə uzunmüddətli əməkdaşlıq edirik.",
+   "en": "We work long-term with public institutions, international organizations and private companies."
+  },
+  {
+   "k": "contact.map",
+   "grp": "contact",
+   "az": "Xəritədə bax",
+   "en": "View on map"
+  },
+  {
+   "k": "contact.follow",
+   "grp": "contact",
+   "az": "Sosial şəbəkələr",
+   "en": "Social media"
+  },
+  {
+   "k": "e404.title",
+   "grp": "e404",
+   "az": "Səhifə tapılmadı",
+   "en": "Page not found"
+  },
+  {
+   "k": "e404.text",
+   "grp": "e404",
+   "az": "Axtardığınız səhifə mövcud deyil və ya köçürülüb.",
+   "en": "The page you are looking for doesn't exist or has moved."
+  },
+  {
+   "k": "e404.back",
+   "grp": "e404",
+   "az": "Ana səhifəyə qayıt",
+   "en": "Back to home"
+  },
+  {
+   "k": "f.err",
+   "grp": "f",
+   "az": "Zəhmət olmasa məcburi xanaları düzgün doldurun.",
+   "en": "Please fill in the required fields correctly."
+  },
+  {
+   "k": "f.err_server",
+   "grp": "f",
+   "az": "Sorğunu göndərmək alınmadı. Yenidən cəhd edin və ya bizə zəng edin.",
+   "en": "Your request could not be sent. Please try again or call us."
+  },
+  {
+   "k": "f.err_file",
+   "grp": "f",
+   "az": "Fayl qəbul edilmədi: PDF, JPG, PNG, DOC, DOCX, XLS, XLSX; hər fayl maksimum 10 MB.",
+   "en": "File rejected: PDF, JPG, PNG, DOC, DOCX, XLS, XLSX only; max 10 MB per file."
+  },
+  {
+   "k": "f.err_rate",
+   "grp": "f",
+   "az": "Çox sayda sorğu göndərildi. Bir neçə dəqiqədən sonra yenidən cəhd edin.",
+   "en": "Too many requests. Please try again in a few minutes."
+  },
+  {
+   "k": "f.sending",
+   "grp": "f",
+   "az": "Göndərilir…",
+   "en": "Sending…"
+  },
+  {
+   "k": "about.more",
+   "grp": "about",
+   "az": "Şirkət haqqında",
+   "en": "About the company"
+  },
+  {
+   "k": "services.more",
+   "grp": "services",
+   "az": "Bütün xidmətlərə bax",
+   "en": "View all services"
+  },
+  {
+   "k": "partners.more",
+   "grp": "partners",
+   "az": "Bütün partnyorlar",
+   "en": "All partners"
+  }
+ ],
+ "services": [
+  {
+   "key": "qonaq",
+   "slug_az": "qonaq-yerlesdirme",
+   "slug_en": "accommodation",
+   "icon": "bed",
+   "form_type": "hotel",
+   "image": "assets/img/hotel-van.jpg",
+   "image2": "assets/img/baku-sunset.jpg",
+   "sort": 1,
+   "active": 1,
+   "title": {
+    "az": "Qonaq yerləşdirmə",
+    "en": "Guest accommodation"
+   },
+   "short": {
+    "az": "Əməkdaşlarınız, qonaqlarınız və layihə komandalarınız üçün uyğun yerləşdirmə həllərinin seçilməsi və təşkil edilməsi. Otel rezervasiyası, VIP xidmət, 24/7 dəstək.",
+    "en": "Selecting and arranging the right accommodation for your employees, guests and project teams. Hotel booking, VIP service, 24/7 support."
+   },
+   "page_title": {
+    "az": "Qonaqlarınız üçün uyğun yerləşdirmə həlləri",
+    "en": "The right accommodation for your guests"
+   },
+   "page_desc": {
+    "az": "Alizadeh Group korporativ qonaqların, layihə komandalarının və tədbir iştirakçılarının yerləşdirilməsi üçün ehtiyaca uyğun seçim və rezervasiya prosesini koordinasiya edir.",
+    "en": "Alizadeh Group coordinates the selection and booking process for corporate guests, project teams and event participants, tailored to their needs."
+   },
+   "meta_title": {
+    "az": "Qonaq yerləşdirmə — Alizadeh Group",
+    "en": "Guest accommodation — Alizadeh Group"
+   },
+   "meta_desc": {
+    "az": "Alizadeh Group korporativ qonaqların, layihə komandalarının və tədbir iştirakçılarının yerləşdirilməsi üçün ehtiyaca uyğun seçim və rezervasiya prosesini koordinasiya edir.",
+    "en": "Alizadeh Group coordinates the selection and booking process for corporate guests, project teams and event participants, tailored to their needs."
+   },
+   "targets": [
+    {
+     "icon": "briefcase",
+     "text": {
+      "az": "Korporativ qonaqlar",
+      "en": "Corporate guests"
+     }
+    },
+    {
+     "icon": "globe",
+     "text": {
+      "az": "Xarici nümayəndə heyətləri",
+      "en": "Foreign delegations"
+     }
+    },
+    {
+     "icon": "users",
+     "text": {
+      "az": "Layihə və işçi komandaları",
+      "en": "Project and work teams"
+     }
+    },
+    {
+     "icon": "mic",
+     "text": {
+      "az": "Konfrans və tədbir iştirakçıları",
+      "en": "Conference and event participants"
+     }
+    },
+    {
+     "icon": "plane",
+     "text": {
+      "az": "İşgüzar səfər qonaqları",
+      "en": "Business travellers"
+     }
+    },
+    {
+     "icon": "star",
+     "text": {
+      "az": "VIP qonaqlar",
+      "en": "VIP guests"
+     }
+    }
+   ],
+   "offers": [
+    {
+     "text": {
+      "az": "Otel və yerləşdirmə seçimlərinin hazırlanması",
+      "en": "Preparing hotel and accommodation options"
+     }
+    },
+    {
+     "text": {
+      "az": "Tək və qrup rezervasiyaları",
+      "en": "Individual and group bookings"
+     }
+    },
+    {
+     "text": {
+      "az": "Otaq kateqoriyasının seçilməsi",
+      "en": "Room category selection"
+     }
+    },
+    {
+     "text": {
+      "az": "Qısamüddətli və uzunmüddətli yerləşdirmə",
+      "en": "Short- and long-term stays"
+     }
+    },
+    {
+     "text": {
+      "az": "VIP qonaqlar üçün fərdi yanaşma",
+      "en": "A personal approach for VIP guests"
+     }
+    },
+    {
+     "text": {
+      "az": "Qidalanma seçimlərinin koordinasiyası",
+      "en": "Coordination of meal options"
+     }
+    },
+    {
+     "text": {
+      "az": "Hava limanı transferinin əlavə edilməsi",
+      "en": "Adding an airport transfer"
+     }
+    },
+    {
+     "text": {
+      "az": "Oteldə görüş və tədbir məkanının təşkili",
+      "en": "Arranging meeting and event space at the hotel"
+     }
+    },
+    {
+     "text": {
+      "az": "Rezervasiya müddətində qonaq dəstəyi",
+      "en": "Guest support throughout the stay"
+     }
+    }
+   ],
+   "steps": [
+    {
+     "title": {
+      "az": "Sorğunun qəbulu",
+      "en": "Request intake"
+     },
+     "text": {
+      "az": "Məkan, tarix, qonaq sayı və xüsusi tələblər müəyyən edilir.",
+      "en": "Location, dates, number of guests and special requirements are defined."
+     }
+    },
+    {
+     "title": {
+      "az": "Variantların hazırlanması",
+      "en": "Preparing options"
+     },
+     "text": {
+      "az": "Tələblərə və büdcəyə uyğun yerləşdirmə variantları seçilir.",
+      "en": "Accommodation options that match your requirements and budget are shortlisted."
+     }
+    },
+    {
+     "title": {
+      "az": "Təklifin təqdim edilməsi",
+      "en": "Presenting the offer"
+     },
+     "text": {
+      "az": "Uyğun seçimlər müqayisə üçün müştəriyə göndərilir.",
+      "en": "Suitable options are sent to you for comparison."
+     }
+    },
+    {
+     "title": {
+      "az": "Təsdiq və rezervasiya",
+      "en": "Confirmation and booking"
+     },
+     "text": {
+      "az": "Seçilən yerləşdirmə variantının rezervasiyası koordinasiya edilir.",
+      "en": "The booking of the chosen option is coordinated."
+     }
+    },
+    {
+     "title": {
+      "az": "Əlavə xidmətlər",
+      "en": "Additional services"
+     },
+     "text": {
+      "az": "Transfer, qidalanma və digər ehtiyaclar rezervasiyaya əlavə edilir.",
+      "en": "Transfers, meals and other needs are added to the booking."
+     }
+    },
+    {
+     "title": {
+      "az": "Qarşılama və dəstək",
+      "en": "Welcome and support"
+     },
+     "text": {
+      "az": "Yerləşdirmə müddətində yaranan ehtiyacların həllinə dəstək göstərilir.",
+      "en": "We help with any needs that arise during the stay."
+     }
+    }
+   ],
+   "faq": [
+    {
+     "q": {
+      "az": "Rezervasiya üçün hansı məlumatlar lazımdır?",
+      "en": "What information is needed for a booking?"
+     },
+     "a": {
+      "az": "Giriş və çıxış tarixi, qonaq sayı, şəhər/ərazi, otaq kateqoriyası tələbi və büdcə aralığı əsas məlumatlardır. Digər spesifik tələblərinizi əlavə qeyd xanasında bildirə bilərsiniz.",
+      "en": "The key details are check-in and check-out dates, number of guests, city/area, preferred room category and budget range. You can add any other specific requirements in the notes field."
+     }
+    },
+    {
+     "q": {
+      "az": "Qrup rezervasiyası mümkündürmü?",
+      "en": "Are group bookings possible?"
+     },
+     "a": {
+      "az": "Bəli, birdən çox qonaq üçün eyni vaxtda rezervasiya koordinasiya edirik. Qrup sayını və ehtiyaclarını sorğu formasında bildirin.",
+      "en": "Yes, we coordinate bookings for several guests at once. Specify the group size and needs in the request form."
+     }
+    },
+    {
+     "q": {
+      "az": "Transfer əlavə etmək mümkündürmü?",
+      "en": "Can I add a transfer?"
+     },
+     "a": {
+      "az": "Bəli, hava limanı transferi, şəhərdaxili nəqliyyat və digər transfer xidmətlərini rezervasiyanıza əlavə edə bilərik.",
+      "en": "Yes, we can add airport transfers, city transport and other transfer services to your booking."
+     }
+    },
+    {
+     "q": {
+      "az": "Xüsusi qonaq tələbləri nəzərə alınırmı?",
+      "en": "Are special guest requirements taken into account?"
+     },
+     "a": {
+      "az": "Bəli, VIP xidmət, xüsusi otaq konfiqurasiyası, əlillik üçün uyğunlaşdırılmış otaq kimi tələbləri işlədiyimiz vaxtda nəzərə alırıq.",
+      "en": "Yes, we take requirements such as VIP service, special room configurations and accessible rooms into account."
+     }
+    }
+   ],
+   "extra_style": "",
+   "extra_title": {
+    "az": "",
+    "en": ""
+   },
+   "extra_q": {
+    "az": "",
+    "en": ""
+   },
+   "extra_items": []
+  },
+  {
+   "key": "neqliyyat",
+   "slug_az": "neqliyyat",
+   "slug_en": "transport",
+   "icon": "car",
+   "form_type": "transport",
+   "image": "assets/img/baku-airport.jpg",
+   "image2": "assets/img/vip-interior.jpg",
+   "sort": 2,
+   "active": 1,
+   "title": {
+    "az": "Nəqliyyat xidməti",
+    "en": "Transport services"
+   },
+   "short": {
+    "az": "Fərdi və korporativ səfərlər, hava limanı transferləri, şəhərdaxili və şəhərlərarası daşınma, VIP nəqliyyat, sürücülü və sürücüsüz avtomobil icarəsi.",
+    "en": "Private and corporate trips, airport transfers, city and intercity transport, VIP transport, car rental with or without a driver."
+   },
+   "page_title": {
+    "az": "Rahat və planlı korporativ nəqliyyat",
+    "en": "Comfortable, well-planned corporate transport"
+   },
+   "page_desc": {
+    "az": "Fərdi sərnişinlər, korporativ qonaqlar və layihə komandaları üçün şəhərdaxili, şəhərlərarası və hava limanı transfer xidmətlərini koordinasiya edirik.",
+    "en": "We coordinate city, intercity and airport transfers for individual passengers, corporate guests and project teams."
+   },
+   "meta_title": {
+    "az": "Nəqliyyat xidməti — Alizadeh Group",
+    "en": "Transport services — Alizadeh Group"
+   },
+   "meta_desc": {
+    "az": "Fərdi sərnişinlər, korporativ qonaqlar və layihə komandaları üçün şəhərdaxili, şəhərlərarası və hava limanı transfer xidmətlərini koordinasiya edirik.",
+    "en": "We coordinate city, intercity and airport transfers for individual passengers, corporate guests and project teams."
+   },
+   "targets": [
+    {
+     "icon": "briefcase",
+     "text": {
+      "az": "Korporativ əməkdaşlar",
+      "en": "Corporate employees"
+     }
+    },
+    {
+     "icon": "globe",
+     "text": {
+      "az": "Yerli və xarici qonaqlar",
+      "en": "Local and international guests"
+     }
+    },
+    {
+     "icon": "flag",
+     "text": {
+      "az": "Nümayəndə heyətləri",
+      "en": "Delegations"
+     }
+    },
+    {
+     "icon": "mic",
+     "text": {
+      "az": "Tədbir iştirakçıları",
+      "en": "Event participants"
+     }
+    },
+    {
+     "icon": "users",
+     "text": {
+      "az": "Layihə komandaları",
+      "en": "Project teams"
+     }
+    },
+    {
+     "icon": "user",
+     "text": {
+      "az": "Fərdi sərnişinlər",
+      "en": "Individual passengers"
+     }
+    }
+   ],
+   "offers": [
+    {
+     "text": {
+      "az": "Hava limanı transferi",
+      "en": "Airport transfer"
+     }
+    },
+    {
+     "text": {
+      "az": "Şəhərdaxili sərnişin daşınması",
+      "en": "City passenger transport"
+     }
+    },
+    {
+     "text": {
+      "az": "Şəhərlərarası nəqliyyat",
+      "en": "Intercity transport"
+     }
+    },
+    {
+     "text": {
+      "az": "Saatlıq avtomobil sifarişi",
+      "en": "Hourly car hire"
+     }
+    },
+    {
+     "text": {
+      "az": "Günlük avtomobil sifarişi",
+      "en": "Daily car hire"
+     }
+    },
+    {
+     "text": {
+      "az": "VIP nəqliyyat xidməti",
+      "en": "VIP transport"
+     }
+    },
+    {
+     "text": {
+      "az": "Sürücülü avtomobil",
+      "en": "Car with a driver"
+     }
+    },
+    {
+     "text": {
+      "az": "Qrup transferləri",
+      "en": "Group transfers"
+     }
+    },
+    {
+     "text": {
+      "az": "Tədbirlər üçün nəqliyyat koordinasiyası",
+      "en": "Transport coordination for events"
+     }
+    },
+    {
+     "text": {
+      "az": "Qarşılama və yola salma",
+      "en": "Meet-and-greet and send-off"
+     }
+    }
+   ],
+   "steps": [
+    {
+     "title": {
+      "az": "Marşrutun müəyyən edilməsi",
+      "en": "Defining the route"
+     },
+     "text": {
+      "az": "Gediş yeri, təyinat və marşrut detalları müzakirə olunur.",
+      "en": "The pick-up point, destination and route details are discussed."
+     }
+    },
+    {
+     "title": {
+      "az": "Tarix, saat və sərnişin sayı",
+      "en": "Date, time and passengers"
+     },
+     "text": {
+      "az": "Dəqiq tarix, vaxt aralığı və neçə nəfər olduğu təsdiqlənir.",
+      "en": "The exact date, time window and number of passengers are confirmed."
+     }
+    },
+    {
+     "title": {
+      "az": "Avtomobil kateqoriyasının seçilməsi",
+      "en": "Choosing the vehicle class"
+     },
+     "text": {
+      "az": "Ehtiyaca uyğun avtomobil növü müştəri ilə razılaşdırılır.",
+      "en": "The right type of vehicle is agreed with you."
+     }
+    },
+    {
+     "title": {
+      "az": "Qiymət və xidmət şərtləri",
+      "en": "Price and terms"
+     },
+     "text": {
+      "az": "Şəffaf qiymət təklifi hazırlanıb müştəriyə göndərilir.",
+      "en": "A transparent price quote is prepared and sent to you."
+     }
+    },
+    {
+     "title": {
+      "az": "Sürücü məlumatlarının ötürülməsi",
+      "en": "Sharing driver details"
+     },
+     "text": {
+      "az": "Sürücü adı, əlaqə nömrəsi və avtomobil məlumatları paylaşılır.",
+      "en": "The driver's name, phone number and vehicle details are shared with you."
+     }
+    },
+    {
+     "title": {
+      "az": "Transfer və dəstək",
+      "en": "Transfer and support"
+     },
+     "text": {
+      "az": "Transfer həyata keçirilir; lazım olduqda əlavə dəstək göstərilir.",
+      "en": "The transfer is carried out, with extra support when needed."
+     }
+    }
+   ],
+   "faq": [
+    {
+     "q": {
+      "az": "Hava limanı transferi necə sifariş edilir?",
+      "en": "How do I book an airport transfer?"
+     },
+     "a": {
+      "az": "Gediş yeri, uçuş nömrəsi, tarix, saat və sərnişin sayını rezervasiya formasında bildirin. Komandamız tezliklə əlaqə saxlayacaq.",
+      "en": "Enter the pick-up point, flight number, date, time and number of passengers in the booking form. Our team will contact you shortly."
+     }
+    },
+    {
+     "q": {
+      "az": "Qrup transferi mümkündürmü?",
+      "en": "Are group transfers possible?"
+     },
+     "a": {
+      "az": "Bəli, qrup transferlərini koordinasiya edirik. Qrup böyüklüyünə uyğun avtomobil seçimini birgə müzakirə edə bilərik.",
+      "en": "Yes, we coordinate group transfers and can agree together on vehicles that fit your group size."
+     }
+    },
+    {
+     "q": {
+      "az": "Avtomobil kateqoriyası necə seçilir?",
+      "en": "How is the vehicle class chosen?"
+     },
+     "a": {
+      "az": "Sedan, minivan, VIP sinif — sərnişin sayı, təyinat yeri və büdcənizə uyğun seçim birgə müəyyən edilir.",
+      "en": "Sedan, minivan or VIP class — we choose together based on the number of passengers, the destination and your budget."
+     }
+    },
+    {
+     "q": {
+      "az": "Gediş-dönüş rezervasiyası mümkündürmü?",
+      "en": "Can I book a round trip?"
+     },
+     "a": {
+      "az": "Bəli, eyni sorğuda gediş və dönüş transferini birlikdə sifariş edə bilərsiniz.",
+      "en": "Yes, you can book the outbound and return transfers in the same request."
+     }
+    }
+   ],
+   "extra_style": "",
+   "extra_title": {
+    "az": "",
+    "en": ""
+   },
+   "extra_q": {
+    "az": "",
+    "en": ""
+   },
+   "extra_items": []
+  },
+  {
+   "key": "tedbir",
+   "slug_az": "tedbirlerin-teskili",
+   "slug_en": "events",
+   "icon": "mic",
+   "form_type": "event",
+   "image": "assets/img/conference.jpg",
+   "image2": "assets/img/partnership.jpg",
+   "sort": 3,
+   "active": 1,
+   "title": {
+    "az": "Tədbirlərin təşkili",
+    "en": "Event management"
+   },
+   "short": {
+    "az": "Korporativ görüşlərin, konfransların, seminarların, sərgilərin, qala gecələrinin planlaşdırılması. Texniki avadanlıq, dekorasiya, catering, tərcümə xidmətləri.",
+    "en": "Planning corporate meetings, conferences, seminars, exhibitions and gala evenings. Technical equipment, decor, catering and interpreting services."
+   },
+   "page_title": {
+    "az": "İdeyadan tədbirin tamamlanmasına qədər",
+    "en": "From the idea to a completed event"
+   },
+   "page_desc": {
+    "az": "Korporativ tədbirlərin, konfransların, seminarların, sərgilərin və xüsusi görüşlərin planlaşdırılmasını və icrasını koordinasiya edirik.",
+    "en": "We coordinate the planning and delivery of corporate events, conferences, seminars, exhibitions and special meetings."
+   },
+   "meta_title": {
+    "az": "Tədbirlərin təşkili — Alizadeh Group",
+    "en": "Event management — Alizadeh Group"
+   },
+   "meta_desc": {
+    "az": "Korporativ tədbirlərin, konfransların, seminarların, sərgilərin və xüsusi görüşlərin planlaşdırılmasını və icrasını koordinasiya edirik.",
+    "en": "We coordinate the planning and delivery of corporate events, conferences, seminars, exhibitions and special meetings."
+   },
+   "targets": [
+    {
+     "icon": "building",
+     "text": {
+      "az": "Şirkətlər və təşkilatlar",
+      "en": "Companies and organizations"
+     }
+    },
+    {
+     "icon": "landmark",
+     "text": {
+      "az": "Dövlət və özəl qurumlar",
+      "en": "Public and private institutions"
+     }
+    },
+    {
+     "icon": "flag",
+     "text": {
+      "az": "Nümayəndə heyətləri",
+      "en": "Delegations"
+     }
+    },
+    {
+     "icon": "mic",
+     "text": {
+      "az": "Konfrans təşkilatçıları",
+      "en": "Conference organizers"
+     }
+    },
+    {
+     "icon": "cap",
+     "text": {
+      "az": "Təlim keçirən komandalar",
+      "en": "Training teams"
+     }
+    },
+    {
+     "icon": "spark",
+     "text": {
+      "az": "Məhsul təqdimatçıları",
+      "en": "Product presenters"
+     }
+    }
+   ],
+   "offers": [
+    {
+     "text": {
+      "az": "Tədbir konsepsiyasının hazırlanması",
+      "en": "Event concept development"
+     }
+    },
+    {
+     "text": {
+      "az": "Məkan seçimi",
+      "en": "Venue selection"
+     }
+    },
+    {
+     "text": {
+      "az": "Səhnə və dekorasiya",
+      "en": "Stage and decor"
+     }
+    },
+    {
+     "text": {
+      "az": "Səs, işıq və ekran sistemləri",
+      "en": "Sound, lighting and screen systems"
+     }
+    },
+    {
+     "text": {
+      "az": "Proyektor və mikrofon təminatı",
+      "en": "Projectors and microphones"
+     }
+    },
+    {
+     "text": {
+      "az": "Qeydiyyat və qonaq idarəetməsi",
+      "en": "Registration and guest management"
+     }
+    },
+    {
+     "text": {
+      "az": "Catering xidməti",
+      "en": "Catering"
+     }
+    },
+    {
+     "text": {
+      "az": "Simultane, konsekutiv və yazılı tərcümə",
+      "en": "Simultaneous, consecutive and written translation"
+     }
+    },
+    {
+     "text": {
+      "az": "Foto və video koordinasiyası",
+      "en": "Photo and video coordination"
+     }
+    },
+    {
+     "text": {
+      "az": "Əyləncə proqramının təşkili",
+      "en": "Entertainment programme"
+     }
+    },
+    {
+     "text": {
+      "az": "Transfer və yerləşdirmənin koordinasiyası",
+      "en": "Transfer and accommodation coordination"
+     }
+    },
+    {
+     "text": {
+      "az": "Tədbir sonrası hesabat",
+      "en": "Post-event report"
+     }
+    }
+   ],
+   "steps": [
+    {
+     "title": {
+      "az": "Brif və məqsədlər",
+      "en": "Brief and goals"
+     },
+     "text": {
+      "az": "Tədbirin məqsədi, format, tarix və auditoriya müəyyən edilir.",
+      "en": "The event's goal, format, date and audience are defined."
+     }
+    },
+    {
+     "title": {
+      "az": "Konsepsiya və büdcə",
+      "en": "Concept and budget"
+     },
+     "text": {
+      "az": "Tədbirə uyğun konsepsiya və büdcə çərçivəsi hazırlanır.",
+      "en": "A matching concept and budget framework are prepared."
+     }
+    },
+    {
+     "title": {
+      "az": "Məkan və xidmətçilər",
+      "en": "Venue and suppliers"
+     },
+     "text": {
+      "az": "Məkan, texniki avadanlıq və xidmət təminatçıları seçilir.",
+      "en": "The venue, technical equipment and service providers are selected."
+     }
+    },
+    {
+     "title": {
+      "az": "Texniki və təşkilati plan",
+      "en": "Technical and organizational plan"
+     },
+     "text": {
+      "az": "Bütün detalları əhatə edən icra planı hazırlanır.",
+      "en": "A delivery plan covering every detail is prepared."
+     }
+    },
+    {
+     "title": {
+      "az": "Yerindəki idarəetmə",
+      "en": "On-site management"
+     },
+     "text": {
+      "az": "Komanda tədbirin gedişatını yerindən koordinasiya edir.",
+      "en": "Our team coordinates the event on site."
+     }
+    },
+    {
+     "title": {
+      "az": "Tamamlanma və hesabat",
+      "en": "Wrap-up and report"
+     },
+     "text": {
+      "az": "Tədbir sona çatdırılır, nəticələr barədə hesabat verilir.",
+      "en": "The event is wrapped up and a results report is delivered."
+     }
+    }
+   ],
+   "faq": [
+    {
+     "q": {
+      "az": "Tədbir üçün müraciət nə qədər əvvəl edilməlidir?",
+      "en": "How far in advance should I contact you about an event?"
+     },
+     "a": {
+      "az": "Mümkün qədər erkən müraciət tövsiyə olunur. Böyük tədbirlər üçün ən azı 4–6 həftə əvvəl, kiçik tədbirlər üçün isə 1–2 həftə əvvəl müraciət etmək məsləhətdir.",
+      "en": "As early as possible. For large events we recommend contacting us at least 4–6 weeks in advance, for smaller events 1–2 weeks."
+     }
+    },
+    {
+     "q": {
+      "az": "Məkan seçiminə kömək edirsinizmi?",
+      "en": "Do you help choose a venue?"
+     },
+     "a": {
+      "az": "Bəli, tədbirinizin formatına, iştirakçı sayına və büdcəsinə uyğun məkan seçimini koordinasiya edirik.",
+      "en": "Yes, we coordinate venue selection to match your event's format, number of participants and budget."
+     }
+    },
+    {
+     "q": {
+      "az": "Texniki avadanlıq və catering təmin edilirmi?",
+      "en": "Do you provide technical equipment and catering?"
+     },
+     "a": {
+      "az": "Bəli, proyektor, ekran, mikrofon, işıqlandırma kimi texniki avadanlığın, həmçinin catering xidmətlərinin koordinasiyasını həyata keçiririk.",
+      "en": "Yes, we coordinate technical equipment such as projectors, screens, microphones and lighting, as well as catering."
+     }
+    },
+    {
+     "q": {
+      "az": "Qonaqların transferi və yerləşdirilməsi mümkündürmü?",
+      "en": "Can you arrange guest transfers and accommodation?"
+     },
+     "a": {
+      "az": "Bəli, nəqliyyat və otel yerləşdirmə koordinasiyasını da tədbirinizin planına əlavə edə bilərik.",
+      "en": "Yes, we can add transport and hotel coordination to your event plan."
+     }
+    }
+   ],
+   "extra_style": "chips",
+   "extra_title": {
+    "az": "Tədbir növləri",
+    "en": "Event types"
+   },
+   "extra_q": {
+    "az": "Hansı tədbirləri təşkil edirik?",
+    "en": "Which events do we organize?"
+   },
+   "extra_items": [
+    {
+     "icon": "",
+     "title": {
+      "az": "Konfranslar",
+      "en": "Conferences"
+     },
+     "text": {
+      "az": "",
+      "en": ""
+     }
+    },
+    {
+     "icon": "",
+     "title": {
+      "az": "Seminar və təlimlər",
+      "en": "Seminars and trainings"
+     },
+     "text": {
+      "az": "",
+      "en": ""
+     }
+    },
+    {
+     "icon": "",
+     "title": {
+      "az": "Korporativ görüşlər",
+      "en": "Corporate meetings"
+     },
+     "text": {
+      "az": "",
+      "en": ""
+     }
+    },
+    {
+     "icon": "",
+     "title": {
+      "az": "Sərgilər",
+      "en": "Exhibitions"
+     },
+     "text": {
+      "az": "",
+      "en": ""
+     }
+    },
+    {
+     "icon": "",
+     "title": {
+      "az": "Qala gecələri",
+      "en": "Gala evenings"
+     },
+     "text": {
+      "az": "",
+      "en": ""
+     }
+    },
+    {
+     "icon": "",
+     "title": {
+      "az": "Məhsul təqdimatları",
+      "en": "Product launches"
+     },
+     "text": {
+      "az": "",
+      "en": ""
+     }
+    },
+    {
+     "icon": "",
+     "title": {
+      "az": "İşgüzar səhər yeməkləri",
+      "en": "Business breakfasts"
+     },
+     "text": {
+      "az": "",
+      "en": ""
+     }
+    },
+    {
+     "icon": "",
+     "title": {
+      "az": "Rəsmi qəbul və təqdimatlar",
+      "en": "Official receptions and presentations"
+     },
+     "text": {
+      "az": "",
+      "en": ""
+     }
+    }
+   ]
+  },
+  {
+   "key": "techizat",
+   "slug_az": "techizat-zenciri",
+   "slug_en": "supply-chain",
+   "icon": "box",
+   "form_type": "supply",
+   "image": "assets/img/dashboard.jpg",
+   "image2": "assets/img/documents.jpg",
+   "sort": 4,
+   "active": 1,
+   "title": {
+    "az": "Təchizat zənciri",
+    "en": "Supply chain"
+   },
+   "short": {
+    "az": "Sənaye avadanlıqları, CNC və metal emalı avadanlıqları, elektrik məhsulları, IT məhsulları, ofis avadanlıqları. Logistika, gömrük və sığorta seçimləri.",
+    "en": "Industrial equipment, CNC and metalworking machinery, electrical products, IT products and office equipment. Logistics, customs and insurance options."
+   },
+   "page_title": {
+    "az": "Ehtiyacdan çatdırılmaya qədər təchizat həlləri",
+    "en": "Supply solutions from need to delivery"
+   },
+   "page_desc": {
+    "az": "Biznes və layihələr üçün tələb olunan məhsul, material və avadanlıqların seçilməsi, satınalması, logistikasının və çatdırılmasının koordinasiyası.",
+    "en": "Coordinating the selection, procurement, logistics and delivery of the products, materials and equipment your business and projects need."
+   },
+   "meta_title": {
+    "az": "Təchizat zənciri — Alizadeh Group",
+    "en": "Supply chain — Alizadeh Group"
+   },
+   "meta_desc": {
+    "az": "Biznes və layihələr üçün tələb olunan məhsul, material və avadanlıqların seçilməsi, satınalması, logistikasının və çatdırılmasının koordinasiyası.",
+    "en": "Coordinating the selection, procurement, logistics and delivery of the products, materials and equipment your business and projects need."
+   },
+   "targets": [
+    {
+     "icon": "factory",
+     "text": {
+      "az": "İstehsalat müəssisələri",
+      "en": "Manufacturers"
+     }
+    },
+    {
+     "icon": "crane",
+     "text": {
+      "az": "Tikinti və layihə şirkətləri",
+      "en": "Construction and project companies"
+     }
+    },
+    {
+     "icon": "building",
+     "text": {
+      "az": "Ofis və korporativ müştərilər",
+      "en": "Office and corporate clients"
+     }
+    },
+    {
+     "icon": "bed",
+     "text": {
+      "az": "Otel və xidmət obyektləri",
+      "en": "Hotels and service facilities"
+     }
+    },
+    {
+     "icon": "landmark",
+     "text": {
+      "az": "Dövlət və özəl təşkilatlar",
+      "en": "Public and private organizations"
+     }
+    },
+    {
+     "icon": "grid",
+     "text": {
+      "az": "Müxtəlif sahə bizneslər",
+      "en": "Businesses across sectors"
+     }
+    }
+   ],
+   "offers": [
+    {
+     "text": {
+      "az": "Məhsul və avadanlığın axtarılması",
+      "en": "Sourcing products and equipment"
+     }
+    },
+    {
+     "text": {
+      "az": "Texniki göstəricilərin müqayisəsi",
+      "en": "Comparing technical specifications"
+     }
+    },
+    {
+     "text": {
+      "az": "Satınalma prosesinin koordinasiyası",
+      "en": "Coordinating procurement"
+     }
+    },
+    {
+     "text": {
+      "az": "Qiymət təklifinin hazırlanması",
+      "en": "Preparing price quotes"
+     }
+    },
+    {
+     "text": {
+      "az": "Yerli və beynəlxalq təchizat",
+      "en": "Local and international supply"
+     }
+    },
+    {
+     "text": {
+      "az": "Logistika və yükdaşıma",
+      "en": "Logistics and freight"
+     }
+    },
+    {
+     "text": {
+      "az": "Gömrük proseslərinə dəstək",
+      "en": "Customs support"
+     }
+    },
+    {
+     "text": {
+      "az": "Sığorta seçimi",
+      "en": "Insurance selection"
+     }
+    },
+    {
+     "text": {
+      "az": "Çatdırılma və təhvil",
+      "en": "Delivery and handover"
+     }
+    },
+    {
+     "text": {
+      "az": "Sifariş üzrə məlumatlandırma",
+      "en": "Order status updates"
+     }
+    }
+   ],
+   "steps": [
+    {
+     "title": {
+      "az": "Məhsul siyahısının qəbulu",
+      "en": "Receiving the product list"
+     },
+     "text": {
+      "az": "Məhsul adı, texniki parametrlər və tələblər müəyyən edilir.",
+      "en": "Product names, technical parameters and requirements are defined."
+     }
+    },
+    {
+     "title": {
+      "az": "Araşdırma və analiz",
+      "en": "Research and analysis"
+     },
+     "text": {
+      "az": "Tələblərə uyğun variantlar araşdırılır, müqayisə aparılır.",
+      "en": "Matching options are researched and compared."
+     }
+    },
+    {
+     "title": {
+      "az": "Qiymət və çatdırılma təklifi",
+      "en": "Price and delivery offer"
+     },
+     "text": {
+      "az": "Şəffaf qiymət təklifi hazırlanıb müştəriyə göndərilir.",
+      "en": "A transparent price quote is prepared and sent to you."
+     }
+    },
+    {
+     "title": {
+      "az": "Təklifin təsdiqi və satınalma",
+      "en": "Approval and purchase"
+     },
+     "text": {
+      "az": "Müştəri seçimi təsdiqlənir, satınalma başladılır.",
+      "en": "Your choice is confirmed and procurement begins."
+     }
+    },
+    {
+     "title": {
+      "az": "Logistika koordinasiyası",
+      "en": "Logistics coordination"
+     },
+     "text": {
+      "az": "Daşınma, gömrük və sığorta prosesləri idarə edilir.",
+      "en": "Shipping, customs and insurance are managed."
+     }
+    },
+    {
+     "title": {
+      "az": "Təhvil və sənədləşmə",
+      "en": "Handover and documents"
+     },
+     "text": {
+      "az": "Məhsullar vaxtında çatdırılır, müvafiq sənədlər hazırlanır.",
+      "en": "Products are delivered on time and the relevant documents are prepared."
+     }
+    }
+   ],
+   "faq": [
+    {
+     "q": {
+      "az": "Birdən çox məhsulu bir sorğuda göndərmək mümkündürmü?",
+      "en": "Can I send several products in one request?"
+     },
+     "a": {
+      "az": "Bəli, sorğu formasında “Başqa məhsul əlavə et” düyməsi ilə istədiyiniz qədər məhsul əlavə edib eyni anda göndərə bilərsiniz.",
+      "en": "Yes, use the “Add another product” button in the request form to add as many products as you need and send them together."
+     }
+    },
+    {
+     "q": {
+      "az": "Xaricdən məhsul təchizatı mümkündürmü?",
+      "en": "Can you supply products from abroad?"
+     },
+     "a": {
+      "az": "Bəli, beynəlxalq təchizat xidmətlərini də koordinasiya edirik. Gömrük prosesləri və sığorta seçimləri üçün dəstək göstəririk.",
+      "en": "Yes, we also coordinate international supply and provide support with customs and insurance."
+     }
+    },
+    {
+     "q": {
+      "az": "Texniki sənəd əlavə etmək mümkündürmü?",
+      "en": "Can I attach technical documents?"
+     },
+     "a": {
+      "az": "Bəli, sorğu formasında hər məhsul üçün texniki sənəd yükləmə imkanı mövcuddur. Şəkil, kataloq və ya spesifikasiya faylı əlavə edə bilərsiniz.",
+      "en": "Yes, the request form lets you upload a technical document for each product — a photo, catalogue or specification file."
+     }
+    },
+    {
+     "q": {
+      "az": "Çatdırılma müddəti necə müəyyən edilir?",
+      "en": "How is the delivery time determined?"
+     },
+     "a": {
+      "az": "Çatdırılma müddəti məhsulun mənşəyinə, əlçatanlığına və logistika şərtlərinə görə dəyişir. Sorğu təsdiqlənəndən sonra dəqiq müddət barədə məlumat veririk.",
+      "en": "Delivery time depends on the product's origin, availability and logistics conditions. We confirm the exact time once the request is approved."
+     }
+    }
+   ],
+   "extra_style": "cards",
+   "extra_title": {
+    "az": "Fəaliyyət göstərdiyimiz kateqoriyalar",
+    "en": "Categories we cover"
+   },
+   "extra_q": {
+    "az": "",
+    "en": ""
+   },
+   "extra_items": [
+    {
+     "icon": "factory",
+     "title": {
+      "az": "Sənaye avadanlıqları",
+      "en": "Industrial equipment"
+     },
+     "text": {
+      "az": "İstehsal və sənaye prosesləri üçün avadanlıq və komponentlər.",
+      "en": "Equipment and components for manufacturing and industrial processes."
+     }
+    },
+    {
+     "icon": "gear",
+     "title": {
+      "az": "CNC və metal emalı",
+      "en": "CNC and metalworking"
+     },
+     "text": {
+      "az": "Metal emalı və istehsal prosesləri üçün avadanlıq və aksesuarlar.",
+      "en": "Equipment and accessories for metalworking and production."
+     }
+    },
+    {
+     "icon": "bolt",
+     "title": {
+      "az": "Elektrik məhsulları",
+      "en": "Electrical products"
+     },
+     "text": {
+      "az": "Elektrik avadanlığı, komponentlər və texniki materiallar.",
+      "en": "Electrical equipment, components and technical materials."
+     }
+    },
+    {
+     "icon": "monitor",
+     "title": {
+      "az": "IT məhsulları",
+      "en": "IT products"
+     },
+     "text": {
+      "az": "Kompüter, şəbəkə və korporativ IT infrastrukturu üçün məhsullar.",
+      "en": "Products for computers, networks and corporate IT infrastructure."
+     }
+    },
+    {
+     "icon": "printer",
+     "title": {
+      "az": "Ofis avadanlıqları",
+      "en": "Office equipment"
+     },
+     "text": {
+      "az": "Ofis texnikası, mebel və gündəlik iş mühiti üçün təchizat.",
+      "en": "Office machines, furniture and supplies for the everyday workplace."
+     }
+    },
+    {
+     "icon": "puzzle",
+     "title": {
+      "az": "Digər fərdi təchizat",
+      "en": "Other custom supply"
+     },
+     "text": {
+      "az": "Müştərinin texniki tapşırığı əsasında əlavə məhsul kateqoriyaları.",
+      "en": "Additional product categories based on your technical specification."
+     }
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "grp": "info",
+   "icon": "car",
+   "title": {
+    "az": "Nəqliyyat rezervasiyası",
+    "en": "Transport booking"
+   },
+   "text": {
+    "az": "Hava limanı transferi, şəhərdaxili, şəhərlərarası — addım-addım rezervasiya edin.",
+    "en": "Airport transfers, city and intercity trips — book step by step."
+   },
+   "link": "neqliyyat",
+   "sort": 1
+  },
+  {
+   "grp": "info",
+   "icon": "mic",
+   "title": {
+    "az": "Tədbir rezervasiyası",
+    "en": "Event booking"
+   },
+   "text": {
+    "az": "Konfrans, seminar, korporativ görüş — bütün detalları formada bildirin.",
+    "en": "Conferences, seminars, corporate meetings — share every detail in the form."
+   },
+   "link": "tedbir",
+   "sort": 2
+  },
+  {
+   "grp": "info",
+   "icon": "bed",
+   "title": {
+    "az": "Otel yerləşdirmə",
+    "en": "Hotel accommodation"
+   },
+   "text": {
+    "az": "Yerli və xarici qonaqlar üçün otel seçimi — gecə sayı avtomatik hesablanır.",
+    "en": "Hotel selection for local and international guests — the number of nights is calculated automatically."
+   },
+   "link": "qonaq",
+   "sort": 3
+  },
+  {
+   "grp": "info",
+   "icon": "box",
+   "title": {
+    "az": "Təchizat sorğusu",
+    "en": "Supply request"
+   },
+   "text": {
+    "az": "Bir neçə məhsulu bir sorğuda göndərin — biz sizə qiymət təklifi hazırlayaq.",
+    "en": "Send several products in one request — we'll prepare a price quote for you."
+   },
+   "link": "techizat",
+   "sort": 4
+  },
+  {
+   "grp": "about",
+   "icon": "check",
+   "title": {
+    "az": "Sərnişin daşınması, hava limanı və şəhərlərarası transfer xidmətləri",
+    "en": "Passenger transport, airport and intercity transfer services"
+   },
+   "text": {
+    "az": "",
+    "en": ""
+   },
+   "link": "",
+   "sort": 1
+  },
+  {
+   "grp": "about",
+   "icon": "check",
+   "title": {
+    "az": "Korporativ tədbir, konfrans və seminarların tam təşkili",
+    "en": "Full organization of corporate events, conferences and seminars"
+   },
+   "text": {
+    "az": "",
+    "en": ""
+   },
+   "link": "",
+   "sort": 2
+  },
+  {
+   "grp": "about",
+   "icon": "check",
+   "title": {
+    "az": "Təchizat zənciri, logistika və stok idarəetmə həlləri",
+    "en": "Supply chain, logistics and stock management solutions"
+   },
+   "text": {
+    "az": "",
+    "en": ""
+   },
+   "link": "",
+   "sort": 3
+  },
+  {
+   "grp": "about",
+   "icon": "check",
+   "title": {
+    "az": "Otel, restoran seçimində korporativ məsləhət",
+    "en": "Corporate consulting on hotel and restaurant selection"
+   },
+   "text": {
+    "az": "",
+    "en": ""
+   },
+   "link": "",
+   "sort": 4
+  },
+  {
+   "grp": "why",
+   "icon": "layers",
+   "title": {
+    "az": "Kompleks xidmət yanaşması",
+    "en": "Comprehensive service approach"
+   },
+   "text": {
+    "az": "Nəqliyyatdan tədbirə, təchizatdan yerləşdirməyə qədər tək tərəfdaşdan tam həll.",
+    "en": "From transport to events, from supply to accommodation — a complete solution from one partner."
+   },
+   "link": "",
+   "sort": 1
+  },
+  {
+   "grp": "why",
+   "icon": "shield",
+   "title": {
+    "az": "Etibarlı təchizat",
+    "en": "Reliable supply"
+   },
+   "text": {
+    "az": "Şəffaf proseslər və dəqiq öhdəlik icrası ilə davamlı əməkdaşlıq.",
+    "en": "Long-term cooperation built on transparent processes and commitments delivered precisely."
+   },
+   "link": "",
+   "sort": 2
+  },
+  {
+   "grp": "why",
+   "icon": "clock",
+   "title": {
+    "az": "Operativ xidmət",
+    "en": "Responsive service"
+   },
+   "text": {
+    "az": "7/24 əlaqə imkanı və vaxtında icra edilən sifarişlər.",
+    "en": "24/7 availability and orders delivered on time."
+   },
+   "link": "",
+   "sort": 3
+  },
+  {
+   "grp": "why",
+   "icon": "sliders",
+   "title": {
+    "az": "Fərdi həllər",
+    "en": "Tailored solutions"
+   },
+   "text": {
+    "az": "Hər müştərinin büdcəsinə və tələblərinə uyğunlaşdırılan yanaşma.",
+    "en": "An approach adapted to each client's budget and requirements."
+   },
+   "link": "",
+   "sort": 4
+  },
+  {
+   "grp": "why",
+   "icon": "users",
+   "title": {
+    "az": "Peşəkar komanda",
+    "en": "Professional team"
+   },
+   "text": {
+    "az": "Sahə üzrə təcrübəli mütəxəssislərdən ibarət icra qrupu.",
+    "en": "A delivery team of experienced specialists in each field."
+   },
+   "link": "",
+   "sort": 5
+  },
+  {
+   "grp": "why",
+   "icon": "globe",
+   "title": {
+    "az": "Yerli və beynəlxalq əməkdaşlıq",
+    "en": "Local and international cooperation"
+   },
+   "text": {
+    "az": "Azərbaycan daxilində və beynəlxalq tədbirlərdə sınanmış təcrübə.",
+    "en": "Proven experience in Azerbaijan and at international events."
+   },
+   "link": "",
+   "sort": 6
+  }
+ ],
+ "slides": [
+  {
+   "image": "assets/img/baku-night.jpg",
+   "eyebrow": {
+    "az": "Bakı, Azərbaycan · 7/24",
+    "en": "Baku, Azerbaijan · 24/7"
+   },
+   "title": {
+    "az": "Biznesinizin bütün logistika və korporativ xidmət həllərini bir tərəfdaşdan alın",
+    "en": "Get all your business logistics and corporate service solutions from one partner"
+   },
+   "text": {
+    "az": "Təchizat, sənaye avadanlıqları, logistika, nəqliyyat, tədbirlərin təşkili, otel yerləşdirmə və korporativ xidmətlər — vahid idarəetmə altında.",
+    "en": "Supply, industrial equipment, logistics, transport, event management, hotel accommodation and corporate services — under single management."
+   },
+   "btn": {
+    "az": "Sorğu göndər",
+    "en": "Send a request"
+   },
+   "link": "contact",
+   "sort": 1
+  },
+  {
+   "image": "assets/img/hotel-van.jpg",
+   "eyebrow": {
+    "az": "01 · Qonaq yerləşdirmə",
+    "en": "01 · Guest accommodation"
+   },
+   "title": {
+    "az": "Qonaqlarınız üçün uyğun yerləşdirmə həlləri",
+    "en": "The right accommodation for your guests"
+   },
+   "text": {
+    "az": "Əməkdaşlarınız, qonaqlarınız və layihə komandalarınız üçün uyğun yerləşdirmə həllərinin seçilməsi və təşkil edilməsi. Otel rezervasiyası, VIP xidmət, 24/7 dəstək.",
+    "en": "Selecting and arranging the right accommodation for your employees, guests and project teams. Hotel booking, VIP service, 24/7 support."
+   },
+   "btn": {
+    "az": "Ətraflı",
+    "en": "Learn more"
+   },
+   "link": "service:qonaq",
+   "sort": 2
+  },
+  {
+   "image": "assets/img/baku-airport.jpg",
+   "eyebrow": {
+    "az": "02 · Nəqliyyat xidməti",
+    "en": "02 · Transport services"
+   },
+   "title": {
+    "az": "Rahat və planlı korporativ nəqliyyat",
+    "en": "Comfortable, well-planned corporate transport"
+   },
+   "text": {
+    "az": "Fərdi və korporativ səfərlər, hava limanı transferləri, şəhərdaxili və şəhərlərarası daşınma, VIP nəqliyyat, sürücülü və sürücüsüz avtomobil icarəsi.",
+    "en": "Private and corporate trips, airport transfers, city and intercity transport, VIP transport, car rental with or without a driver."
+   },
+   "btn": {
+    "az": "Ətraflı",
+    "en": "Learn more"
+   },
+   "link": "service:neqliyyat",
+   "sort": 3
+  },
+  {
+   "image": "assets/img/conference.jpg",
+   "eyebrow": {
+    "az": "03 · Tədbirlərin təşkili",
+    "en": "03 · Event management"
+   },
+   "title": {
+    "az": "İdeyadan tədbirin tamamlanmasına qədər",
+    "en": "From the idea to a completed event"
+   },
+   "text": {
+    "az": "Korporativ görüşlərin, konfransların, seminarların, sərgilərin, qala gecələrinin planlaşdırılması. Texniki avadanlıq, dekorasiya, catering, tərcümə xidmətləri.",
+    "en": "Planning corporate meetings, conferences, seminars, exhibitions and gala evenings. Technical equipment, decor, catering and interpreting services."
+   },
+   "btn": {
+    "az": "Ətraflı",
+    "en": "Learn more"
+   },
+   "link": "service:tedbir",
+   "sort": 4
+  },
+  {
+   "image": "assets/img/dashboard.jpg",
+   "eyebrow": {
+    "az": "04 · Təchizat zənciri",
+    "en": "04 · Supply chain"
+   },
+   "title": {
+    "az": "Ehtiyacdan çatdırılmaya qədər təchizat həlləri",
+    "en": "Supply solutions from need to delivery"
+   },
+   "text": {
+    "az": "Sənaye avadanlıqları, CNC və metal emalı avadanlıqları, elektrik məhsulları, IT məhsulları, ofis avadanlıqları. Logistika, gömrük və sığorta seçimləri.",
+    "en": "Industrial equipment, CNC and metalworking machinery, electrical products, IT products and office equipment. Logistics, customs and insurance options."
+   },
+   "btn": {
+    "az": "Ətraflı",
+    "en": "Learn more"
+   },
+   "link": "service:techizat",
+   "sort": 5
+  }
+ ],
+ "partners": [
+  {
+   "name": "World Health Organization",
+   "logo": "assets/img/partners/p01.jpg",
+   "url": "",
+   "sort": 1
+  },
+  {
+   "name": "United Nations",
+   "logo": "assets/img/partners/p02.jpg",
+   "url": "",
+   "sort": 2
+  },
+  {
+   "name": "GİİMİB",
+   "logo": "assets/img/partners/p03.jpg",
+   "url": "",
+   "sort": 3
+  },
+  {
+   "name": "Gənclər və İdman Nazirliyi",
+   "logo": "assets/img/partners/p04.jpg",
+   "url": "",
+   "sort": 4
+  },
+  {
+   "name": "Regional İnkişaf İctimai Birliyi",
+   "logo": "assets/img/partners/p05.jpg",
+   "url": "",
+   "sort": 5
+  },
+  {
+   "name": "İRNİB",
+   "logo": "assets/img/partners/p06.jpg",
+   "url": "",
+   "sort": 6
+  },
+  {
+   "name": "Qaçqınlar və MKŞ üzrə Dövlət Komitəsi",
+   "logo": "assets/img/partners/p07.jpg",
+   "url": "",
+   "sort": 7
+  },
+  {
+   "name": "Xəmsə",
+   "logo": "assets/img/partners/p08.jpg",
+   "url": "",
+   "sort": 8
+  },
+  {
+   "name": "Scientech",
+   "logo": "assets/img/partners/p09.jpg",
+   "url": "",
+   "sort": 9
+  },
+  {
+   "name": "İndoneziya Respublikasının Səfirliyi",
+   "logo": "assets/img/partners/p10.jpg",
+   "url": "",
+   "sort": 10
+  },
+  {
+   "name": "Azərbaycanın Misirdəki Səfirliyi",
+   "logo": "assets/img/partners/p11.jpg",
+   "url": "",
+   "sort": 11
+  },
+  {
+   "name": "Azərbaycanın Türkiyədəki Səfirliyi",
+   "logo": "assets/img/partners/p12.jpg",
+   "url": "",
+   "sort": 12
+  },
+  {
+   "name": "Mədəniyyət Nazirliyi",
+   "logo": "assets/img/partners/p13.jpg",
+   "url": "",
+   "sort": 13
+  },
+  {
+   "name": "Media İnkişafı Agentliyi",
+   "logo": "assets/img/partners/p14.jpg",
+   "url": "",
+   "sort": 14
+  },
+  {
+   "name": "Alison Travel",
+   "logo": "assets/img/partners/p15.jpg",
+   "url": "",
+   "sort": 15
+  },
+  {
+   "name": "Partnyor",
+   "logo": "assets/img/partners/p16.jpg",
+   "url": "",
+   "sort": 16
+  },
+  {
+   "name": "Ava Tour",
+   "logo": "assets/img/partners/p17.jpg",
+   "url": "",
+   "sort": 17
+  },
+  {
+   "name": "Aselsan",
+   "logo": "assets/img/partners/p18.jpg",
+   "url": "",
+   "sort": 18
+  },
+  {
+   "name": "aids.center",
+   "logo": "assets/img/partners/p19.jpg",
+   "url": "",
+   "sort": 19
+  },
+  {
+   "name": "Partnyor",
+   "logo": "assets/img/partners/p20.jpg",
+   "url": "",
+   "sort": 20
+  },
+  {
+   "name": "166 Logistics",
+   "logo": "assets/img/partners/p21.jpg",
+   "url": "",
+   "sort": 21
+  },
+  {
+   "name": "Xəzər İnşaat",
+   "logo": "assets/img/partners/p22.jpg",
+   "url": "",
+   "sort": 22
+  },
+  {
+   "name": "AİİATRM",
+   "logo": "assets/img/partners/p23.jpg",
+   "url": "",
+   "sort": 23
+  },
+  {
+   "name": "Meliorasiya və Su Təsərrüfatı ASC",
+   "logo": "assets/img/partners/p24.jpg",
+   "url": "",
+   "sort": 24
+  },
+  {
+   "name": "Ekologiya və Təbii Sərvətlər Nazirliyi",
+   "logo": "assets/img/partners/p25.jpg",
+   "url": "",
+   "sort": 25
+  },
+  {
+   "name": "ABB",
+   "logo": "assets/img/partners/p26.jpg",
+   "url": "",
+   "sort": 26
+  },
+  {
+   "name": "Bank BTB",
+   "logo": "assets/img/partners/p27.jpg",
+   "url": "",
+   "sort": 27
+  },
+  {
+   "name": "VTB",
+   "logo": "assets/img/partners/p28.jpg",
+   "url": "",
+   "sort": 28
+  },
+  {
+   "name": "Azərbaycan Cüdo Federasiyası",
+   "logo": "assets/img/partners/p29.jpg",
+   "url": "",
+   "sort": 29
+  },
+  {
+   "name": "Rönesans Holding",
+   "logo": "assets/img/partners/p30.jpg",
+   "url": "",
+   "sort": 30
+  },
+  {
+   "name": "SS Travel",
+   "logo": "assets/img/partners/p31.jpg",
+   "url": "",
+   "sort": 31
+  },
+  {
+   "name": "Partnyor",
+   "logo": "assets/img/partners/p32.jpg",
+   "url": "",
+   "sort": 32
+  },
+  {
+   "name": "Baku Oil Services",
+   "logo": "assets/img/partners/p33.jpg",
+   "url": "",
+   "sort": 33
+  },
+  {
+   "name": "Azərbaycan Qılıncoynatma Federasiyası",
+   "logo": "assets/img/partners/p34.jpg",
+   "url": "",
+   "sort": 34
+  },
+  {
+   "name": "166 Təmizlik",
+   "logo": "assets/img/partners/p35.jpg",
+   "url": "",
+   "sort": 35
+  },
+  {
+   "name": "Kapital Bank",
+   "logo": "assets/img/partners/p36.jpg",
+   "url": "",
+   "sort": 36
+  },
+  {
+   "name": "Duty Free",
+   "logo": "assets/img/partners/p37.jpg",
+   "url": "",
+   "sort": 37
+  },
+  {
+   "name": "Shell",
+   "logo": "assets/img/partners/p38.jpg",
+   "url": "",
+   "sort": 38
+  },
+  {
+   "name": "Lynk & Co",
+   "logo": "assets/img/partners/p39.jpg",
+   "url": "",
+   "sort": 39
+  },
+  {
+   "name": "XPENG",
+   "logo": "assets/img/partners/p40.jpg",
+   "url": "",
+   "sort": 40
+  }
+ ],
+ "pages": [
+  {
+   "k": "home",
+   "title": {
+    "az": "Alizadeh Group — Logistika və korporativ xidmət həlləri",
+    "en": "Alizadeh Group — Logistics and corporate service solutions"
+   },
+   "description": {
+    "az": "Alizadeh Group — təchizat, sənaye avadanlıqları, logistika, nəqliyyat, tədbirlərin təşkili, otel yerləşdirmə və korporativ xidmətlər vahid idarəetmə altında.",
+    "en": "Supply, industrial equipment, logistics, transport, event management, hotel accommodation and corporate services — under single management."
+   },
+   "image": "assets/img/baku-night.jpg"
+  },
+  {
+   "k": "about",
+   "title": {
+    "az": "Haqqımızda — Alizadeh Group",
+    "en": "About us — Alizadeh Group"
+   },
+   "description": {
+    "az": "Alizadeh Group sərnişin daşınması, hava limanı transferi, tədbir təşkili, təchizat zənciri, otel yerləşdirmə və korporativ məsləhət sahələrində müştəri ehtiyaclarını ön planda saxlayan, fərdi yanaşma ilə xidmət göstərən şirkətdir.",
+    "en": "Alizadeh Group puts client needs first and takes a personal approach across passenger transport, airport transfers, event management, supply chain, hotel accommodation and corporate consulting."
+   },
+   "image": "assets/img/partnership.jpg"
+  },
+  {
+   "k": "services",
+   "title": {
+    "az": "Xidmətlər — Alizadeh Group",
+    "en": "Services — Alizadeh Group"
+   },
+   "description": {
+    "az": "Alizadeh Group biznes və layihələr üçün lazım olan əsas xidmətləri vahid idarəetmə altında təqdim edir.",
+    "en": "Alizadeh Group provides the core services that businesses and projects need — under single management."
+   },
+   "image": "assets/img/conference.jpg"
+  },
+  {
+   "k": "partners",
+   "title": {
+    "az": "Partnyorlar — Alizadeh Group",
+    "en": "Partners — Alizadeh Group"
+   },
+   "description": {
+    "az": "Dövlət qurumları, beynəlxalq təşkilatlar və özəl şirkətlərlə uzunmüddətli əməkdaşlıq edirik.",
+    "en": "We work long-term with public institutions, international organizations and private companies."
+   },
+   "image": "assets/img/baku-sunset.jpg"
+  },
+  {
+   "k": "contact",
+   "title": {
+    "az": "Əlaqə — Alizadeh Group",
+    "en": "Contact — Alizadeh Group"
+   },
+   "description": {
+    "az": "Sorğu formasını doldurun və ya birbaşa əlaqə saxlayın.",
+    "en": "Fill in the request form or contact us directly."
+   },
+   "image": "assets/img/baku-airport.jpg"
+  }
+ ]
+}

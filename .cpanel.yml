@@ -1,0 +1,12 @@
+---
+# cPanel → Git™ Version Control → "Deploy HEAD Commit" runs these tasks.
+# The site is copied into DEPLOYPATH. Server-only data is never touched:
+#   app/config.php (written by install.php), storage/* (logs, attachments, sessions), uploads/* (admin images).
+# To go live on the main domain later, change DEPLOYPATH to /home/alizadehgroup/public_html/
+# (back up and remove the old WordPress files first).
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/alizadehgroup/public_html/yeni/
+    - /bin/mkdir -p $DEPLOYPATH
+    - /usr/bin/rsync -rlt --exclude='.git/' --exclude='.gitignore' --exclude='.cpanel.yml' --exclude='README.md' --exclude='app/config.php' --exclude='app/dev-router.php' ./ $DEPLOYPATH
+    - /bin/mkdir -p $DEPLOYPATH/storage/logs $DEPLOYPATH/storage/requests $DEPLOYPATH/storage/sessions $DEPLOYPATH/uploads

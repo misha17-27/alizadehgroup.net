@@ -1,0 +1,25 @@
+# local configuration (written by install.php on each server)
+/app/config.php
+
+# runtime data
+/storage/*
+!/storage/.htaccess
+!/storage/logs/
+!/storage/requests/
+!/storage/sessions/
+/storage/logs/*
+/storage/requests/*
+/storage/sessions/*
+!/storage/**/.gitkeep
+
+# admin uploads (live on the server only)
+/uploads/*
+!/uploads/.htaccess
+!/uploads/.gitkeep
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
