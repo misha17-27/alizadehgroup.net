@@ -110,6 +110,7 @@ main{flex:1;min-width:0}
 .quick a{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:10px;font-weight:600;font-size:13px;transition:.15s}
 .quick a .ico{font-size:17px;color:var(--limeink)}
 .quick a:hover{border-color:var(--ink)}
+.srv-warn{margin:12px 0 0;padding:10px 12px;border-radius:10px;background:var(--redbg);color:var(--red);border:1px solid #f6c8c3;font-size:13px;font-weight:600}
 
 /* ---------- tables ---------- */
 .tablewrap{overflow-x:auto;margin:0 -6px}
@@ -240,6 +241,7 @@ input[type=checkbox]{width:16px;height:16px;accent-color:var(--ink);vertical-ali
 .dl dd{word-break:break-word}
 .dl-sm{grid-template-columns:110px 1fr}
 .dl-sm dt,.dl-sm dd{font-size:12.5px}
+.dl-srv{grid-template-columns:max-content 1fr;column-gap:16px}
 .dl a{color:var(--ink);font-weight:600;text-decoration:underline;text-decoration-color:var(--lime);text-decoration-thickness:2px}
 .actions-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .msg{white-space:normal;line-height:1.6;background:#fafbf9;border-radius:10px;padding:14px 16px}

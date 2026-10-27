@@ -67,8 +67,7 @@ function resize_image(string $path, array $info, int $maxSide): void
     if ($type === IMAGETYPE_JPEG) imagejpeg($dst, $path, 84);
     elseif ($type === IMAGETYPE_PNG) imagepng($dst, $path, 7);
     elseif ($type === IMAGETYPE_WEBP) imagewebp($dst, $path, 84);
-    imagedestroy($src);
-    imagedestroy($dst);
+    // the GD images are freed when the function returns (imagedestroy() is deprecated in PHP 8.5)
 }
 
 /** save a request attachment into storage/requests (not web-accessible) */

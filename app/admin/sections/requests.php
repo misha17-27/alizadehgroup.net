@@ -97,7 +97,8 @@ if (($_GET['export'] ?? '') === 'csv') {
     header('Content-Disposition: attachment; filename="sorgular-' . date('Y-m-d') . '.csv"');
     $out = fopen('php://output', 'w');
     fwrite($out, "\xEF\xBB\xBF");
-    fputcsv($out, ['ID', __('date'), __('f_service'), __('status'), __('c_name'), __('c_company'), __('c_phone'), __('c_email'), __('details'), __('c_message'), __('note')], ';');
+    // plain RFC 4180 quoting, as Excel reads it (no backslash escape; PHP 8.4+ wants this argument spelled out)
+    fputcsv($out, ['ID', __('date'), __('f_service'), __('status'), __('c_name'), __('c_company'), __('c_phone'), __('c_email'), __('details'), __('c_message'), __('note')], ';', '"', '');
     // visitors fill these fields: a value starting with = @ or +/- followed by more than a number would run as a formula in Excel
     $cell = function ($v): string {
         $v = (string)$v;
@@ -106,7 +107,7 @@ if (($_GET['export'] ?? '') === 'csv') {
     foreach ($list as $r) {
         $det = implode(' | ', array_map(function ($d) { return tx($d[0], 'az') . ': ' . $d[1]; }, jlist($r['details'])));
         fputcsv($out, array_map($cell, [$r['id'], $r['created_at'], $r['service_title'], $statuses[$r['status']] ?? $r['status'], $r['name'],
-            $r['company'], $r['phone'], $r['email'], $det, $r['message'], $r['note']]), ';');
+            $r['company'], $r['phone'], $r['email'], $det, $r['message'], $r['note']]), ';', '"', '');
     }
     fclose($out);
     exit;

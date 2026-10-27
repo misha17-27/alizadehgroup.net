@@ -27,6 +27,11 @@ return [
     // dashboard
     'stat_new' => 'Новые заявки', 'stat_month' => 'В этом месяце', 'stat_total' => 'Всего заявок', 'latest_requests' => 'Последние заявки',
     'by_service' => 'По услугам', 'quick_links' => 'Быстрые ссылки', 'no_requests' => 'Заявок пока нет.',
+    'server' => 'Сервер', 'srv_db' => 'База данных', 'srv_upload' => 'Макс. размер файла',
+    'srv_upload_low' => 'Сервер принимает файлы только до {size}, а форма заявки разрешает до 10 MB: увеличьте upload_max_filesize и post_max_size в cPanel → MultiPHP INI Editor.',
+    'srv_no_http' => 'Нет curl и выключен allow_url_fopen: проверка Cloudflare Turnstile не сработает.',
+    'srv_no_mail' => 'Функция mail() отключена: уведомления о заявках не отправляются.',
+    'srv_no_gd' => 'Нет расширения GD: большие изображения не будут уменьшаться.',
 
     // requests
     'request' => 'Заявка', 'status' => 'Статус', 'date' => 'Дата', 'contacts' => 'Контакты', 'details' => 'Детали заявки', 'files' => 'Файлы',

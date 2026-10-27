@@ -27,6 +27,11 @@ return [
     // dashboard
     'stat_new' => 'Yeni sorğular', 'stat_month' => 'Bu ay', 'stat_total' => 'Cəmi sorğu', 'latest_requests' => 'Son sorğular',
     'by_service' => 'Xidmətlər üzrə', 'quick_links' => 'Tez keçidlər', 'no_requests' => 'Hələ sorğu yoxdur.',
+    'server' => 'Server', 'srv_db' => 'Verilənlər bazası', 'srv_upload' => 'Maks. fayl ölçüsü',
+    'srv_upload_low' => 'Server yalnız {size}-a qədər faylları qəbul edir, sorğu forması isə 10 MB-a qədər icazə verir: cPanel → MultiPHP INI Editor-da upload_max_filesize və post_max_size dəyərlərini artırın.',
+    'srv_no_http' => 'curl yoxdur və allow_url_fopen söndürülüb: Cloudflare Turnstile yoxlaması işləməyəcək.',
+    'srv_no_mail' => 'mail() funksiyası söndürülüb: sorğu bildirişləri göndərilmir.',
+    'srv_no_gd' => 'GD genişlənməsi yoxdur: böyük şəkillər kiçildilməyəcək.',
 
     // requests
     'request' => 'Sorğu', 'status' => 'Status', 'date' => 'Tarix', 'contacts' => 'Əlaqə', 'details' => 'Sorğu detalları', 'files' => 'Fayllar',

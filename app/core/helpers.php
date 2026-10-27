@@ -225,13 +225,24 @@ function turnstile_ok(?string $token): bool
     $secret = setting('turnstile_secret');
     if ($secret === '' || setting('turnstile_site') === '') return true;
     if (!$token) return false;
-    $ctx = stream_context_create(['http' => [
-        'method' => 'POST',
-        'header' => 'Content-Type: application/x-www-form-urlencoded',
-        'content' => http_build_query(['secret' => $secret, 'response' => $token, 'remoteip' => client_ip()]),
-        'timeout' => 8,
-    ]]);
-    $res = @file_get_contents('https://challenges.cloudflare.com/turnstile/v0/siteverify', false, $ctx);
+    $url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+    $post = http_build_query(['secret' => $secret, 'response' => $token, 'remoteip' => client_ip()]);
+    $res = false;
+    // curl first: it works even when allow_url_fopen is off (cPanel sets php.ini per PHP version)
+    if (function_exists('curl_init')) {
+        $ch = curl_init($url);
+        curl_setopt_array($ch, [CURLOPT_POST => true, CURLOPT_POSTFIELDS => $post, CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 8]);
+        $res = curl_exec($ch);
+    }
+    if ($res === false) {
+        $ctx = stream_context_create(['http' => [
+            'method' => 'POST',
+            'header' => 'Content-Type: application/x-www-form-urlencoded',
+            'content' => $post,
+            'timeout' => 8,
+        ]]);
+        $res = @file_get_contents($url, false, $ctx);
+    }
     $j = $res ? json_decode($res, true) : null;
     return is_array($j) && !empty($j['success']);
 }

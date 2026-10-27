@@ -2,8 +2,11 @@
 # cPanel → Git™ Version Control → "Deploy HEAD Commit" runs these tasks.
 # The site is copied into DEPLOYPATH (the main domain). Server-only data is never touched:
 #   app/config.php (written by install.php), storage/* (logs, attachments, sessions), uploads/* (admin images).
+# .htaccess is rebuilt from the repository version plus the blocks cPanel writes into it (the PHP version from
+# MultiPHP Manager, the values from MultiPHP INI Editor); the old file is replaced only once the new one is complete.
 deployment:
   tasks:
     - export DEPLOYPATH=/home/alizadehgroup/public_html/
     - /bin/mkdir -p $DEPLOYPATH/app $DEPLOYPATH/storage/logs $DEPLOYPATH/storage/requests $DEPLOYPATH/storage/sessions $DEPLOYPATH/uploads
-    - /usr/bin/rsync -rlt --exclude='.git/' --exclude='.gitignore' --exclude='.gitattributes' --exclude='.cpanel.yml' --exclude='README.md' --exclude='app/config.php' --exclude='app/dev-router.php' ./ $DEPLOYPATH
+    - /usr/bin/rsync -rlt --exclude='/.htaccess' --exclude='.git/' --exclude='.gitignore' --exclude='.gitattributes' --exclude='.cpanel.yml' --exclude='README.md' --exclude='app/config.php' --exclude='app/dev-router.php' ./ $DEPLOYPATH
+    - (/bin/cat .htaccess; /bin/sed -n '/^# php -- BEGIN cPanel-generated handler/,/^# php -- END cPanel-generated handler/p;/^# BEGIN cPanel-generated php ini directives/,/^# END cPanel-generated php ini directives/p' $DEPLOYPATH.htaccess 2>/dev/null || true) > $DEPLOYPATH.htaccess.new && /bin/mv -f $DEPLOYPATH.htaccess.new $DEPLOYPATH.htaccess

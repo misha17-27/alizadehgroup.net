@@ -19,7 +19,8 @@ Also: `/sitemap.xml`, `/robots.txt`, 404 page. Request form posts to `/api/reque
 
 ## Admin panel
 
-`/admin/` — sections: Dashboard, Requests (status, notes, attachments, delete, CSV export), Slider, Request cards,
+`/admin/` — sections: Dashboard (for administrators also the PHP version that runs, the database and the upload limit),
+Requests (status, notes, attachments, delete, CSV export), Slider, Request cards,
 About us, Why us, Services (texts per language, images, target groups, offers, process, FAQ, extra block),
 Partners, Texts (every label on the site), Pages & SEO (H1, the text under it and the main text with a small editor —
 headings, lists, links; SEO title/description; header image), Settings (contacts, socials, notification e-mail,
@@ -70,7 +71,9 @@ git add -A && git commit -m "…" && git push
 ```
 
 Then in cPanel: **Git™ Version Control → Manage → Pull or Deploy → Update from Remote → Deploy HEAD Commit**.
-Deploys never overwrite `app/config.php`, `uploads/` or `storage/`.
+Deploys never overwrite `app/config.php`, `uploads/` or `storage/`. `public_html/.htaccess` is rebuilt from the
+repository version, keeping the blocks cPanel writes into it: the PHP version chosen in **MultiPHP Manager** and the
+values from **MultiPHP INI Editor**. To be sure which PHP version really runs, look at the admin Dashboard.
 
 Database changes need no manual step: when the code expects a newer database (`DB_VERSION` in `app/bootstrap.php`),
 the first request after the deploy runs `upgrade_db()` from `app/database/migrate.php` once and stores `db_version`
@@ -89,8 +92,6 @@ The site used to run as a preview in `public_html/yeni/` next to the old WordPre
   `/author/`, `/feed/`) answer **410 Gone**, and `.htaccess` lets PHP run only through `index.php`, `install.php` and
   `admin/index.php`. Backups and archives (`.zip`, `.sql`, `.gz`, `.bak`, `.ini`, `~` …) are never served.
 - `www.alizadehgroup.net` answers with a 301 to `alizadehgroup.net`.
-- If cPanel (MultiPHP Manager) ever adds a PHP handler block to `public_html/.htaccess`, copy it into the repository's
-  `.htaccess` — every deploy overwrites that file.
 
 ## Local development
 
@@ -104,7 +105,8 @@ Open `http://127.0.0.1:8000/install.php` and choose **SQLite**.
 
 - Request notifications use PHP `mail()`; on cPanel the sender is `noreply@<domain>`. Delivery problems are logged in `storage/logs/mail.log`.
 - Attachments from the supply form are stored in `storage/requests/` and are downloadable only from the admin panel.
-- Spam protection: CSRF token, honeypot field, minimum fill time, 5 requests / 10 min per IP; optional Cloudflare Turnstile (Settings).
+- Spam protection: CSRF token, honeypot field, minimum fill time, 5 requests / 10 min per IP; optional Cloudflare Turnstile
+  (Settings), verified through curl, or through `allow_url_fopen` where curl is missing.
 - Admin login: 6 failed attempts per IP → 15-minute block; passwords are hashed with `password_hash()`.
 - Visitor IPs (rate limits, login blocks) come from Cloudflare's `CF-Connecting-IP` header only when the request arrives
   from a Cloudflare network (`CLOUDFLARE_NETS` in `app/core/helpers.php` — refresh it from https://www.cloudflare.com/ips/

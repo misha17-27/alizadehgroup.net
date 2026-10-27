@@ -1,5 +1,5 @@
 <?php
-/** @var array $stats @var array $latest @var array $byService */
+/** @var array $stats @var array $latest @var array $byService @var ?array $server */
 $st = status_labels();
 $max = max(1, ...array_map(function ($r) { return (int)$r['n']; }, $byService ?: [['n' => 1]]));
 ?>
@@ -48,5 +48,16 @@ $max = max(1, ...array_map(function ($r) { return (int)$r['n']; }, $byService ?:
         <a href="<?= e(url('')) ?>" target="_blank" rel="noopener"><?= icon('arrow-ur') ?><?= e(__('view_site')) ?></a>
       </div>
     </div>
+    <?php if ($server): ?>
+    <div class="panel">
+      <h3><?= e(__('server')) ?></h3>
+      <dl class="dl dl-sm dl-srv">
+        <dt>PHP</dt><dd><?= e($server['php']) ?></dd>
+        <dt><?= e(__('srv_db')) ?></dt><dd><?= e($server['db']) ?></dd>
+        <dt><?= e(__('srv_upload')) ?></dt><dd><?= e($server['upload']) ?></dd>
+      </dl>
+      <?php foreach ($server['warn'] as $w): ?><p class="srv-warn"><?= e($w) ?></p><?php endforeach; ?>
+    </div>
+    <?php endif; ?>
   </div>
 </div>
