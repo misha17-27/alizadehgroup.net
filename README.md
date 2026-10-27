@@ -31,7 +31,7 @@ Interface language: Azerbaijani or Russian. Content is edited per language with 
 .
 ├── index.php               public front controller (routes, request API, sitemap)
 ├── install.php             one-time installer (DB tables, initial content, first admin)
-├── .htaccess               URL rewriting + blocks app/ and storage/
+├── .htaccess               URL rewriting, blocks app/ and storage/, only the site's own PHP entry points run
 ├── .cpanel.yml             cPanel deployment tasks
 ├── admin/
 │   └── index.php           admin entry point (?section=…)
@@ -55,10 +55,10 @@ Interface language: Azerbaijani or Russian. Content is edited per language with 
 1. **cPanel → MySQL® Databases**: create a database and a user, add the user to the database with *ALL PRIVILEGES*.
 2. **cPanel → Git™ Version Control → Create**: Clone URL `https://github.com/misha17-27/alizadehgroup.net.git`,
    repository path `repositories/alizadehgroup.net`.
-3. Open the repository → **Pull or Deploy** → **Deploy HEAD Commit**. Files are copied to `public_html/yeni/`
+3. Open the repository → **Pull or Deploy** → **Deploy HEAD Commit**. Files are copied to `public_html/`
    (see `DEPLOYPATH` in `.cpanel.yml`).
-4. Open `https://alizadehgroup.net/yeni/install.php`, enter the database details and the first administrator.
-5. Log in at `https://alizadehgroup.net/yeni/admin/` and check **Settings** (notification e-mail etc.).
+4. Open `https://alizadehgroup.net/install.php`, enter the database details and the first administrator.
+5. Log in at `https://alizadehgroup.net/admin/` and check **Settings** (notification e-mail etc.).
 
 The installer locks itself once `app/config.php` exists.
 
@@ -71,10 +71,18 @@ git add -A && git commit -m "…" && git push
 Then in cPanel: **Git™ Version Control → Manage → Pull or Deploy → Update from Remote → Deploy HEAD Commit**.
 Deploys never overwrite `app/config.php`, `uploads/` or `storage/`.
 
-## Going live on the main domain
+## Main domain (moved from /yeni, October 2026)
 
-Change `DEPLOYPATH` in `.cpanel.yml` to `/home/alizadehgroup/public_html/` after backing up and removing the old
-WordPress files, deploy, and either move `app/config.php` from `public_html/yeni/app/` or run `install.php` again.
+The site used to run as a preview in `public_html/yeni/` next to the old WordPress site and now lives in `public_html/`.
+
+- The first deploy to `public_html/` copies `app/config.php`, uploaded images and request attachments from
+  `public_html/yeni/` (once; `storage/.moved` marks it as done), so the database, content and admin users stay the same.
+- Old addresses answer with a **301**: `/yeni/…` → `/…`, the WordPress pages (AZ and WPML `/en/…`) → the matching new
+  pages (`LEGACY_URLS` in `app/site/content.php`), `/page/` → `/page`.
+- WordPress leftovers (`wp-admin`, `wp-content`, `wp-login.php`, `xmlrpc.php`, `/category/`, `/tag/`, `/author/`, `/feed/`)
+  answer **410 Gone**, and `.htaccess` lets PHP run only through `index.php`, `install.php` and `admin/index.php`.
+- If cPanel (MultiPHP Manager) ever adds a PHP handler block to `public_html/.htaccess`, copy it into the repository's
+  `.htaccess` — every deploy overwrites that file.
 
 ## Local development
 

@@ -1,4 +1,4 @@
-# Alizadeh Group — Apache config (cPanel)
+# Alizadeh Group — Apache / LiteSpeed config (cPanel)
 DirectoryIndex index.php
 Options -Indexes
 AddDefaultCharset UTF-8
@@ -10,6 +10,14 @@ AddDefaultCharset UTF-8
     RewriteRule ^(app|storage|\.git)(/|$) - [F,L]
     RewriteRule (^|/)\.(?!well-known/) - [F,L]
     RewriteRule \.(md|yml|yaml|json|lock|sql|sqlite|log|dist)$ - [F,L]
+
+    # the old WordPress site is gone: its files, feeds and spam archives answer 410 Gone
+    RewriteRule ^(wp-admin|wp-content|wp-includes|category|tag|author|feed|comments/feed)(/|$) - [G]
+    RewriteRule ^(wp-[a-z-]+|xmlrpc)\.php$ - [G]
+
+    # PHP runs only through the site's own entry points; any other .php file is refused
+    RewriteCond $1 !^(index|install|admin/index)$
+    RewriteRule ^(.*?)\.(php[0-9]?|phtml|phar|pht)(/|$) - [F,NC]
 
     # existing files and folders (assets, uploads, admin/, install.php)
     RewriteCond %{REQUEST_FILENAME} -f [OR]

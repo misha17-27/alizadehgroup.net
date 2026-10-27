@@ -102,6 +102,7 @@ function start_session(): void
 
 function send_security_headers(): void
 {
+    header_remove('X-Powered-By');
     header('X-Content-Type-Options: nosniff');
     header('X-Frame-Options: SAMEORIGIN');
     header('Referrer-Policy: strict-origin-when-cross-origin');

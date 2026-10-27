@@ -16,6 +16,36 @@ const ROUTES = [
     'contact' => ['az' => 'elaqe', 'en' => 'en/contact'],
 ];
 
+/** pages of the old WordPress site → [route, language, service key]; answered with a 301 */
+const LEGACY_URLS = [
+    'homepage' => ['home', 'az'],
+    'ustunluklerimiz' => ['about', 'az'],
+    'nəqliyyat-xidməti' => ['service', 'az', 'neqliyyat'],
+    'airport-transfer' => ['service', 'az', 'neqliyyat'],
+    'seherlerarasi-transfer' => ['service', 'az', 'neqliyyat'],
+    'tədbirin-təskili' => ['service', 'az', 'tedbir'],
+    'korporativ-tedbirlerin-teskili' => ['service', 'az', 'tedbir'],
+    'təchizat-zənciri' => ['service', 'az', 'techizat'],
+    'qonaq-yerləsdirmə' => ['service', 'az', 'qonaq'],
+    'korporativ-meslehet' => ['services', 'az'],
+    'en/home' => ['home', 'en'],
+    'en/ana-sehife' => ['home', 'en'],
+    'en/about-us' => ['about', 'en'],
+    'en/haqqimizda' => ['about', 'en'],
+    'en/ustunluklerimiz' => ['about', 'en'],
+    'en/elaqe' => ['contact', 'en'],
+    'en/partnyorlar' => ['partners', 'en'],
+    'en/airport-transfer' => ['service', 'en', 'neqliyyat'],
+    'en/airport-transfer-2' => ['service', 'en', 'neqliyyat'],
+    'en/airport-transfer-6' => ['service', 'en', 'neqliyyat'],
+    'en/seherlerarasi-transfer' => ['service', 'en', 'neqliyyat'],
+    'en/airport-transfer-3' => ['service', 'en', 'tedbir'],
+    'en/korporativ-tedbirlerin-teskili' => ['service', 'en', 'tedbir'],
+    'en/airport-transfer-4' => ['service', 'en', 'techizat'],
+    'en/airport-transfer-5' => ['service', 'en', 'qonaq'],
+    'en/korporativ-meslehet' => ['services', 'en'],
+];
+
 function lang(?string $set = null): string
 {
     static $lang = 'az';

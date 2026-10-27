@@ -80,6 +80,11 @@ function is_post(): bool
     return ($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST';
 }
 
+function is_get(): bool
+{
+    return in_array($_SERVER['REQUEST_METHOD'] ?? 'GET', ['GET', 'HEAD'], true);
+}
+
 function post(string $key, $default = '')
 {
     return $_POST[$key] ?? $default;

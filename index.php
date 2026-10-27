@@ -15,6 +15,7 @@ send_security_headers();
 $path = (string)parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 $base = base_path();
 if ($base !== '' && strpos($path, $base) === 0) $path = substr($path, strlen($base));
+$slash = strlen($path) > 1 && substr($path, -1) === '/';
 $path = trim(rawurldecode($path), '/');
 if ($path === 'index.php') $path = '';
 
@@ -52,7 +53,40 @@ function alt_routes(string $name, array $params = []): array
     return $o;
 }
 
+function query_suffix(): string
+{
+    $qs = (string)($_SERVER['QUERY_STRING'] ?? '');
+    return $qs !== '' ? '?' . $qs : '';
+}
+
+/** 301 for addresses that moved: the /yeni preview and the pages of the old WordPress site */
+function legacy_redirect(string $path): void
+{
+    if (!is_get()) return;
+    if ($path === 'yeni' || starts_with($path, 'yeni/')) {
+        redirect(url(implode('/', array_map('rawurlencode', explode('/', substr($path, 5))))) . query_suffix(), 301);
+    }
+    if (isset(LEGACY_URLS[$path])) {
+        [$name, $l, $key] = LEGACY_URLS[$path] + [2 => ''];
+        $s = $key !== '' ? service_by_key($key) : null;
+        if ($s && !empty($s['active'])) redirect(route('service', ['service' => $s], $l), 301);
+        redirect(route($name === 'service' ? 'services' : $name, [], $l), 301);
+    }
+    // WordPress query links (?p=12, ?page_id=3, ?s=…) on the home page
+    if ($path === '' && array_intersect_key($_GET, array_flip(['p', 'page_id', 'cat', 'tag', 'author', 's', 'attachment_id', 'm', 'feed']))) {
+        redirect(url(''), 301);
+    }
+}
+
+/** pages live without a trailing slash: /haqqimizda/ → 301 /haqqimizda */
+function canonical(string $url, bool $slash): void
+{
+    if ($slash && is_get()) redirect($url . query_suffix(), 301);
+}
+
 try {
+    legacy_redirect($path);
+
     /* ---------- API: request form ---------- */
     if ($path === 'api/request' || $path === 'en/api/request') {
         if (!is_post()) json_out(['ok' => false], 405);
@@ -97,6 +131,7 @@ try {
     ];
     foreach ($static as $name => $slugs) {
         if ($rel === $slugs[$lng]) {
+            canonical(route($name), $slash);
             render($name, ['meta' => page_meta($name), 'alt' => alt_routes($name), 'nav' => $name]);
         }
     }
@@ -105,6 +140,7 @@ try {
     if (starts_with($rel, $svcPrefix)) {
         $s = service_by_slug(substr($rel, strlen($svcPrefix)), $lng);
         if ($s) {
+            canonical(route('service', ['service' => $s]), $slash);
             render('service', [
                 's' => $s,
                 'meta' => ['title' => L($s, 'meta_title') ?: L($s, 'title') . ' — Alizadeh Group', 'desc' => L($s, 'meta_desc') ?: L($s, 'page_desc'), 'image' => $s['image']],
