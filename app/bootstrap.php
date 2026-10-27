@@ -116,6 +116,9 @@ function send_security_headers(): void
     header('X-Content-Type-Options: nosniff');
     header('X-Frame-Options: SAMEORIGIN');
     header('Referrer-Policy: strict-origin-when-cross-origin');
+    header('Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()');
+    // scripts and styles are not restricted here (inline scripts, Google Analytics, Turnstile, Cloudflare)
+    header("Content-Security-Policy: frame-ancestors 'self'; base-uri 'self'; object-src 'none'; form-action 'self'");
 }
 
 foreach ([STORAGE_DIR . '/logs', STORAGE_DIR . '/requests'] as $d) {

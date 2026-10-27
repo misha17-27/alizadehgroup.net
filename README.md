@@ -106,3 +106,8 @@ Open `http://127.0.0.1:8000/install.php` and choose **SQLite**.
 - Attachments from the supply form are stored in `storage/requests/` and are downloadable only from the admin panel.
 - Spam protection: CSRF token, honeypot field, minimum fill time, 5 requests / 10 min per IP; optional Cloudflare Turnstile (Settings).
 - Admin login: 6 failed attempts per IP → 15-minute block; passwords are hashed with `password_hash()`.
+- Visitor IPs (rate limits, login blocks) come from Cloudflare's `CF-Connecting-IP` header only when the request arrives
+  from a Cloudflare network (`CLOUDFLARE_NETS` in `app/core/helpers.php` — refresh it from https://www.cloudflare.com/ips/
+  if Cloudflare adds ranges); a request sent straight to the server cannot fake its IP.
+- Rich text from the admin is cleaned on save (`clean_html()`), hand-typed links accept only `https://`, `/`, `#`,
+  `mailto:` and `tel:`, and the CSV export neutralises cells that Excel would run as formulas.

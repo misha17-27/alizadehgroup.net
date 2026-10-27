@@ -80,7 +80,8 @@ function attempt_login(string $email, string $pass): bool
 {
     $ip = client_ip();
     $u = row('SELECT * FROM users WHERE email=? AND active=1', [mb_strtolower(trim($email))]);
-    $ok = $u && password_verify($pass, $u['pass']);
+    // an unknown e-mail is checked against a dummy hash, so the response time does not tell which e-mails exist
+    $ok = password_verify($pass, $u['pass'] ?? '$2y$10$cD/RrSj0mrpUxgCIahSgSOxlgcIsGDkHdZGXAk9giUFpPRvY.RfoW') && $u;
     insert('login_attempts', ['ip' => $ip, 'email' => mb_substr($email, 0, 160), 'ok' => $ok ? 1 : 0, 'created_at' => now()]);
     if (!$ok) return false;
     session_regenerate_id(true);

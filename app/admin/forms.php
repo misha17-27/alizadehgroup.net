@@ -219,7 +219,10 @@ function collect_fields(array $fields, array $row, string $cl): array
                 break;
             case 'link':
                 $v = trim((string)($_POST[$col] ?? ''));
-                if ($v === '__custom') $v = trim((string)($_POST[$col . '__url'] ?? ''));
+                if ($v === '__custom') {
+                    $v = trim((string)($_POST[$col . '__url'] ?? ''));
+                    if ($v !== '' && !safe_link($v)) $errors[$col] = __('err_link');
+                }
                 break;
             case 'html':
                 $v = clean_html((string)($_POST[$col] ?? ''));

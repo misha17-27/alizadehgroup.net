@@ -122,9 +122,35 @@ function str_post(string $key, int $max = 2000): string
     return mb_substr($v, 0, $max);
 }
 
+/** Cloudflare's networks (https://www.cloudflare.com/ips/, checked October 2026): only they may report the visitor's IP */
+const CLOUDFLARE_NETS = ['173.245.48.0/20', '103.21.244.0/22', '103.22.200.0/22', '103.31.4.0/22', '141.101.64.0/18', '108.162.192.0/18',
+    '190.93.240.0/20', '188.114.96.0/20', '197.234.240.0/22', '198.41.128.0/17', '162.158.0.0/15', '104.16.0.0/13', '104.24.0.0/14',
+    '172.64.0.0/13', '131.0.72.0/22', '2400:cb00::/32', '2606:4700::/32', '2803:f800::/32', '2405:b500::/32', '2405:8100::/32',
+    '2a06:98c0::/29', '2c0f:f248::/32'];
+
+/** is the IP inside the network ('162.158.0.0/15', '2606:4700::/32') */
+function ip_in_net(string $ip, string $net): bool
+{
+    [$base, $bits] = explode('/', $net) + [1 => '128'];
+    $a = @inet_pton($ip);
+    $b = @inet_pton($base);
+    if ($a === false || $b === false || strlen($a) !== strlen($b)) return false;
+    $bytes = intdiv((int)$bits, 8);
+    $rest = (int)$bits % 8;
+    if (strncmp($a, $b, $bytes) !== 0) return false;
+    return $rest === 0 || ((ord($a[$bytes]) ^ ord($b[$bytes])) & (0xFF << (8 - $rest)) & 0xFF) === 0;
+}
+
+/** visitor IP; the CF-Connecting-IP header counts only when the request came from Cloudflare (anyone else can fake it) */
 function client_ip(): string
 {
-    $ip = $_SERVER['HTTP_CF_CONNECTING_IP'] ?? $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+    $ip = preg_replace('~^::ffff:(?=\d+\.)~i', '', (string)($_SERVER['REMOTE_ADDR'] ?? ''));
+    $cf = (string)($_SERVER['HTTP_CF_CONNECTING_IP'] ?? '');
+    if ($cf !== '' && $ip !== '') {
+        foreach (CLOUDFLARE_NETS as $net) {
+            if (ip_in_net($ip, $net)) { $ip = $cf; break; }
+        }
+    }
     return filter_var($ip, FILTER_VALIDATE_IP) ? $ip : '0.0.0.0';
 }
 

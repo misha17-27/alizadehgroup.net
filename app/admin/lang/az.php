@@ -110,6 +110,7 @@ return [
 
     // validation
     'err_required' => 'Bu xana məcburidir.', 'err_email' => 'E-poçt ünvanı düzgün deyil.', 'err_url' => 'Link https:// ilə başlamalıdır.',
+    'err_link' => 'Link https://, / (saytın səhifəsi), #, mailto: və ya tel: ilə başlamalıdır.',
     'err_key' => 'Açar boşdur və ya artıq istifadə olunur.', 'err_slug' => 'Bu URL artıq başqa xidmətdə istifadə olunur.',
     'err_service_used' => 'Bu xidmət sorğu kartında istifadə olunur — əvvəlcə kartı dəyişin.',
     'err_email_taken' => 'Bu e-poçt artıq istifadə olunur.', 'err_password' => 'Parol ən azı 8 simvol olmalıdır.',

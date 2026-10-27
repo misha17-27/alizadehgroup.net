@@ -204,7 +204,13 @@ function link_url(string $link): string
         return $s ? route('service', ['service' => $s]) : route('services');
     }
     if (isset(ROUTES[$link]) && $link !== 'service') return route($link);
-    return $link;
+    return safe_link($link) ? $link : '';
+}
+
+/** a hand-typed link may only be a web address, a site path, an anchor, mailto: or tel: (never javascript: and the like) */
+function safe_link(string $url): bool
+{
+    return (bool)preg_match('~^(https?://|/|#|mailto:|tel:)~i', $url);
 }
 
 function whatsapp_url(): string
