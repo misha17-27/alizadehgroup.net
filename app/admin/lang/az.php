@@ -32,6 +32,8 @@ return [
     'srv_no_http' => 'curl yoxdur və allow_url_fopen söndürülüb: Cloudflare Turnstile yoxlaması işləməyəcək.',
     'srv_no_mail' => 'mail() funksiyası söndürülüb: sorğu bildirişləri göndərilmir.',
     'srv_no_gd' => 'GD genişlənməsi yoxdur: böyük şəkillər kiçildilməyəcək.',
+    'srv_no_webp' => 'GD WebP-ni dəstəkləmir: yüklənən şəkillərin yüngül WebP nüsxələri yaradılmayacaq.',
+    'srv_no_opcache' => 'OPcache söndürülüb: PHP hər səhifədə yenidən tərcümə olunur. cPanel → Select PHP Version-da opcache-i yandırın.',
 
     // requests
     'request' => 'Sorğu', 'status' => 'Status', 'date' => 'Tarix', 'contacts' => 'Əlaqə', 'details' => 'Sorğu detalları', 'files' => 'Fayllar',

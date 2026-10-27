@@ -49,6 +49,7 @@ photos used when an image field is empty are part of the code.
 │   ├── database/           migrate.php (schema + seeding), seed.json (initial AZ/EN content)
 │   ├── views/site/         layout, pages, partials/
 │   ├── views/admin/        layout, login, list, form, dashboard, requests…
+│   ├── tools/              make-webp.php (command line: WebP copies of the images in assets/img)
 │   └── dev-router.php      router for `php -S` (local only)
 ├── assets/                 css/, js/, img/ (site images, logos, partners/)
 ├── uploads/                images uploaded in the admin (server only, scripts disabled)
@@ -116,6 +117,12 @@ Open `http://127.0.0.1:8000/install.php` and choose **SQLite**.
   if Cloudflare adds ranges); a request sent straight to the server cannot fake its IP.
 - Rich text from the admin is cleaned on save (`clean_html()`), hand-typed links accept only `https://`, `/`, `#`,
   `mailto:` and `tel:`, and the CSV export neutralises cells that Excel would run as formulas.
+- Speed: every JPEG/PNG on the site has WebP copies next to it (`name.webp` up to 1920 px, `name-md.webp` 1200 px,
+  `name-sm.webp` 800 px). `picture()` in `app/core/helpers.php` outputs them with `srcset`/`sizes`, keeping the original as
+  the fallback for old browsers and for social previews. Uploads get their copies on upload (older uploads on their first
+  view); after adding an image to `assets/img/` run `php app/tools/make-webp.php`. Slides 2+ of the home slider load after
+  the page, Google Fonts no longer hold up the first paint, and the Turnstile script loads when the form comes near the
+  screen. Static files are linked with `?v=<file time>` and cached for a year.
 - Security headers come from `send_security_headers()` in `app/bootstrap.php`. The hosting replaces the
   Content-Security-Policy header with its own `upgrade-insecure-requests`, so every page also carries the policy in a
   `<meta>` tag (`CSP_DIRECTIVES`, `csp_meta()`); `frame-ancestors` only works as a header and is covered by `X-Frame-Options`.

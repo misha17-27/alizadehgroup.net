@@ -14,7 +14,7 @@ include __DIR__ . '/partials/page_hero.php';
     <?php if ($body !== ''): ?><div class="prose page-text"><?= $body ?></div><?php endif; ?>
     <ul class="pgrid">
       <?php foreach ($ps as $i => $pt):
-        $img = '<img src="' . e(media($pt['logo'])) . '" alt="' . e($pt['name']) . '" width="335" height="210" loading="lazy" decoding="async">'; ?>
+        $img = picture($pt['logo'], '', 'alt="' . e($pt['name']) . '" width="335" height="210" loading="lazy" decoding="async"'); ?>
       <li class="rv" style="--d:<?= ($i % 6) * 40 ?>ms"><?php if ($pt['url']): ?><a href="<?= e($pt['url']) ?>" target="_blank" rel="noopener" title="<?= e($pt['name']) ?>"><?= $img ?></a><?php else: ?><?= $img ?><?php endif; ?></li>
       <?php endforeach; ?>
     </ul>

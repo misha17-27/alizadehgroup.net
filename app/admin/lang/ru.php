@@ -32,6 +32,8 @@ return [
     'srv_no_http' => 'Нет curl и выключен allow_url_fopen: проверка Cloudflare Turnstile не сработает.',
     'srv_no_mail' => 'Функция mail() отключена: уведомления о заявках не отправляются.',
     'srv_no_gd' => 'Нет расширения GD: большие изображения не будут уменьшаться.',
+    'srv_no_webp' => 'GD без поддержки WebP: для загруженных фото не будут создаваться лёгкие копии WebP.',
+    'srv_no_opcache' => 'OPcache выключен: PHP заново компилируется на каждой странице. Включите opcache в cPanel → Select PHP Version.',
 
     // requests
     'request' => 'Заявка', 'status' => 'Статус', 'date' => 'Дата', 'contacts' => 'Контакты', 'details' => 'Детали заявки', 'files' => 'Файлы',

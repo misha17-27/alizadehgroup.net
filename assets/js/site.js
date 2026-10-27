@@ -48,9 +48,16 @@
     if (!count) return;
     var cur = -1, timer = null;
     var delay = +sl.getAttribute("data-autoplay") || 0;
+    /* the pictures of the other slides come after the page has loaded, so the first screen gets the bandwidth */
+    function loadPictures() {
+      $$("[data-srcset]", sl).forEach(function (s) { s.srcset = s.getAttribute("data-srcset"); s.removeAttribute("data-srcset"); });
+      $$("[data-src]", sl).forEach(function (s) { s.src = s.getAttribute("data-src"); s.removeAttribute("data-src"); });
+    }
+    if (document.readyState === "complete") loadPictures(); else window.addEventListener("load", loadPictures);
     function go(i) {
       i = (i + count) % count;
       if (i === cur) return;
+      if (cur !== -1) loadPictures();
       cur = i;
       slides.forEach(function (s) { s.classList.toggle("is-active", +s.getAttribute("data-slide") === i); });
       $$("[data-goto]", sl).forEach(function (b) {
@@ -117,6 +124,24 @@
   var details = $("[data-rq-details]", form);
   var hint = $("[data-rq-hint]", form);
   var stepNo = $("[data-step-no]", form);
+
+  /* Turnstile: its script is loaded only when the form comes near the screen or gets touched */
+  var ts = $("[data-ts-src]", form);
+  if (ts) {
+    var loadTs = function () {
+      if (!ts) return;
+      var s = document.createElement("script");
+      s.src = ts.getAttribute("data-ts-src"); s.async = true;
+      document.head.appendChild(s);
+      ts = null;
+    };
+    form.addEventListener("focusin", loadTs);
+    form.addEventListener("pointerdown", loadTs);
+    if ("IntersectionObserver" in window) {
+      var tio = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { loadTs(); tio.disconnect(); } }, { rootMargin: "800px 0px" });
+      tio.observe(form);
+    } else loadTs();
+  }
 
   function today() {
     var d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset());

@@ -13,8 +13,8 @@ include __DIR__ . '/partials/page_hero.php';
 <section class="sec">
   <div class="wrap about">
     <div class="about-media rv">
-      <figure class="am1"><img src="<?= e(media($p['photo1'] ?? '', 'assets/img/conference.jpg')) ?>" alt="" loading="lazy"></figure>
-      <figure class="am2"><img src="<?= e(media($p['photo2'] ?? '', 'assets/img/baku-airport.jpg')) ?>" alt="" loading="lazy"></figure>
+      <figure class="am1"><?= picture($p['photo1'] ?? '', 'assets/img/conference.jpg', 'alt="" loading="lazy"', '(max-width: 960px) 460px, 40vw') ?></figure>
+      <figure class="am2"><?= picture($p['photo2'] ?? '', 'assets/img/baku-airport.jpg', 'alt="" loading="lazy"', '(max-width: 960px) 320px, 28vw') ?></figure>
       <div class="am-badge glass"><?= icon('clock') ?><span><?= e(tx('contact.hours')) ?></span></div>
     </div>
     <div class="rv">

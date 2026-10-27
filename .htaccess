@@ -34,8 +34,10 @@ AddDefaultCharset UTF-8
 </IfModule>
 
 <IfModule mod_headers.c>
+    # the pages link static files with ?v=<file time> (asset(), media()) and uploads get unique names,
+    # so browsers and Cloudflare may keep them for a year
     <FilesMatch "\.(css|js|svg|png|jpe?g|webp|gif|ico|woff2?)$">
-        Header set Cache-Control "public, max-age=2592000"
+        Header set Cache-Control "public, max-age=31536000, immutable"
     </FilesMatch>
 </IfModule>
 

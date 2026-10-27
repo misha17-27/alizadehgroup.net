@@ -81,8 +81,44 @@ function media(?string $path, string $fallback = ''): string
     $path = trim((string)$path);
     if ($path === '') $path = $fallback;
     if ($path === '') return '';
-    if (preg_match('~^(https?:)?//~', $path)) return $path;
-    return url(ltrim($path, '/'));
+    return asset($path);    // ?v=<file time>: static files are cached for a year
+}
+
+/**
+ * <picture> for a site image: its WebP copies (make_webp()) for browsers that take them, the original for the rest.
+ * $sizes ("100vw", "(max-width: 760px) 100vw, 50vw"…) lets the browser choose the small copy where it is enough.
+ */
+function picture(?string $path, string $fallback, string $attrs, string $sizes = '', bool $later = false): string
+{
+    $path = trim((string)$path) ?: $fallback;
+    if ($path === '') return '';
+    // $later: the files are set by site.js after the page has loaded (slides that are not on screen yet)
+    $src = $later ? 'data-src' : 'src';
+    $img = '<img ' . $src . '="' . e(media($path)) . '" ' . $attrs . '>';
+    $set = webp_srcset($path, $sizes !== '');
+    if ($set === '') return $img;
+    return '<picture><source type="image/webp" ' . $src . 'set="' . e($set) . '"' . ($sizes !== '' ? ' sizes="' . e($sizes) . '"' : '') . '>' . $img . '</picture>';
+}
+
+/** srcset of the WebP copies of a local image, '' when there are none; copies of admin uploads are made on first use */
+function webp_srcset(string $path, bool $withWidths): string
+{
+    static $cache = [];
+    $key = $path . ($withWidths ? '|w' : '');
+    if (isset($cache[$key])) return $cache[$key];
+    $path = ltrim($path, '/');
+    if (!preg_match('~^(assets|uploads)/[^?#]+\.(jpe?g|png)$~i', $path) || strpos($path, '..') !== false) return $cache[$key] = '';
+    [$full, $medium, $small] = webp_paths($path);
+    if (!is_file(APP_ROOT . '/' . $full) && starts_with($path, 'uploads/') && is_file(APP_ROOT . '/' . $path)) make_webp(APP_ROOT . '/' . $path);
+    if (!is_file(APP_ROOT . '/' . $full)) return $cache[$key] = '';
+    $copies = array_values(array_filter([$small, $medium, $full], function ($c) { return is_file(APP_ROOT . '/' . $c); }));
+    if (!$withWidths) return $cache[$key] = asset($copies[0]);
+    $set = [];
+    foreach ($copies as $c) {
+        $size = @getimagesize(APP_ROOT . '/' . $c);
+        $set[] = asset($c) . ' ' . ($size ? $size[0] : WEBP_FULL) . 'w';
+    }
+    return $cache[$key] = implode(', ', $set);
 }
 
 function redirect(string $to, int $code = 302): void

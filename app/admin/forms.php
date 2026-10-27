@@ -183,6 +183,9 @@ function delete_upload(?string $path): void
     if ($path === '' || !starts_with($path, 'uploads/') || strpos($path, '..') !== false) return;
     $file = APP_ROOT . '/' . $path;
     if (is_file($file)) @unlink($file);
+    foreach (webp_paths($path) as $copy) {
+        if ($copy !== $path && is_file(APP_ROOT . '/' . $copy)) @unlink(APP_ROOT . '/' . $copy);
+    }
 }
 
 /**

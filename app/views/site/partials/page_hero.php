@@ -3,7 +3,7 @@
 $ph_chip = $ph_chip ?? '';
 ?>
 <section class="ph">
-  <img class="ph-bg" src="<?= e(media($ph_image, 'assets/img/baku-night.jpg')) ?>" alt="" fetchpriority="high">
+  <?= picture($ph_image, 'assets/img/baku-night.jpg', 'class="ph-bg" alt="" fetchpriority="high"', '100vw') ?>
   <div class="hs-grid" aria-hidden="true"></div>
   <div class="wrap ph-in">
     <nav class="crumbs" aria-label="Breadcrumb">

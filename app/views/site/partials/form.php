@@ -115,8 +115,8 @@ foreach (flashes() as [$ft, $fm]): ?>
     </div>
   </div>
   <?php if ($ts): ?>
-  <div class="rq-captcha"><div class="cf-turnstile" data-sitekey="<?= e($ts) ?>" data-theme="dark" data-language="<?= e(lang()) ?>"></div></div>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <!-- the Turnstile script is loaded by site.js once the form comes near the screen -->
+  <div class="rq-captcha" data-ts-src="https://challenges.cloudflare.com/turnstile/v0/api.js"><div class="cf-turnstile" data-sitekey="<?= e($ts) ?>" data-theme="dark" data-language="<?= e(lang()) ?>"></div></div>
   <?php endif; ?>
   <div class="rq-foot">
     <small><?= e(tx('f.req')) ?> · <?= e(tx('f.privacy')) ?></small>

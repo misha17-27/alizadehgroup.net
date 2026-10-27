@@ -1,5 +1,5 @@
 <section class="ph ph-404">
-  <img class="ph-bg" src="<?= e(asset('assets/img/baku-night.jpg')) ?>" alt="">
+  <?= picture('', 'assets/img/baku-night.jpg', 'class="ph-bg" alt=""', '100vw') ?>
   <div class="hs-grid" aria-hidden="true"></div>
   <div class="wrap ph-in">
     <p class="chip"><span class="dot"></span>404</p>

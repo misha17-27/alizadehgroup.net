@@ -8,6 +8,10 @@ const DOC_EXT = ['pdf', 'jpg', 'jpeg', 'png', 'webp', 'doc', 'docx', 'xls', 'xls
 const DOC_MAX = 10 * 1024 * 1024;
 const IMG_EXT = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
 const IMG_MAX = 8 * 1024 * 1024;
+/** widths of the WebP copies served to browsers: full, for phones (≈ 400 px × 2.5) and for small boxes */
+const WEBP_FULL = 1920;
+const WEBP_MEDIUM = 1200;
+const WEBP_SMALL = 800;
 
 /** normalised list of uploaded files for a field (supports name="x" and name="x[]") */
 function uploaded_files(string $field): array
@@ -43,7 +47,41 @@ function save_image_upload(array $file, int $maxSide = 2400): ?string
     $dest = $dir . '/' . $name;
     if (!move_uploaded_file($file['tmp_name'], $dest)) return null;
     resize_image($dest, $info, $maxSide);
+    make_webp($dest);
     return $rel . '/' . $name;
+}
+
+/** paths of the WebP copies of a JPEG/PNG image: "a/b.jpg" → [a/b.webp (≤ 1920 px), a/b-md.webp (≤ 1200), a/b-sm.webp (≤ 800)] */
+function webp_paths(string $path): array
+{
+    $base = (string)preg_replace('~\.(jpe?g|png)$~i', '', $path);
+    return [$base . '.webp', $base . '-md.webp', $base . '-sm.webp'];
+}
+
+/** make the WebP copies next to a JPEG/PNG file; the smaller ones only when the image is wider than them (GD with WebP) */
+function make_webp(string $file): bool
+{
+    if (!function_exists('imagewebp') || !preg_match('~\.(jpe?g|png)$~i', $file)) return false;
+    $info = @getimagesize($file);
+    if (!$info || !in_array($info[2], [IMAGETYPE_JPEG, IMAGETYPE_PNG], true)) return false;
+    $src = $info[2] === IMAGETYPE_JPEG ? @imagecreatefromjpeg($file) : @imagecreatefrompng($file);
+    if (!$src) return false;
+    [$full, $medium, $small] = webp_paths($file);
+    $ok = true;
+    foreach ([[$full, WEBP_FULL], [$medium, WEBP_MEDIUM], [$small, WEBP_SMALL]] as [$out, $max]) {
+        if ($out !== $full && $info[0] <= $max) continue;
+        $w = min($info[0], $max);
+        $h = max(1, (int)round($info[1] * $w / $info[0]));
+        $dst = imagecreatetruecolor($w, $h);
+        imagealphablending($dst, false);
+        imagesavealpha($dst, true);
+        imagecopyresampled($dst, $src, 0, 0, 0, 0, $w, $h, $info[0], $info[1]);
+        // written under a temporary name first, so a page never links a half-written file
+        $tmp = $out . '.' . bin2hex(random_bytes(3)) . '.tmp';
+        $ok = imagewebp($dst, $tmp, 75) && @rename($tmp, $out) && $ok;
+        if (is_file($tmp)) @unlink($tmp);
+    }
+    return $ok;
 }
 
 /** downscale very large images (GD); silently keeps the original if GD is unavailable */

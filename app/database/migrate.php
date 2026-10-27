@@ -55,6 +55,8 @@ function schema_sql(string $driver): array
     $t[] = "CREATE UNIQUE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ux_services_skey ON services (skey)";
     $t[] = "CREATE UNIQUE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ux_users_email ON users (email)";
     $t[] = "CREATE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ix_requests_status ON requests (status, created_at)";
+    $t[] = "CREATE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ix_requests_ip ON requests (ip, created_at)";       // form rate limit
+    $t[] = "CREATE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ix_requests_created ON requests (created_at)";      // dashboard month count
     $t[] = "CREATE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ix_items_grp ON items (grp, sort)";
     $t[] = "CREATE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ix_login_ip ON login_attempts (ip, created_at)";
     return $t;
@@ -67,6 +69,19 @@ function migrate(): void
             db()->exec($sql);
         } catch (PDOException $e) {
             // MySQL has no "CREATE INDEX IF NOT EXISTS": ignore "duplicate key name"
+            if (strpos($e->getMessage(), 'Duplicate key name') === false) throw $e;
+        }
+    }
+}
+
+/** create the indexes from schema_sql() that an older database does not have yet */
+function add_indexes(): void
+{
+    foreach (schema_sql(db_driver()) as $sql) {
+        if (strpos($sql, 'CREATE INDEX') !== 0 && strpos($sql, 'CREATE UNIQUE INDEX') !== 0) continue;
+        try {
+            db()->exec($sql);
+        } catch (PDOException $e) {
             if (strpos($e->getMessage(), 'Duplicate key name') === false) throw $e;
         }
     }
@@ -150,6 +165,7 @@ function upgrade_db(): void
             prefill_page_photos();
             q('DELETE FROM texts WHERE k IN (' . implode(',', array_fill(0, count(UNUSED_TEXTS), '?')) . ')', UNUSED_TEXTS);
         }
+        if ((int)setting('db_version', '1') < 4) add_indexes();
         sync_texts();
         if (val('SELECT COUNT(*) FROM settings WHERE k=?', ['db_version'])) update('settings', ['v' => (string)DB_VERSION], 'k=?', ['db_version']);
         else insert('settings', ['k' => 'db_version', 'v' => (string)DB_VERSION]);

@@ -23,8 +23,15 @@ if (is_admin()) {
     if (!function_exists('curl_init') && !ini_get('allow_url_fopen')) $warn[] = __('srv_no_http');
     if (!function_exists('mail')) $warn[] = __('srv_no_mail');
     if (!function_exists('imagecreatetruecolor')) $warn[] = __('srv_no_gd');
+    elseif (!function_exists('imagewebp')) $warn[] = __('srv_no_webp');
+    // OPcache keeps compiled PHP in memory; without it every page is compiled again
+    // (no status when the API is restricted: then only "opcache.enable = 0" counts as off)
+    $opcache = function_exists('opcache_get_status')
+        ? ((@opcache_get_status(false) ?: [])['opcache_enabled'] ?? (ini_get('opcache.enable') ? null : false))
+        : false;
+    if ($opcache === false) $warn[] = __('srv_no_opcache');
     $server = [
-        'php' => PHP_VERSION,
+        'php' => PHP_VERSION . ($opcache ? ' · OPcache' : ''),
         'db' => (db_driver() === 'sqlite' ? 'SQLite ' : 'MySQL ') . db()->getAttribute(PDO::ATTR_SERVER_VERSION),
         'upload' => $limit ? fmt_size($limit) : '—',
         'warn' => $warn,

@@ -10,7 +10,7 @@ $homePage = page('home');
 <section class="hs" data-slider data-autoplay="7000" data-swipe>
   <div class="hs-media">
     <?php foreach ($sl as $i => $s): ?>
-    <div class="hs-bg<?= $i === 0 ? ' is-active' : '' ?>" data-slide="<?= $i ?>"><img src="<?= e(media($s['image'], 'assets/img/baku-night.jpg')) ?>" alt=""<?= $i === 0 ? ' fetchpriority="high"' : ' loading="lazy"' ?>></div>
+    <div class="hs-bg<?= $i === 0 ? ' is-active' : '' ?>" data-slide="<?= $i ?>"><?= picture($s['image'], 'assets/img/baku-night.jpg', 'alt=""' . ($i === 0 ? ' fetchpriority="high"' : ''), '100vw', $i > 0) ?></div>
     <?php endforeach; ?>
   </div>
   <div class="hs-grid" aria-hidden="true"></div>
@@ -64,8 +64,8 @@ $homePage = page('home');
 <section class="sec" id="haqqimizda">
   <div class="wrap about">
     <div class="about-media rv">
-      <figure class="am1"><img src="<?= e(media(($homePage['photo1'] ?? '') ?: ($aboutPage['image'] ?? ''), 'assets/img/conference.jpg')) ?>" alt="" loading="lazy"></figure>
-      <figure class="am2"><img src="<?= e(media($homePage['photo2'] ?? '', 'assets/img/baku-airport.jpg')) ?>" alt="" loading="lazy"></figure>
+      <figure class="am1"><?= picture(($homePage['photo1'] ?? '') ?: ($aboutPage['image'] ?? ''), 'assets/img/conference.jpg', 'alt="" loading="lazy"', '(max-width: 960px) 460px, 40vw') ?></figure>
+      <figure class="am2"><?= picture($homePage['photo2'] ?? '', 'assets/img/baku-airport.jpg', 'alt="" loading="lazy"', '(max-width: 960px) 320px, 28vw') ?></figure>
       <div class="am-badge glass"><?= icon('clock') ?><span><?= e(tx('contact.hours')) ?></span></div>
     </div>
     <div class="rv">

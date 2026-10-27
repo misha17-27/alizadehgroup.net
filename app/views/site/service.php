@@ -90,7 +90,7 @@ $nav['yazin'] = tx('ui.write');
 <section class="sec sec-sm">
   <div class="wrap"><p class="chip"><span class="dot"></span><?= e(tx('ui.other_services')) ?></p>
     <div class="others"><?php foreach ($others as $o): ?>
-      <a class="oth" href="<?= e(route('service', ['service' => $o])) ?>"><img src="<?= e(media($o['image'])) ?>" alt="" loading="lazy"><span><b><?= e(L($o, 'title')) ?></b><?= icon('arrow-ur') ?></span></a>
+      <a class="oth" href="<?= e(route('service', ['service' => $o])) ?>"><?= picture($o['image'], '', 'alt="" loading="lazy"', '(max-width: 960px) 50vw, 33vw') ?><span><b><?= e(L($o, 'title')) ?></b><?= icon('arrow-ur') ?></span></a>
     <?php endforeach; ?></div>
   </div>
 </section>
