@@ -682,10 +682,34 @@
    "en": "Menu"
   },
   {
+   "k": "footer.company",
+   "grp": "footer",
+   "az": "Alizadehgroup.net",
+   "en": "Alizadehgroup.net"
+  },
+  {
    "k": "footer.rights",
    "grp": "footer",
    "az": "Bütün hüquqlar qorunur.",
    "en": "All rights reserved."
+  },
+  {
+   "k": "footer.credit",
+   "grp": "footer",
+   "az": "Site by",
+   "en": "Site by"
+  },
+  {
+   "k": "footer.credit_name",
+   "grp": "footer",
+   "az": "Webline",
+   "en": "Webline"
+  },
+  {
+   "k": "footer.credit_url",
+   "grp": "footer",
+   "az": "https://thewebline.com/",
+   "en": "https://thewebline.com/"
   },
   {
    "k": "contact.map",

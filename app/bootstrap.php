@@ -48,7 +48,7 @@ function is_installed(): bool
 }
 
 /** database version this code expects; an older database is upgraded on the first request after a deploy */
-const DB_VERSION = 4;
+const DB_VERSION = 5;
 
 function ensure_db(): void
 {

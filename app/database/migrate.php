@@ -166,7 +166,7 @@ function upgrade_db(): void
             q('DELETE FROM texts WHERE k IN (' . implode(',', array_fill(0, count(UNUSED_TEXTS), '?')) . ')', UNUSED_TEXTS);
         }
         if ((int)setting('db_version', '1') < 4) add_indexes();
-        sync_texts();
+        sync_texts();   // texts added to seed.json since the last version (5: the footer copyright line)
         if (val('SELECT COUNT(*) FROM settings WHERE k=?', ['db_version'])) update('settings', ['v' => (string)DB_VERSION], 'k=?', ['db_version']);
         else insert('settings', ['k' => 'db_version', 'v' => (string)DB_VERSION]);
     } catch (Throwable $e) {

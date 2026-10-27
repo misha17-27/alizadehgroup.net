@@ -27,8 +27,9 @@ text with a small editor — headings, lists, links; the two photos of the "Abou
 SEO title/description; header image), Settings (contacts, socials, notification e-mail, Google Analytics,
 Cloudflare Turnstile), Users (admin / editor roles), Profile.
 Interface language: Azerbaijani or Russian. Content is edited per language with the **AZ / EN** switch in the top bar.
-Only the logo and the favicon (`assets/img/`), the company name in the copyright line and page titles, and the fallback
-photos used when an image field is empty are part of the code.
+Only the logo and the favicon (`assets/img/`), the company name in page titles and the fallback photos used when an image
+field is empty are part of the code; the footer copyright line ("© year Alizadehgroup.net All rights reserved. Site by
+Webline") is in Texts › Footer.
 
 ## Project structure
 

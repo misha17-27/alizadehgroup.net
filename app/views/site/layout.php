@@ -115,7 +115,14 @@ $active = function (string $k) use ($nav) { return $nav === $k ? ' class="is-cur
         <li><?= e(setting('address_' . $l, setting('address_az'))) ?></li></ul></div>
     </div>
     <div class="ft-mark" aria-hidden="true"><img src="<?= e(asset('assets/img/logo-white.svg')) ?>" alt="" width="1206" height="279" loading="lazy"></div>
-    <div class="ft-bot"><span>© <?= date('Y') ?> Alizadeh Group. <?= e(tx('footer.rights')) ?></span><a href="#main"><?= e(tx('ui.top')) ?></a></div>
+    <?php
+    // "© year Alizadehgroup.net All rights reserved. Site by Webline" — every part is in Texts › Footer
+    $credit = e(tx('footer.credit_name'));
+    $creditUrl = tx('footer.credit_url');
+    if ($credit !== '' && safe_link($creditUrl)) $credit = '<a href="' . e($creditUrl) . '" target="_blank" rel="noopener">' . $credit . '</a>';
+    $copy = array_filter([e(tx('footer.company')), e(tx('footer.rights')), e(tx('footer.credit')), $credit], 'strlen');
+    ?>
+    <div class="ft-bot"><span class="ft-copy">© <?= date('Y') ?> <?= implode(' ', $copy) ?></span><a href="#main"><?= e(tx('ui.top')) ?></a></div>
   </div>
 </footer>
 <?php if ($wa): ?><a class="wa" href="<?= e($wa) ?>" target="_blank" rel="noopener" aria-label="WhatsApp"><?= icon('wa') ?></a><?php endif; ?>
