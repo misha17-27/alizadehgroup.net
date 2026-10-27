@@ -110,6 +110,13 @@ function start_session(): void
     session_start();
 }
 
+/**
+ * Content-Security-Policy without frame-ancestors. The hosting (LiteSpeed) replaces the CSP header with its own
+ * "upgrade-insecure-requests", so every page also carries these directives in a <meta> tag (csp_meta()).
+ * Scripts and styles are not restricted (inline scripts, Google Analytics, Turnstile, Cloudflare).
+ */
+const CSP_DIRECTIVES = "base-uri 'self'; object-src 'none'; form-action 'self'";
+
 function send_security_headers(): void
 {
     header_remove('X-Powered-By');
@@ -117,8 +124,14 @@ function send_security_headers(): void
     header('X-Frame-Options: SAMEORIGIN');
     header('Referrer-Policy: strict-origin-when-cross-origin');
     header('Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()');
-    // scripts and styles are not restricted here (inline scripts, Google Analytics, Turnstile, Cloudflare)
-    header("Content-Security-Policy: frame-ancestors 'self'; base-uri 'self'; object-src 'none'; form-action 'self'");
+    // frame-ancestors works only as a header; X-Frame-Options covers it where the header gets replaced
+    header("Content-Security-Policy: frame-ancestors 'self'; " . CSP_DIRECTIVES);
+}
+
+/** the CSP as a <meta> tag, right after <meta charset> */
+function csp_meta(): string
+{
+    return '<meta http-equiv="Content-Security-Policy" content="' . e(CSP_DIRECTIVES) . '">';
 }
 
 foreach ([STORAGE_DIR . '/logs', STORAGE_DIR . '/requests'] as $d) {

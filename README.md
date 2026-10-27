@@ -113,3 +113,6 @@ Open `http://127.0.0.1:8000/install.php` and choose **SQLite**.
   if Cloudflare adds ranges); a request sent straight to the server cannot fake its IP.
 - Rich text from the admin is cleaned on save (`clean_html()`), hand-typed links accept only `https://`, `/`, `#`,
   `mailto:` and `tel:`, and the CSV export neutralises cells that Excel would run as formulas.
+- Security headers come from `send_security_headers()` in `app/bootstrap.php`. The hosting replaces the
+  Content-Security-Policy header with its own `upgrade-insecure-requests`, so every page also carries the policy in a
+  `<meta>` tag (`CSP_DIRECTIVES`, `csp_meta()`); `frame-ancestors` only works as a header and is covered by `X-Frame-Options`.

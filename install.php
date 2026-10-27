@@ -77,6 +77,7 @@ if (!$installed && is_post()) {
 <html lang="az">
 <head>
 <meta charset="utf-8">
+<?= csp_meta() ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Quraşdırma — Alizadeh Group</title>

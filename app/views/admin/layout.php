@@ -11,6 +11,7 @@ $roles = ['admin' => __('role_admin'), 'editor' => __('role_editor')];
 <html lang="<?= e(admin_ui_lang()) ?>">
 <head>
 <meta charset="utf-8">
+<?= csp_meta() ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title><?= e(strip_tags($title)) ?> — Alizadeh Group admin</title>

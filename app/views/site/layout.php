@@ -15,6 +15,7 @@ $active = function (string $k) use ($nav) { return $nav === $k ? ' class="is-cur
 <html lang="<?= e($l) ?>">
 <head>
 <meta charset="utf-8">
+<?= csp_meta() ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?= e($title) ?></title>
 <?php if ($desc !== ''): ?><meta name="description" content="<?= e(mb_substr($desc, 0, 300)) ?>"><?php endif; ?>
