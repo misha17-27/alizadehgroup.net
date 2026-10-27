@@ -165,6 +165,18 @@ function page(string $k): array
     return $cache[$k];
 }
 
+/** H1 of a static page (admin → Pages & SEO); the section title from Texts while it is empty */
+function page_h1(array $p, string $textKey): string
+{
+    return L($p, 'h1') ?: tx($textKey);
+}
+
+/** text under the H1 (until the database upgrade has run it is the meta description, as before) */
+function page_lead(array $p): string
+{
+    return array_key_exists('lead_az', $p) ? L($p, 'lead') : L($p, 'description');
+}
+
 /** decode a JSON list column */
 function jlist($v): array
 {

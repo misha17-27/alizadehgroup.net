@@ -1,7 +1,8 @@
 <?php
 $p = page('contact');
-$ph_title = tx('contact.title');
-$ph_text = L($p, 'description');
+$body = L($p, 'body');
+$ph_title = page_h1($p, 'contact.title');
+$ph_text = page_lead($p);
 $ph_image = $p['image'] ?? '';
 $ph_crumbs = [[tx('nav.contact'), null]];
 $ph_chip = '<span class="dot"></span>' . e(tx('nav.contact'));
@@ -10,6 +11,7 @@ $map = map_embed_url();
 ?>
 <section class="sec">
   <div class="wrap">
+    <?php if ($body !== ''): ?><div class="prose page-text"><?= $body ?></div><?php endif; ?>
     <div class="contact glass" id="form">
       <div class="contact-l">
         <h2 class="h2"><?= e(tx('contact.title')) ?></h2><p class="lead"><?= e(tx('contact.text')) ?></p>

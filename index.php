@@ -85,6 +85,7 @@ function canonical(string $url, bool $slash): void
 }
 
 try {
+    ensure_db();
     legacy_redirect($path);
 
     /* ---------- API: request form ---------- */

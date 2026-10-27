@@ -47,6 +47,16 @@ function is_installed(): bool
     return is_file(CONFIG_FILE);
 }
 
+/** database version this code expects; an older database is upgraded on the first request after a deploy */
+const DB_VERSION = 2;
+
+function ensure_db(): void
+{
+    if ((int)setting('db_version', '1') >= DB_VERSION) return;
+    require_once APP_DIR . '/database/migrate.php';
+    upgrade_db();
+}
+
 /** base path of the app (works in a sub-folder such as /yeni) */
 function base_path(): string
 {

@@ -390,6 +390,26 @@ ul,ol{list-style:none}
 .lang a:hover{color:#fff}
 .lang a.is-active{background:var(--text);color:var(--ink)}
 .btn-mt{margin-top:28px}
+
+/* main text of a page (admin → Pages & SEO, rich text) */
+.prose{color:var(--muted);font-size:clamp(16px,1.25vw,18px);line-height:1.7;max-width:72ch}
+.prose>*+*{margin-top:1em}
+.prose h2,.prose h3,.prose h4{font-family:var(--head);font-weight:600;color:var(--text);letter-spacing:-.025em;line-height:1.15}
+.prose h2{font-size:clamp(26px,2.6vw,36px);margin-top:1.5em}
+.prose h3{font-size:clamp(20px,1.8vw,25px);margin-top:1.3em}
+.prose h4{font-size:19px;margin-top:1.2em}
+.prose>:first-child{margin-top:0}
+.prose ul,.prose ol{padding-left:1.25em}
+.prose ul{list-style:disc}
+.prose ol{list-style:decimal}
+.prose li+li{margin-top:.35em}
+.prose li::marker{color:var(--lime)}
+.prose strong,.prose b{color:var(--text);font-weight:600}
+.prose a{color:var(--lime);text-decoration:underline;text-underline-offset:3px}
+.prose a:hover{color:var(--lime2)}
+.prose blockquote{border-left:3px solid var(--lime);padding-left:18px;color:var(--text)}
+.about .prose{margin-top:18px;max-width:60ch}
+.page-text{margin-bottom:clamp(40px,5vw,64px)}
 .ft-logo{height:32px;width:auto;margin-bottom:18px}
 .ab-list small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
 .hs-tabs{grid-template-columns:repeat(var(--n,5),minmax(0,1fr))}

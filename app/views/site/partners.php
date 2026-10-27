@@ -1,8 +1,9 @@
 <?php
 $p = page('partners');
 $ps = partners();
-$ph_title = tx('partners.title');
-$ph_text = L($p, 'description');
+$body = L($p, 'body');
+$ph_title = page_h1($p, 'partners.title');
+$ph_text = page_lead($p);
 $ph_image = $p['image'] ?? '';
 $ph_crumbs = [[tx('nav.partners'), null]];
 $ph_chip = '<span class="dot"></span>' . e(tx('nav.partners'));
@@ -10,6 +11,7 @@ include __DIR__ . '/partials/page_hero.php';
 ?>
 <section class="sec">
   <div class="wrap">
+    <?php if ($body !== ''): ?><div class="prose page-text"><?= $body ?></div><?php endif; ?>
     <ul class="pgrid">
       <?php foreach ($ps as $i => $pt):
         $img = '<img src="' . e(media($pt['logo'])) . '" alt="' . e($pt['name']) . '" width="335" height="210" loading="lazy" decoding="async">'; ?>

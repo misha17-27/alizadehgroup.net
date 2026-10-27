@@ -2,8 +2,9 @@
 $p = page('about');
 $bul = items('about');
 $why = items('why');
-$ph_title = tx('about.title');
-$ph_text = L($p, 'description');
+$body = L($p, 'body');
+$ph_title = page_h1($p, 'about.title');
+$ph_text = page_lead($p);
 $ph_image = $p['image'] ?? '';
 $ph_crumbs = [[tx('nav.about'), null]];
 $ph_chip = '<span class="dot"></span>' . e(tx('nav.about'));
@@ -18,7 +19,7 @@ include __DIR__ . '/partials/page_hero.php';
     </div>
     <div class="rv">
       <h2 class="h2"><?= e(tx('about.title')) ?></h2>
-      <p class="lead"><?= e(tx('about.text')) ?></p>
+      <?php if ($body !== ''): ?><div class="prose"><?= $body ?></div><?php else: ?><p class="lead"><?= e(tx('about.text')) ?></p><?php endif; ?>
       <?php if ($bul): ?><ul class="ab-list"><?php foreach ($bul as $b): ?><li class="glass"><?= icon($b['icon'] ?: 'check') ?><span><?= e(L($b, 'title')) ?><?php if (L($b, 'text') !== ''): ?><small><?= e(L($b, 'text')) ?></small><?php endif; ?></span></li><?php endforeach; ?></ul><?php endif; ?>
     </div>
   </div>

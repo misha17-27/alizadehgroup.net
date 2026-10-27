@@ -62,6 +62,36 @@
     repCount(rep);
   });
 
+  /* rich text fields: contenteditable + toolbar, kept in sync with a hidden textarea (cleaned again on the server) */
+  $$("[data-rte]").forEach(function (box) {
+    var area = $("[data-rte-area]", box), src = $("[data-rte-src]", box);
+    var sync = function () { src.value = area.innerHTML; };
+    if (!area.innerHTML.trim()) area.innerHTML = "<p><br></p>";
+    area.addEventListener("focus", function () { document.execCommand("defaultParagraphSeparator", false, "p"); });
+    area.addEventListener("input", sync);
+    area.addEventListener("paste", function (e) {   // paste as plain text, without foreign formatting
+      e.preventDefault();
+      document.execCommand("insertText", false, (e.clipboardData || window.clipboardData).getData("text"));
+    });
+    $(".rte-bar", box).addEventListener("mousedown", function (e) { e.preventDefault(); });   // keep the selection in the text
+    $(".rte-bar", box).addEventListener("click", function (e) {
+      var b = e.target.closest("[data-cmd]");
+      if (!b) return;
+      var cmd = b.getAttribute("data-cmd"), arg = b.getAttribute("data-arg");
+      area.focus();
+      if (cmd === "createLink") {
+        var sel = window.getSelection(), range = sel.rangeCount ? sel.getRangeAt(0) : null;
+        arg = window.prompt(box.getAttribute("data-link-prompt"), "https://");
+        if (range) { sel.removeAllRanges(); sel.addRange(range); }
+        if (!arg || arg === "https://") return;
+      }
+      document.execCommand(cmd, false, cmd === "formatBlock" ? "<" + arg + ">" : arg);
+      sync();
+      markDirty(box.closest("form"));
+    });
+    box.closest("form").addEventListener("submit", sync);
+  });
+
   /* bulk select */
   $$("[data-check-all]").forEach(function (c) {
     c.addEventListener("change", function () {

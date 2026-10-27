@@ -3,7 +3,7 @@
  * Admin form fields: rendering, collecting POST data, image uploads and repeaters.
  *
  * Field spec: ['name','type','label','i18n'=>bool,'required'=>bool,'help','col'=>'half|third|full','options'=>[],'sub'=>[]]
- * Types: section, text, textarea, number, email, url, password, select, checkbox, image, icon, link, service, repeater
+ * Types: section, text, textarea, html (rich text), number, email, url, password, select, checkbox, image, icon, link, service, repeater
  * Translatable fields are stored in "<name>_<lang>" columns; the form edits one language at a time.
  */
 declare(strict_types=1);
@@ -78,6 +78,20 @@ function render_field(array $f, array $row, string $cl, array $errors = []): str
     switch ($type) {
         case 'textarea':
             $in = '<textarea id="' . $id . '" name="' . e($col) . '" rows="' . (int)($f['rows'] ?? 3) . '"' . $ra . $ph . '>' . e($val) . '</textarea>';
+            break;
+        case 'html':
+            $tools = [['bold', '', '<b>B</b>', 'rte_bold'], ['italic', '', '<i>I</i>', 'rte_italic'], ['formatBlock', 'h2', 'H2', ''],
+                ['formatBlock', 'h3', 'H3', ''], ['formatBlock', 'p', '¶', 'rte_p'], ['insertUnorderedList', '', '• ' . e(__('rte_ul')), ''],
+                ['insertOrderedList', '', '1. ' . e(__('rte_ol')), ''], ['createLink', '', e(__('rte_link')), ''],
+                ['unlink', '', e(__('rte_unlink')), ''], ['removeFormat', '', e(__('rte_clear')), '']];
+            $bar = '';
+            foreach ($tools as [$cmd, $arg, $lab, $tip]) {
+                $bar .= '<button type="button" data-cmd="' . $cmd . '"' . ($arg !== '' ? ' data-arg="' . $arg . '"' : '')
+                    . ($tip !== '' ? ' title="' . e(__($tip)) . '" aria-label="' . e(__($tip)) . '"' : '') . '>' . $lab . '</button>';
+            }
+            $in = '<div class="rte" data-rte data-link-prompt="' . e(__('rte_link_prompt')) . '"><div class="rte-bar">' . $bar . '</div>'
+                . '<div class="rte-area" id="' . $id . '" contenteditable="true" role="textbox" aria-multiline="true" data-rte-area>' . clean_html($val) . '</div>'
+                . '<textarea name="' . e($col) . '" hidden data-rte-src>' . e($val) . '</textarea></div>';
             break;
         case 'number':
             $in = '<input id="' . $id . '" type="number" name="' . e($col) . '" value="' . e($val) . '"' . $ra . '>';
@@ -206,6 +220,9 @@ function collect_fields(array $fields, array $row, string $cl): array
             case 'link':
                 $v = trim((string)($_POST[$col] ?? ''));
                 if ($v === '__custom') $v = trim((string)($_POST[$col . '__url'] ?? ''));
+                break;
+            case 'html':
+                $v = clean_html((string)($_POST[$col] ?? ''));
                 break;
             default:
                 $v = trim(str_replace("\0", '', (string)($_POST[$col] ?? '')));

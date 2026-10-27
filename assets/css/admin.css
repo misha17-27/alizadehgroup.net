@@ -197,6 +197,21 @@ input[type=checkbox]{width:16px;height:16px;accent-color:var(--ink);vertical-ali
 .form .form-foot{position:sticky;bottom:0;background:#fff;margin-bottom:-22px;padding-bottom:18px;z-index:5}
 .del-form{margin:-6px 0 24px;text-align:right}
 .txt-row code{font-size:12px;background:#eef1ed;padding:2px 7px;border-radius:6px;color:var(--ink);font-weight:600}
+.addr{font-size:12.5px;background:#eef1ed;padding:3px 9px;border-radius:6px;color:var(--ink);font-weight:600;white-space:nowrap}
+.addr:hover{background:var(--limebg)}
+
+/* rich text editor */
+.rte{border:1px solid var(--line2);border-radius:9px;background:#fff}
+.rte-bar{display:flex;flex-wrap:wrap;gap:2px;padding:6px;border-bottom:1px solid var(--line);background:#fafbf9;border-radius:9px 9px 0 0;position:sticky;top:0;z-index:4}
+.rte-bar button{border:0;background:none;padding:6px 10px;border-radius:7px;font-weight:700;font-size:13px;color:var(--ink);cursor:pointer;line-height:1.2}
+.rte-bar button:hover{background:var(--limebg)}
+.rte-area{min-height:240px;padding:14px 18px;font-size:14.5px;line-height:1.65;outline:0;border-radius:0 0 9px 9px}
+.rte-area:focus{box-shadow:inset 0 0 0 2px rgba(184,208,8,.35)}
+.rte-area>*{margin:0 0 10px}
+.rte-area h2{font-size:21px;line-height:1.25;margin-top:18px}
+.rte-area h3{font-size:17px;line-height:1.3;margin-top:14px}
+.rte-area ul,.rte-area ol{padding-left:22px}
+.rte-area a{color:#4d5e00;text-decoration:underline}
 
 /* repeaters */
 .rep{margin-top:18px;border:1px solid var(--line);border-radius:12px;padding:14px;background:#fafbf9}

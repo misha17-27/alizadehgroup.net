@@ -21,7 +21,8 @@ Also: `/sitemap.xml`, `/robots.txt`, 404 page. Request form posts to `/api/reque
 
 `/admin/` — sections: Dashboard, Requests (status, notes, attachments, delete, CSV export), Slider, Request cards,
 About us, Why us, Services (texts per language, images, target groups, offers, process, FAQ, extra block),
-Partners, Texts (every label on the site), Pages & SEO, Settings (contacts, socials, notification e-mail,
+Partners, Texts (every label on the site), Pages & SEO (H1, the text under it and the main text with a small editor —
+headings, lists, links; SEO title/description; header image), Settings (contacts, socials, notification e-mail,
 Google Analytics, Cloudflare Turnstile), Users (admin / editor roles), Profile.
 Interface language: Azerbaijani or Russian. Content is edited per language with the **AZ / EN** switch in the top bar.
 
@@ -70,6 +71,10 @@ git add -A && git commit -m "…" && git push
 
 Then in cPanel: **Git™ Version Control → Manage → Pull or Deploy → Update from Remote → Deploy HEAD Commit**.
 Deploys never overwrite `app/config.php`, `uploads/` or `storage/`.
+
+Database changes need no manual step: when the code expects a newer database (`DB_VERSION` in `app/bootstrap.php`),
+the first request after the deploy runs `upgrade_db()` from `app/database/migrate.php` once and stores `db_version`
+in the settings table. Errors go to `storage/logs/app.log`.
 
 ## Main domain (moved from /yeni, October 2026)
 

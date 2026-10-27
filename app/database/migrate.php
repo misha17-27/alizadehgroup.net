@@ -5,6 +5,9 @@
  */
 declare(strict_types=1);
 
+/** page content edited in "Pages & SEO": H1, the text under it and the main text (HTML) — added in DB version 2 */
+const PAGE_CONTENT_COLS = ["h1_az VARCHAR(255) DEFAULT ''", "h1_en VARCHAR(255) DEFAULT ''", 'lead_az TEXT', 'lead_en TEXT', 'body_az TEXT', 'body_en TEXT'];
+
 function schema_sql(string $driver): array
 {
     $my = $driver === 'mysql';
@@ -14,7 +17,7 @@ function schema_sql(string $driver): array
     $t[] = "CREATE TABLE IF NOT EXISTS settings (k VARCHAR(64) NOT NULL PRIMARY KEY, v TEXT)$tail";
     $t[] = "CREATE TABLE IF NOT EXISTS texts (k VARCHAR(80) NOT NULL PRIMARY KEY, grp VARCHAR(32) NOT NULL DEFAULT '', az TEXT, en TEXT)$tail";
     $t[] = "CREATE TABLE IF NOT EXISTS pages (k VARCHAR(32) NOT NULL PRIMARY KEY, title_az VARCHAR(255) DEFAULT '', title_en VARCHAR(255) DEFAULT '',
-        description_az TEXT, description_en TEXT, image VARCHAR(255) DEFAULT '')$tail";
+        description_az TEXT, description_en TEXT, image VARCHAR(255) DEFAULT '', " . implode(', ', PAGE_CONTENT_COLS) . ")$tail";
     $t[] = "CREATE TABLE IF NOT EXISTS services (id $id, skey VARCHAR(40) NOT NULL, slug_az VARCHAR(120) NOT NULL, slug_en VARCHAR(120) NOT NULL,
         icon VARCHAR(40) DEFAULT '', form_type VARCHAR(20) DEFAULT '', image VARCHAR(255) DEFAULT '', image2 VARCHAR(255) DEFAULT '',
         sort INT NOT NULL DEFAULT 0, active TINYINT NOT NULL DEFAULT 1,
@@ -124,6 +127,55 @@ function seed(): void
     } catch (Throwable $e) {
         $pdo->rollBack();
         throw $e;
+    }
+}
+
+/** bring an installed database up to DB_VERSION (see ensure_db(); runs once after a deploy) */
+function upgrade_db(): void
+{
+    try {
+        if ((int)setting('db_version', '1') < 2) {
+            foreach (PAGE_CONTENT_COLS as $col) add_column('pages', $col);
+            prefill_page_content();
+        }
+        sync_texts();
+        if (val('SELECT COUNT(*) FROM settings WHERE k=?', ['db_version'])) update('settings', ['v' => (string)DB_VERSION], 'k=?', ['db_version']);
+        else insert('settings', ['k' => 'db_version', 'v' => (string)DB_VERSION]);
+    } catch (Throwable $e) {
+        log_line('app.log', 'db upgrade: ' . $e->getMessage());
+    }
+}
+
+/** ALTER TABLE … ADD COLUMN unless the column is already there ("h1_az VARCHAR(255) DEFAULT ''") */
+function add_column(string $table, string $def): void
+{
+    $name = strtok($def, ' ');
+    $have = db_driver() === 'mysql'
+        ? array_column(rows('SHOW COLUMNS FROM ' . $table), 'Field')
+        : array_column(rows('PRAGMA table_info(' . $table . ')'), 'name');
+    if (in_array($name, $have, true)) return;
+    try {
+        db()->exec('ALTER TABLE ' . $table . ' ADD COLUMN ' . $def);
+    } catch (PDOException $e) {
+        if (stripos($e->getMessage(), 'duplicate column') === false) throw $e;   // a parallel request added it first
+    }
+}
+
+/** first values of the page content: what the pages showed before it became editable */
+function prefill_page_content(): void
+{
+    $tx = [];
+    foreach (rows('SELECT k, az, en FROM texts') as $r) $tx[$r['k']] = $r;
+    $h1 = ['about' => 'about.title', 'services' => 'services.title', 'partners' => 'partners.title', 'contact' => 'contact.title'];
+    foreach (rows('SELECT * FROM pages') as $p) {
+        $set = [];
+        foreach (LANGS as $l) {
+            if (isset($h1[$p['k']]) && (string)$p['h1_' . $l] === '') $set['h1_' . $l] = (string)($tx[$h1[$p['k']]][$l] ?? '');
+            if ($p['k'] !== 'home' && (string)$p['lead_' . $l] === '') $set['lead_' . $l] = (string)$p['description_' . $l];
+            $about = (string)($tx['about.text'][$l] ?? '');
+            if ($p['k'] === 'about' && (string)$p['body_' . $l] === '' && $about !== '') $set['body_' . $l] = paragraphs($about);
+        }
+        if ($set) update('pages', $set, 'k=?', [$p['k']]);
     }
 }
 

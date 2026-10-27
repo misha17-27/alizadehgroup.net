@@ -199,6 +199,7 @@ function admin_run(): void
     header('Cache-Control: no-store');
 
     if (!is_installed()) redirect(url('install.php'));
+    ensure_db();
 
     $section = preg_replace('~[^a-z_]~', '', (string)($_GET['section'] ?? 'dashboard')) ?: 'dashboard';
 

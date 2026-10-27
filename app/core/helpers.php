@@ -29,6 +29,30 @@ function paragraphs($v, string $cls = ''): string
     return $out;
 }
 
+/**
+ * Rich text from the admin editor, safe to print as is: headings, paragraphs, lists, bold/italic and links stay,
+ * every attribute except a link's http(s)/mailto/tel/relative href is dropped, any other tag is removed (its text stays).
+ */
+function clean_html(string $html): string
+{
+    $html = strip_tags(str_replace("\0", '', $html), '<p><div><br><h2><h3><h4><strong><b><em><i><u><ul><ol><li><blockquote><a>');
+    // rebuild every remaining tag from scratch (quoted attribute values may contain ">")
+    $html = preg_replace_callback('~<(/?)([a-z][a-z0-9]*)((?:[^>"\']|"[^"]*"|\'[^\']*\')*)>~i', function (array $m): string {
+        $tag = strtolower($m[2]) === 'div' ? 'p' : strtolower($m[2]);
+        if ($m[1] === '/') return $tag === 'br' ? '' : '</' . $tag . '>';
+        if ($tag !== 'a') return '<' . $tag . '>';
+        $href = preg_match('~\bhref\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s"\'>]+))~i', $m[3], $h) ? $h[1] . ($h[2] ?? '') . ($h[3] ?? '') : '';
+        $href = trim(preg_replace('~[\x00-\x1F\x7F]+~', '', html_entity_decode($href, ENT_QUOTES | ENT_HTML5, 'UTF-8')));
+        return preg_match('~^(https?://|mailto:|tel:|/|#)~i', $href) ? '<a href="' . e($href) . '">' : '<a>';
+    }, $html);
+    // tidy what contenteditable produces: lists and headings wrapped in <p>, empty paragraphs
+    $html = preg_replace('~<p>\s*(<(?:ul|ol|h2|h3|h4|blockquote)>)~', '$1', $html);
+    $html = preg_replace('~(</(?:ul|ol|h2|h3|h4|blockquote)>)\s*</p>~', '$1', $html);
+    $html = preg_replace('~<p>(?:\s|&nbsp;|<br>)*</p>~', '', $html);
+    $text = html_entity_decode(strip_tags($html), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    return preg_replace('~[\s\x{00A0}]+~u', '', $text) === '' ? '' : trim($html);   // an empty editor leaves <p><br></p>
+}
+
 function starts_with(string $h, string $n): bool
 {
     return $n === '' || strncmp($h, $n, strlen($n)) === 0;
