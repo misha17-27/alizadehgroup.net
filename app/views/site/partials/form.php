@@ -54,7 +54,7 @@ foreach (flashes() as [$ft, $fm]): ?>
         <?= $f('f.date', '<input id="rq-date" name="date" type="date" required data-min-today>', 'rq-date', '', true) ?>
         <?= $f('f.time', '<input id="rq-time" name="time" type="time">', 'rq-time') ?>
         <?= $f('f.pax', '<input id="rq-pax" name="pax" type="number" min="1" max="999" value="1" required inputmode="numeric">', 'rq-pax', '', true) ?>
-        <?= $f('f.car', $sel('rq-car', 'car', ['any' => tx('f.car_any'), 'sedan' => 'Sedan', 'minivan' => 'Minivan', 'vip' => tx('f.car_vip')]), 'rq-car') ?>
+        <?= $f('f.car', $sel('rq-car', 'car', ['any' => tx('f.car_any'), 'sedan' => tx('f.car_sedan'), 'minivan' => tx('f.car_minivan'), 'vip' => tx('f.car_vip')]), 'rq-car') ?>
         <?= $f('f.flight', '<input id="rq-flight" name="flight" type="text" placeholder="' . e(tx('f.ph_flight')) . '">', 'rq-flight') ?>
         <div class="rq-f rq-check"><label class="rq-switch"><input type="checkbox" name="roundtrip" value="1" data-roundtrip><span class="rq-switch-ui" aria-hidden="true"></span><?= e(tx('f.roundtrip')) ?></label></div>
         <div class="rq-f" data-return hidden><label for="rq-return"><?= e(tx('f.return')) ?><?= $req ?></label><input id="rq-return" name="return_date" type="date" required data-min-today disabled></div>
@@ -78,8 +78,8 @@ foreach (flashes() as [$ft, $fm]): ?>
       <div class="rq-grid">
         <?= $f('f.city', '<input id="rq-city" name="city" type="text" required placeholder="' . e(tx('f.ph_city')) . '">', 'rq-city', 'rq-full', true) ?>
         <?= $f('f.checkin', '<input id="rq-in" name="checkin" type="date" required data-min-today data-checkin>', 'rq-in', '', true) ?>
-        <?= $f('f.checkout', '<input id="rq-out" name="checkout" type="date" required data-min-today data-checkout>', 'rq-out', '', true) ?>
-        <div class="rq-f rq-nights"><span class="rq-label"><?= e(tx('f.nights')) ?></span><output data-nights data-unit="<?= lang() === 'en' ? 'en' : 'az' ?>" aria-live="polite">—</output></div>
+        <?= $f('f.checkout', '<input id="rq-out" name="checkout" type="date" required data-min-today data-checkout data-msg="' . e(tx('f.err_checkout')) . '">', 'rq-out', '', true) ?>
+        <div class="rq-f rq-nights"><span class="rq-label"><?= e(tx('f.nights')) ?></span><output data-nights data-one="<?= e(tx('f.nights_one')) ?>" data-many="<?= e(tx('f.nights_many')) ?>" aria-live="polite">—</output></div>
         <?= $f('f.guests', '<input id="rq-guests" name="guests" type="number" min="1" value="1" required inputmode="numeric">', 'rq-guests', '', true) ?>
         <?= $f('f.room', $sel('rq-room', 'room', ['standard' => tx('f.room_std'), 'business' => tx('f.room_biz'), 'luxury' => tx('f.room_lux')]), 'rq-room') ?>
         <?= $f('f.budget', '<input id="rq-budget" name="budget" type="text" placeholder="' . e(tx('f.ph_budget')) . '">', 'rq-budget') ?>
@@ -109,7 +109,7 @@ foreach (flashes() as [$ft, $fm]): ?>
     <div class="rq-grid">
       <?= $f('f.name', '<input id="rq-name" name="name" type="text" required maxlength="160" autocomplete="name" placeholder="' . e(tx('f.ph_name')) . '">', 'rq-name', '', true) ?>
       <?= $f('f.company', '<input id="rq-company" name="company" type="text" maxlength="160" autocomplete="organization" placeholder="' . e(tx('f.ph_company')) . '">', 'rq-company') ?>
-      <?= $f('f.phone', '<input id="rq-phone" name="phone" type="tel" required maxlength="60" autocomplete="tel" placeholder="+994 __ ___ __ __">', 'rq-phone', '', true) ?>
+      <?= $f('f.phone', '<input id="rq-phone" name="phone" type="tel" required maxlength="60" autocomplete="tel" placeholder="' . e(tx('f.ph_phone')) . '">', 'rq-phone', '', true) ?>
       <?= $f('f.email', '<input id="rq-email" name="email" type="email" required maxlength="160" autocomplete="email" placeholder="' . e(tx('f.ph_email')) . '">', 'rq-email', '', true) ?>
       <?= $f('f.message', '<textarea id="rq-message" name="message" rows="4" maxlength="5000" placeholder="' . e(tx('f.ph_message')) . '"></textarea>', 'rq-message', 'rq-full') ?>
     </div>

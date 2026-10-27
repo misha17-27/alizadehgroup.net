@@ -43,7 +43,7 @@ return [
 
     // fields
     'f_title' => 'Başlıq', 'f_text' => 'Mətn', 'f_eyebrow' => 'Üst yazı', 'f_btn' => 'Düymə mətni', 'f_link' => 'Düymənin linki',
-    'f_bg_image' => 'Fon şəkli', 'f_image' => 'Əsas şəkil', 'f_image2' => 'Əlavə şəkil', 'f_hero_image' => 'Başlıq şəkli',
+    'f_bg_image' => 'Fon şəkli', 'f_image' => 'Əsas şəkil', 'f_hero_image' => 'Başlıq şəkli',
     'f_icon' => 'İkon', 'f_sort' => 'Sıra', 'f_active' => 'Aktiv', 'f_service' => 'Xidmət', 'f_point' => 'Bənd', 'f_note' => 'Qeyd',
     'f_logo' => 'Loqo', 'f_name' => 'Ad', 'f_website' => 'Veb sayt', 'f_page' => 'Səhifə',
     'f_meta_title' => 'SEO başlıq (title)', 'f_meta_desc' => 'SEO təsvir (description)',
@@ -79,7 +79,7 @@ return [
     'help_info_service' => 'Kartı kliklədikdə sorğu formasında bu xidmət seçiləcək.',
     'help_optional' => 'İstəyə bağlı.',
     'help_slug' => 'Seçilmiş dil üçün səhifənin ünvanı. Boş qalsa başlıqdan avtomatik yaradılır.',
-    'help_key' => 'Latın hərfləri, rəqəm və “-”. Forma və linklər üçün istifadə olunur — dəyişməyin.',
+    'help_key' => 'Latın hərfləri, rəqəm və “-”. Boş qalsa başlıqdan yaradılır. Forma və linklər üçün istifadə olunur — sonra dəyişməyin.',
     'help_form_type' => 'Sorğu formasında bu xidmət seçiləndə hansı əlavə xanalar açılsın.',
     'help_short' => 'Kartlarda, slayderdə və menyuda görünən 1–2 cümləlik təsvir.',
     'help_blocks' => 'Sətirləri ↑ ↓ ilə sıralayın. Boş blok saytda göstərilmir.',
@@ -88,6 +88,9 @@ return [
     'help_meta_desc' => '140–160 simvol. Google axtarışında təsvir kimi görünür.',
     'help_body' => 'Alt başlıqlar (H2, H3), abzaslar, siyahılar və linklər. Yapışdırılan mətnin kənar formatı təmizlənir.',
     'help_home_content' => 'Ana səhifənin başlığı (H1) və mətnləri öz bölmələrində redaktə olunur: Slayder, Sorğu kartları, Haqqımızda, Niyə biz və Mətnlər.',
+    'fs_about_photos' => '«Haqqımızda» bloku — şəkillər', 'f_photo_big' => 'Böyük şəkil', 'f_photo_small' => 'Kiçik şəkil',
+    'help_about_photos' => 'Bu səhifədəki «Haqqımızda» blokunun iki şəkli. Boş qalsa standart şəkil göstərilir.',
+    'help_about_photos_home' => 'Ana səhifədəki «Haqqımızda» blokunun iki şəkli. Böyük şəkil boş qalsa «Haqqımızda» səhifəsinin başlıq şəkli göstərilir.',
     'help_whatsapp' => 'Yalnız rəqəmlər, ölkə kodu ilə: 994554091100.',
     'help_map' => 'Google Maps-də axtarılacaq ünvan (Əlaqə səhifəsindəki xəritə).',
     'help_notify_email' => 'Hər yeni sorğu bu ünvana e-poçt kimi göndərilir.',
@@ -108,7 +111,7 @@ return [
     // texts groups
     'tg_hero' => 'Ana səhifə — başlıq', 'tg_info' => 'Sorğu kartları', 'tg_about' => 'Haqqımızda', 'tg_why' => 'Niyə biz',
     'tg_services' => 'Xidmətlər', 'tg_inner' => 'Xidmət səhifəsi', 'tg_partners' => 'Partnyorlar', 'tg_contact' => 'Əlaqə',
-    'tg_form' => 'Sorğu forması', 'tg_nav' => 'Menyu', 'tg_ui' => 'Ümumi düymələr', 'tg_footer' => 'Footer', 'tg_meta' => 'SEO', 'tg_404' => '404 səhifəsi',
+    'tg_form' => 'Sorğu forması', 'tg_nav' => 'Menyu', 'tg_ui' => 'Ümumi düymələr', 'tg_footer' => 'Footer', 'tg_404' => '404 səhifəsi',
 
     // pages
     'page_home' => 'Ana səhifə', 'page_about' => 'Haqqımızda', 'page_services' => 'Xidmətlər', 'page_partners' => 'Partnyorlar', 'page_contact' => 'Əlaqə',

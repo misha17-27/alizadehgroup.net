@@ -48,7 +48,7 @@ function handle_request_submit(): array
         $d = $date('date');
         $pax = max(0, (int)str_post('pax', 5));
         if ($from === '' || $to === '' || $d === '' || $pax < 1) return $err('f.err');
-        $carMap = ['any' => 'f.car_any', 'vip' => 'f.car_vip'];
+        $carMap = ['any' => 'f.car_any', 'sedan' => 'f.car_sedan', 'minivan' => 'f.car_minivan', 'vip' => 'f.car_vip'];
         $car = str_post('car', 20);
         $add('f.tr_type', isset($trMap[$tr]) ? tx($trMap[$tr], 'az') : '');
         $add('f.from', $from);

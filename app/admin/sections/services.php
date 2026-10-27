@@ -11,7 +11,7 @@ crud([
         ['type' => 'section', 'label' => 'sec_main'],
         ['name' => 'title', 'type' => 'text', 'label' => 'f_title', 'i18n' => true, 'required' => true, 'max' => 255],
         ['name' => 'slug', 'type' => 'text', 'label' => 'f_slug', 'i18n' => true, 'max' => 120, 'help' => 'help_slug', 'col' => 'half'],
-        ['name' => 'skey', 'type' => 'text', 'label' => 'f_key', 'required' => true, 'max' => 40, 'help' => 'help_key', 'col' => 'half'],
+        ['name' => 'skey', 'type' => 'text', 'label' => 'f_key', 'max' => 40, 'help' => 'help_key', 'col' => 'half'],
         ['name' => 'icon', 'type' => 'icon', 'label' => 'f_icon', 'col' => 'third'],
         ['name' => 'form_type', 'type' => 'select', 'label' => 'f_form_type', 'options' => $formTypes, 'help' => 'help_form_type', 'col' => 'third'],
         ['name' => 'sort', 'type' => 'number', 'label' => 'f_sort', 'col' => 'third'],
@@ -21,8 +21,7 @@ crud([
         ['type' => 'section', 'label' => 'sec_page'],
         ['name' => 'page_title', 'type' => 'text', 'label' => 'f_page_title', 'i18n' => true, 'max' => 255],
         ['name' => 'page_desc', 'type' => 'textarea', 'label' => 'f_page_desc', 'i18n' => true],
-        ['name' => 'image', 'type' => 'image', 'label' => 'f_image', 'col' => 'half', 'help' => 'help_service_image'],
-        ['name' => 'image2', 'type' => 'image', 'label' => 'f_image2', 'col' => 'half'],
+        ['name' => 'image', 'type' => 'image', 'label' => 'f_image', 'help' => 'help_service_image'],
 
         ['type' => 'section', 'label' => 'sec_blocks', 'help' => 'help_blocks'],
         ['name' => 'targets', 'type' => 'repeater', 'label' => 'rep_targets', 'sub' => [

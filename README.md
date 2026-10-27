@@ -21,11 +21,14 @@ Also: `/sitemap.xml`, `/robots.txt`, 404 page. Request form posts to `/api/reque
 
 `/admin/` — sections: Dashboard (for administrators also the PHP version that runs, the database and the upload limit),
 Requests (status, notes, attachments, delete, CSV export), Slider, Request cards,
-About us, Why us, Services (texts per language, images, target groups, offers, process, FAQ, extra block),
-Partners, Texts (every label on the site), Pages & SEO (H1, the text under it and the main text with a small editor —
-headings, lists, links; SEO title/description; header image), Settings (contacts, socials, notification e-mail,
-Google Analytics, Cloudflare Turnstile), Users (admin / editor roles), Profile.
+About us, Why us, Services (texts per language, image, target groups, offers, process, FAQ, extra block, SEO),
+Partners, Texts (every label on the site, including the request form), Pages & SEO (H1, the text under it and the main
+text with a small editor — headings, lists, links; the two photos of the "About us" block on the home and About pages;
+SEO title/description; header image), Settings (contacts, socials, notification e-mail, Google Analytics,
+Cloudflare Turnstile), Users (admin / editor roles), Profile.
 Interface language: Azerbaijani or Russian. Content is edited per language with the **AZ / EN** switch in the top bar.
+Only the logo and the favicon (`assets/img/`), the company name in the copyright line and page titles, and the fallback
+photos used when an image field is empty are part of the code.
 
 ## Project structure
 

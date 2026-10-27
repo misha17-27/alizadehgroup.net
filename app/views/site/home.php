@@ -4,6 +4,7 @@ $info = items('info');
 $bul = items('about');
 $why = items('why');
 $aboutPage = page('about');
+$homePage = page('home');
 ?>
 <?php if ($sl): ?>
 <section class="hs" data-slider data-autoplay="7000" data-swipe>
@@ -38,7 +39,7 @@ $aboutPage = page('about');
     <?php if (count($sl) > 1): ?>
     <div class="hs-tabs" style="--n:<?= count($sl) ?>">
       <?php foreach ($sl as $i => $s):
-        $label = $i === 0 ? 'Alizadeh Group' : (starts_with($s['link'], 'service:') && ($sv = service_by_key(substr($s['link'], 8))) ? L($sv, 'title') : L($s, 'title'));
+        $label = $i === 0 ? tx('hero.tab1') : (starts_with($s['link'], 'service:') && ($sv = service_by_key(substr($s['link'], 8))) ? L($sv, 'title') : L($s, 'title'));
       ?>
       <button type="button" class="hs-tab<?= $i === 0 ? ' is-active' : '' ?>" data-goto="<?= $i ?>"><i class="hs-prog"><i data-progress></i></i><b><?= sprintf('%02d', $i + 1) ?></b><span><?= e($label) ?></span></button>
       <?php endforeach; ?>
@@ -63,8 +64,8 @@ $aboutPage = page('about');
 <section class="sec" id="haqqimizda">
   <div class="wrap about">
     <div class="about-media rv">
-      <figure class="am1"><img src="<?= e(media($aboutPage['image'] ?? '', 'assets/img/conference.jpg')) ?>" alt="" loading="lazy"></figure>
-      <figure class="am2"><img src="<?= e(asset('assets/img/baku-airport.jpg')) ?>" alt="" loading="lazy"></figure>
+      <figure class="am1"><img src="<?= e(media(($homePage['photo1'] ?? '') ?: ($aboutPage['image'] ?? ''), 'assets/img/conference.jpg')) ?>" alt="" loading="lazy"></figure>
+      <figure class="am2"><img src="<?= e(media($homePage['photo2'] ?? '', 'assets/img/baku-airport.jpg')) ?>" alt="" loading="lazy"></figure>
       <div class="am-badge glass"><?= icon('clock') ?><span><?= e(tx('contact.hours')) ?></span></div>
     </div>
     <div class="rv">

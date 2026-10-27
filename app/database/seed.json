@@ -76,18 +76,6 @@
    "en": "Learn more"
   },
   {
-   "k": "ui.prev",
-   "grp": "ui",
-   "az": "Əvvəlki",
-   "en": "Previous"
-  },
-  {
-   "k": "ui.next",
-   "grp": "ui",
-   "az": "Növbəti",
-   "en": "Next"
-  },
-  {
    "k": "ui.all_services",
    "grp": "ui",
    "az": "Bütün xidmətlər",
@@ -112,46 +100,28 @@
    "en": "Send your request — our team will get back to you shortly."
   },
   {
-   "k": "ui.call",
-   "grp": "ui",
-   "az": "Zəng edin",
-   "en": "Call us"
-  },
-  {
    "k": "ui.top",
    "grp": "ui",
    "az": "Yuxarı qayıt ↑",
    "en": "Back to top ↑"
   },
   {
-   "k": "meta.title",
-   "grp": "meta",
-   "az": "Alizadeh Group — Logistika və korporativ xidmət həlləri",
-   "en": "Alizadeh Group — Logistics and corporate service solutions"
-  },
-  {
-   "k": "hero.eyebrow",
-   "grp": "hero",
-   "az": "Bakı, Azərbaycan · 7/24",
-   "en": "Baku, Azerbaijan · 24/7"
-  },
-  {
-   "k": "hero.title",
-   "grp": "hero",
-   "az": "Biznesinizin bütün logistika və korporativ xidmət həllərini bir tərəfdaşdan alın",
-   "en": "Get all your business logistics and corporate service solutions from one partner"
-  },
-  {
-   "k": "hero.text",
-   "grp": "hero",
-   "az": "Təchizat, sənaye avadanlıqları, logistika, nəqliyyat, tədbirlərin təşkili, otel yerləşdirmə və korporativ xidmətlər — vahid idarəetmə altında.",
-   "en": "Supply, industrial equipment, logistics, transport, event management, hotel accommodation and corporate services — under single management."
+   "k": "ui.skip",
+   "grp": "ui",
+   "az": "Məzmuna keç",
+   "en": "Skip to content"
   },
   {
    "k": "hero.cta2",
    "grp": "hero",
    "az": "Xidmətlərimiz",
    "en": "Our services"
+  },
+  {
+   "k": "hero.tab1",
+   "grp": "hero",
+   "az": "Alizadeh Group",
+   "en": "Alizadeh Group"
   },
   {
    "k": "info.go",
@@ -274,22 +244,16 @@
    "en": "Address"
   },
   {
-   "k": "contact.addr",
-   "grp": "contact",
-   "az": "Heydər Əliyev prospekti, Çinar Plaza, Bakı, Azərbaycan",
-   "en": "Heydar Aliyev Avenue, Chinar Plaza, Baku, Azerbaijan"
-  },
-  {
    "k": "contact.hours",
    "grp": "contact",
    "az": "7/24 əlaqə",
    "en": "Available 24/7"
   },
   {
-   "k": "f.title",
-   "grp": "f",
-   "az": "Sorğu formu",
-   "en": "Request form"
+   "k": "contact.hours_label",
+   "grp": "contact",
+   "az": "7/24",
+   "en": "24/7"
   },
   {
    "k": "f.step1",
@@ -374,6 +338,12 @@
    "grp": "f",
    "az": "ad@sirket.az",
    "en": "name@company.com"
+  },
+  {
+   "k": "f.ph_phone",
+   "grp": "f",
+   "az": "+994 __ ___ __ __",
+   "en": "+994 __ ___ __ __"
   },
   {
    "k": "f.ph_message",
@@ -502,6 +472,18 @@
    "en": "No preference"
   },
   {
+   "k": "f.car_sedan",
+   "grp": "f",
+   "az": "Sedan",
+   "en": "Sedan"
+  },
+  {
+   "k": "f.car_minivan",
+   "grp": "f",
+   "az": "Minivan",
+   "en": "Minivan"
+  },
+  {
    "k": "f.car_vip",
    "grp": "f",
    "az": "VIP sinif",
@@ -578,6 +560,18 @@
    "grp": "f",
    "az": "Gecə sayı",
    "en": "Nights"
+  },
+  {
+   "k": "f.nights_one",
+   "grp": "f",
+   "az": "gecə",
+   "en": "night"
+  },
+  {
+   "k": "f.nights_many",
+   "grp": "f",
+   "az": "gecə",
+   "en": "nights"
   },
   {
    "k": "f.guests",
@@ -694,22 +688,10 @@
    "en": "All rights reserved."
   },
   {
-   "k": "partners.text",
-   "grp": "partners",
-   "az": "Dövlət qurumları, beynəlxalq təşkilatlar və özəl şirkətlərlə uzunmüddətli əməkdaşlıq edirik.",
-   "en": "We work long-term with public institutions, international organizations and private companies."
-  },
-  {
    "k": "contact.map",
    "grp": "contact",
    "az": "Xəritədə bax",
    "en": "View on map"
-  },
-  {
-   "k": "contact.follow",
-   "grp": "contact",
-   "az": "Sosial şəbəkələr",
-   "en": "Social media"
   },
   {
    "k": "e404.title",
@@ -742,6 +724,12 @@
    "en": "Your request could not be sent. Please try again or call us."
   },
   {
+   "k": "f.err_checkout",
+   "grp": "f",
+   "az": "Çıxış tarixi girişdən sonra olmalıdır",
+   "en": "Check-out must be after check-in"
+  },
+  {
    "k": "f.err_file",
    "grp": "f",
    "az": "Fayl qəbul edilmədi: PDF, JPG, PNG, DOC, DOCX, XLS, XLSX; hər fayl maksimum 10 MB.",
@@ -764,12 +752,6 @@
    "grp": "about",
    "az": "Şirkət haqqında",
    "en": "About the company"
-  },
-  {
-   "k": "services.more",
-   "grp": "services",
-   "az": "Bütün xidmətlərə bax",
-   "en": "View all services"
   },
   {
    "k": "partners.more",

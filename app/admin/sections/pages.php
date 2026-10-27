@@ -4,7 +4,8 @@ $names = ['home' => __('page_home'), 'about' => __('page_about'), 'services' => 
     'partners' => __('page_partners'), 'contact' => __('page_contact')];
 
 // the home page has no page header: its H1 and texts are edited in the slider and the other content sections
-$content = (string)($_GET['id'] ?? $_POST['id'] ?? '') === 'home'
+$pageKey = (string)($_GET['id'] ?? $_POST['id'] ?? '');
+$content = $pageKey === 'home'
     ? [['type' => 'section', 'label' => 'fs_content', 'help' => 'help_home_content']]
     : [
         ['type' => 'section', 'label' => 'fs_content'],
@@ -12,6 +13,12 @@ $content = (string)($_GET['id'] ?? $_POST['id'] ?? '') === 'home'
         ['name' => 'lead', 'type' => 'textarea', 'label' => 'f_lead', 'i18n' => true, 'rows' => 3],
         ['name' => 'body', 'type' => 'html', 'label' => 'f_body', 'i18n' => true, 'help' => 'help_body'],
     ];
+// the "About us" block with its two photos is shown on the home page and on the About page
+if ($pageKey === 'home' || $pageKey === 'about') {
+    $content[] = ['type' => 'section', 'label' => 'fs_about_photos', 'help' => $pageKey === 'home' ? 'help_about_photos_home' : 'help_about_photos'];
+    $content[] = ['name' => 'photo1', 'type' => 'image', 'label' => 'f_photo_big', 'col' => 'half'];
+    $content[] = ['name' => 'photo2', 'type' => 'image', 'label' => 'f_photo_small', 'col' => 'half'];
+}
 
 crud([
     'section' => 'pages', 'table' => 'pages', 'pk' => 'k', 'title' => __('nav_pages'),

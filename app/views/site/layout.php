@@ -43,7 +43,7 @@ $active = function (string $k) use ($nav) { return $nav === $k ? ' class="is-cur
 </head>
 <body class="t5">
 <?= icon_sprite() ?>
-<a class="skip" href="#main"><?= $l === 'az' ? 'Məzmuna keç' : 'Skip to content' ?></a>
+<a class="skip" href="#main"><?= e(tx('ui.skip')) ?></a>
 
 <header class="hd" data-header>
   <div class="wrap"><div class="hd-bar">

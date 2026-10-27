@@ -8,6 +8,13 @@ declare(strict_types=1);
 /** page content edited in "Pages & SEO": H1, the text under it and the main text (HTML) — added in DB version 2 */
 const PAGE_CONTENT_COLS = ["h1_az VARCHAR(255) DEFAULT ''", "h1_en VARCHAR(255) DEFAULT ''", 'lead_az TEXT', 'lead_en TEXT', 'body_az TEXT', 'body_en TEXT'];
 
+/** the two photos of the "About us" block on the home and About pages — added in DB version 3 */
+const PAGE_PHOTO_COLS = ["photo1 VARCHAR(255) DEFAULT ''", "photo2 VARCHAR(255) DEFAULT ''"];
+
+/** texts the site no longer shows (their content lives in the slider, Settings and Pages & SEO) — removed in DB version 3 */
+const UNUSED_TEXTS = ['contact.addr', 'contact.follow', 'f.title', 'hero.eyebrow', 'hero.text', 'hero.title', 'meta.title',
+    'partners.text', 'services.more', 'ui.call', 'ui.next', 'ui.prev'];
+
 function schema_sql(string $driver): array
 {
     $my = $driver === 'mysql';
@@ -17,7 +24,7 @@ function schema_sql(string $driver): array
     $t[] = "CREATE TABLE IF NOT EXISTS settings (k VARCHAR(64) NOT NULL PRIMARY KEY, v TEXT)$tail";
     $t[] = "CREATE TABLE IF NOT EXISTS texts (k VARCHAR(80) NOT NULL PRIMARY KEY, grp VARCHAR(32) NOT NULL DEFAULT '', az TEXT, en TEXT)$tail";
     $t[] = "CREATE TABLE IF NOT EXISTS pages (k VARCHAR(32) NOT NULL PRIMARY KEY, title_az VARCHAR(255) DEFAULT '', title_en VARCHAR(255) DEFAULT '',
-        description_az TEXT, description_en TEXT, image VARCHAR(255) DEFAULT '', " . implode(', ', PAGE_CONTENT_COLS) . ")$tail";
+        description_az TEXT, description_en TEXT, image VARCHAR(255) DEFAULT '', " . implode(', ', array_merge(PAGE_CONTENT_COLS, PAGE_PHOTO_COLS)) . ")$tail";
     $t[] = "CREATE TABLE IF NOT EXISTS services (id $id, skey VARCHAR(40) NOT NULL, slug_az VARCHAR(120) NOT NULL, slug_en VARCHAR(120) NOT NULL,
         icon VARCHAR(40) DEFAULT '', form_type VARCHAR(20) DEFAULT '', image VARCHAR(255) DEFAULT '', image2 VARCHAR(255) DEFAULT '',
         sort INT NOT NULL DEFAULT 0, active TINYINT NOT NULL DEFAULT 1,
@@ -138,6 +145,11 @@ function upgrade_db(): void
             foreach (PAGE_CONTENT_COLS as $col) add_column('pages', $col);
             prefill_page_content();
         }
+        if ((int)setting('db_version', '1') < 3) {
+            foreach (PAGE_PHOTO_COLS as $col) add_column('pages', $col);
+            prefill_page_photos();
+            q('DELETE FROM texts WHERE k IN (' . implode(',', array_fill(0, count(UNUSED_TEXTS), '?')) . ')', UNUSED_TEXTS);
+        }
         sync_texts();
         if (val('SELECT COUNT(*) FROM settings WHERE k=?', ['db_version'])) update('settings', ['v' => (string)DB_VERSION], 'k=?', ['db_version']);
         else insert('settings', ['k' => 'db_version', 'v' => (string)DB_VERSION]);
@@ -176,6 +188,24 @@ function prefill_page_content(): void
             if ($p['k'] === 'about' && (string)$p['body_' . $l] === '' && $about !== '') $set['body_' . $l] = paragraphs($about);
         }
         if ($set) update('pages', $set, 'k=?', [$p['k']]);
+    }
+}
+
+/** first photos of the "About us" block: what the home and About pages showed before they became editable */
+function prefill_page_photos(): void
+{
+    $aboutImage = (string)val("SELECT image FROM pages WHERE k='about'");
+    $first = [
+        // the home page showed the About page header photo; an uploaded one is not copied (deleting it there would break it here)
+        'home' => ['photo1' => starts_with($aboutImage, 'assets/') ? $aboutImage : '', 'photo2' => 'assets/img/baku-airport.jpg'],
+        'about' => ['photo1' => 'assets/img/conference.jpg', 'photo2' => 'assets/img/baku-airport.jpg'],
+    ];
+    foreach ($first as $k => $cols) {
+        $p = row('SELECT photo1, photo2 FROM pages WHERE k=?', [$k]);
+        if (!$p) continue;
+        $set = [];
+        foreach ($cols as $c => $v) if ($v !== '' && (string)$p[$c] === '') $set[$c] = $v;
+        if ($set) update('pages', $set, 'k=?', [$k]);
     }
 }
 

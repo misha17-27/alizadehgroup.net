@@ -6,7 +6,6 @@
   "use strict";
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-  var isEn = document.documentElement.lang === "en";
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- header ---------- */
@@ -175,8 +174,8 @@
     if (cin.value) { var nx = new Date(cin.value); nx.setDate(nx.getDate() + 1); cout.min = nx.toISOString().slice(0, 10); }
     var n = cin.value && cout.value ? Math.round((new Date(cout.value) - new Date(cin.value)) / 864e5) : 0;
     out.classList.toggle("is-set", n > 0);
-    out.textContent = n > 0 ? n + (isEn ? (n === 1 ? " night" : " nights") : " gecə") : "—";
-    cout.setCustomValidity(cin.value && cout.value && n < 1 ? (isEn ? "Check-out must be after check-in" : "Çıxış tarixi girişdən sonra olmalıdır") : "");
+    out.textContent = n > 0 ? n + " " + (n === 1 ? out.dataset.one : out.dataset.many) : "—";
+    cout.setCustomValidity(cin.value && cout.value && n < 1 ? cout.dataset.msg || "" : "");
   }
   if (cin && cout) { cin.addEventListener("change", nights); cout.addEventListener("change", nights); }
 
