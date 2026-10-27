@@ -6,14 +6,19 @@ AddDefaultCharset UTF-8
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # never serve code, data or dev files directly
+    # one host for the whole site: www.alizadehgroup.net → alizadehgroup.net
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+    # never serve code, data, dev files, backups or archives directly
     RewriteRule ^(app|storage|\.git)(/|$) - [F,L]
     RewriteRule (^|/)\.(?!well-known/) - [F,L]
-    RewriteRule \.(md|yml|yaml|json|lock|sql|sqlite|log|dist)$ - [F,L]
+    RewriteRule \.(md|yml|yaml|json|lock|sql|sqlite|log|dist|ini|bak|old|orig|save|swp|zip|rar|7z|tar|gz|tgz)$ - [F,L,NC]
+    RewriteRule ~$ - [F,L]
 
     # the old WordPress site is gone: its files, feeds and spam archives answer 410 Gone
-    RewriteRule ^(wp-admin|wp-content|wp-includes|category|tag|author|feed|comments/feed)(/|$) - [G]
-    RewriteRule ^(wp-[a-z-]+|xmlrpc)\.php$ - [G]
+    RewriteRule ^(wp-|xmlrpc\.php$|readme\.html$|license\.txt$) - [G]
+    RewriteRule ^(category|tag|author|feed|comments/feed)(/|$) - [G]
 
     # PHP runs only through the site's own entry points; any other .php file is refused
     RewriteCond $1 !^(index|install|admin/index)$

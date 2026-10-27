@@ -79,8 +79,10 @@ The site used to run as a preview in `public_html/yeni/` next to the old WordPre
   `public_html/yeni/` (once; `storage/.moved` marks it as done), so the database, content and admin users stay the same.
 - Old addresses answer with a **301**: `/yeni/…` → `/…`, the WordPress pages (AZ and WPML `/en/…`) → the matching new
   pages (`LEGACY_URLS` in `app/site/content.php`), `/page/` → `/page`.
-- WordPress leftovers (`wp-admin`, `wp-content`, `wp-login.php`, `xmlrpc.php`, `/category/`, `/tag/`, `/author/`, `/feed/`)
-  answer **410 Gone**, and `.htaccess` lets PHP run only through `index.php`, `install.php` and `admin/index.php`.
+- WordPress leftovers (anything starting with `wp-`, `xmlrpc.php`, `readme.html`, `license.txt`, `/category/`, `/tag/`,
+  `/author/`, `/feed/`) answer **410 Gone**, and `.htaccess` lets PHP run only through `index.php`, `install.php` and
+  `admin/index.php`. Backups and archives (`.zip`, `.sql`, `.gz`, `.bak`, `.ini`, `~` …) are never served.
+- `www.alizadehgroup.net` answers with a 301 to `alizadehgroup.net`.
 - If cPanel (MultiPHP Manager) ever adds a PHP handler block to `public_html/.htaccess`, copy it into the repository's
   `.htaccess` — every deploy overwrites that file.
 
