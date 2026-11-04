@@ -2,6 +2,7 @@
 /** Site settings: contacts, socials, notifications, integrations (admins only). */
 require_admin();
 
+$sectionStates = ['hidden' => __('state_hidden'), 'admin' => __('state_admin'), 'public' => __('state_public')];
 $fields = [
     ['type' => 'section', 'label' => 'sec_contacts'],
     ['name' => 'phone', 'type' => 'text', 'label' => 'c_phone', 'col' => 'half', 'max' => 60],
@@ -14,6 +15,10 @@ $fields = [
     ['name' => 'instagram', 'type' => 'url', 'label' => 'Instagram', 'col' => 'third', 'max' => 255],
     ['name' => 'facebook', 'type' => 'url', 'label' => 'Facebook', 'col' => 'third', 'max' => 255],
     ['name' => 'linkedin', 'type' => 'url', 'label' => 'LinkedIn', 'col' => 'third', 'max' => 255],
+    ['type' => 'section', 'label' => 'sec_sections', 'help' => 'help_sections'],
+    ['name' => 'sec_products', 'type' => 'select', 'label' => 'nav_products', 'options' => $sectionStates, 'col' => 'third'],
+    ['name' => 'sec_projects', 'type' => 'select', 'label' => 'nav_projects', 'options' => $sectionStates, 'col' => 'third'],
+    ['name' => 'sec_blog', 'type' => 'select', 'label' => 'nav_blog', 'options' => $sectionStates, 'col' => 'third'],
     ['type' => 'section', 'label' => 'sec_notify'],
     ['name' => 'notify_email', 'type' => 'email', 'label' => 'f_notify_email', 'help' => 'help_notify_email', 'max' => 160],
     ['type' => 'section', 'label' => 'sec_integrations'],

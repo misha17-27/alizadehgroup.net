@@ -14,6 +14,14 @@ const ROUTES = [
     'service' => ['az' => 'xidmetler/{slug}', 'en' => 'en/services/{slug}'],
     'partners' => ['az' => 'partnyorlar', 'en' => 'en/partners'],
     'contact' => ['az' => 'elaqe', 'en' => 'en/contact'],
+    // optional sections (app/site/sections.php)
+    'products' => ['az' => 'mehsullar', 'en' => 'en/products'],
+    'category' => ['az' => 'mehsullar/{slug}', 'en' => 'en/products/{slug}'],
+    'product' => ['az' => 'mehsullar/{cat}/{slug}', 'en' => 'en/products/{cat}/{slug}'],
+    'projects' => ['az' => 'layiheler', 'en' => 'en/projects'],
+    'project' => ['az' => 'layiheler/{slug}', 'en' => 'en/projects/{slug}'],
+    'blog' => ['az' => 'bloq', 'en' => 'en/blog'],
+    'post' => ['az' => 'bloq/{slug}', 'en' => 'en/blog/{slug}'],
 ];
 
 /** pages of the old WordPress site → [route, language, service key]; answered with a 301 */
@@ -69,6 +77,9 @@ function route(string $name, array $params = [], ?string $lng = null): string
     $p = ROUTES[$name][$lng] ?? '';
     if ($name === 'service' && isset($params['service'])) {
         $p = str_replace('{slug}', (string)$params['service']['slug_' . $lng], $p);
+    }
+    if (isset($params['row'])) {    // a category, product, post or project: its slug and, for a product, its category's
+        $p = str_replace(['{cat}', '{slug}'], [(string)($params['row']['cat_slug_' . $lng] ?? ''), (string)$params['row']['slug_' . $lng]], $p);
     }
     return url($p === '' ? '' : $p);
 }

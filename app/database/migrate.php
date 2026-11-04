@@ -52,6 +52,15 @@ function schema_sql(string $driver): array
         last_login DATETIME NULL, created_at DATETIME NULL)$tail";
     $t[] = "CREATE TABLE IF NOT EXISTS login_attempts (id $id, ip VARCHAR(45) DEFAULT '', email VARCHAR(160) DEFAULT '', ok TINYINT NOT NULL DEFAULT 0,
         created_at DATETIME NULL)$tail";
+    // the optional sections (Settings › Sections) — added in DB version 6
+    $item = "slug_az VARCHAR(120) NOT NULL DEFAULT '', slug_en VARCHAR(120) NOT NULL DEFAULT '', title_az VARCHAR(255) DEFAULT '', title_en VARCHAR(255) DEFAULT '',
+        image VARCHAR(255) DEFAULT '', active TINYINT NOT NULL DEFAULT 1";
+    $article = "short_az TEXT, short_en TEXT, body_az TEXT, body_en TEXT, meta_title_az VARCHAR(255) DEFAULT '', meta_title_en VARCHAR(255) DEFAULT '',
+        meta_desc_az TEXT, meta_desc_en TEXT, updated_at DATETIME NULL";
+    $t[] = "CREATE TABLE IF NOT EXISTS product_categories (id $id, $item, text_az TEXT, text_en TEXT, sort INT NOT NULL DEFAULT 0)$tail";
+    $t[] = "CREATE TABLE IF NOT EXISTS products (id $id, category_id INT NOT NULL DEFAULT 0, $item, $article, sort INT NOT NULL DEFAULT 0)$tail";
+    $t[] = "CREATE TABLE IF NOT EXISTS posts (id $id, $item, $article, published_at DATE NULL)$tail";
+    $t[] = "CREATE TABLE IF NOT EXISTS projects (id $id, $item, $article, gallery TEXT, videos TEXT, sort INT NOT NULL DEFAULT 0)$tail";
     $t[] = "CREATE UNIQUE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ux_services_skey ON services (skey)";
     $t[] = "CREATE UNIQUE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ux_users_email ON users (email)";
     $t[] = "CREATE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ix_requests_status ON requests (status, created_at)";
@@ -59,6 +68,8 @@ function schema_sql(string $driver): array
     $t[] = "CREATE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ix_requests_created ON requests (created_at)";      // dashboard month count
     $t[] = "CREATE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ix_items_grp ON items (grp, sort)";
     $t[] = "CREATE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ix_login_ip ON login_attempts (ip, created_at)";
+    $t[] = "CREATE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ix_products_cat ON products (category_id, sort)";
+    $t[] = "CREATE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ix_posts_date ON posts (published_at)";
     return $t;
 }
 
@@ -166,7 +177,11 @@ function upgrade_db(): void
             q('DELETE FROM texts WHERE k IN (' . implode(',', array_fill(0, count(UNUSED_TEXTS), '?')) . ')', UNUSED_TEXTS);
         }
         if ((int)setting('db_version', '1') < 4) add_indexes();
-        sync_texts();   // texts added to seed.json since the last version (5: the footer copyright line)
+        if ((int)setting('db_version', '1') < 6) {
+            migrate();          // the tables of the optional sections
+            sync_pages();
+        }
+        sync_texts();   // texts and settings added to seed.json since the last version (5: the footer copyright line)
         if (val('SELECT COUNT(*) FROM settings WHERE k=?', ['db_version'])) update('settings', ['v' => (string)DB_VERSION], 'k=?', ['db_version']);
         else insert('settings', ['k' => 'db_version', 'v' => (string)DB_VERSION]);
     } catch (Throwable $e) {
@@ -222,6 +237,18 @@ function prefill_page_photos(): void
         $set = [];
         foreach ($cols as $c => $v) if ($v !== '' && (string)$p[$c] === '') $set[$c] = $v;
         if ($set) update('pages', $set, 'k=?', [$k]);
+    }
+}
+
+/** add the pages that exist in seed.json but not yet in the database (the optional sections) */
+function sync_pages(): void
+{
+    $d = json_decode((string)file_get_contents(APP_DIR . '/database/seed.json'), true);
+    foreach ($d['pages'] ?? [] as $p) {
+        if (val('SELECT COUNT(*) FROM pages WHERE k=?', [$p['k']])) continue;
+        insert('pages', ['k' => $p['k'], 'title_az' => $p['title']['az'], 'title_en' => $p['title']['en'],
+            'description_az' => $p['description']['az'], 'description_en' => $p['description']['en'], 'image' => $p['image'],
+            'lead_az' => $p['description']['az'], 'lead_en' => $p['description']['en']]);
     }
 }
 

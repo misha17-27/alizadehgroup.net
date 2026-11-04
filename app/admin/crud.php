@@ -18,7 +18,7 @@ function crud(array $c): void
     $c += ['pk' => 'id', 'where' => '1=1', 'wp' => [], 'defaults' => [], 'can_create' => true, 'can_delete' => true,
         'sortable' => true, 'i18n' => true, 'order' => 'sort, id', 'hint' => '', 'cols' => [], 'before_save' => null,
         'before_delete' => null, 'after_save' => null, 'has_active' => true, 'new_label' => __('add_new'), 'extra_params' => [],
-        'hint_link' => null];
+        'hint_link' => null, 'toolbar' => ''];
     $cl = content_lang();
     $pk = $c['pk'];
     $self = function (array $p = []) use ($c) { return admin_url($c['section'], array_merge($c['extra_params'], $p)); };
@@ -35,7 +35,10 @@ function crud(array $c): void
         if ($do === 'delete' && $c['can_delete'] && $id !== null && ($r = $find($id))) {
             $stop = $c['before_delete'] ? ($c['before_delete'])($r) : null;
             if ($stop) { flash($stop, 'err'); redirect($self()); }
-            foreach ($c['fields'] as $f) if (($f['type'] ?? '') === 'image') delete_upload($r[col_name($f, 'az')] ?? '');
+            foreach ($c['fields'] as $f) {
+                if (($f['type'] ?? '') === 'image') delete_upload($r[col_name($f, 'az')] ?? '');
+                if (($f['type'] ?? '') === 'gallery') foreach (jlist($r[$f['name']] ?? '') as $p) delete_upload((string)$p);
+            }
             q('DELETE FROM ' . $c['table'] . ' WHERE ' . $pk . '=?', [$id]);
             flash(__('deleted'));
             redirect($self());
@@ -78,6 +81,7 @@ function crud(array $c): void
                 } else {
                     update($c['table'], $data, $pk . '=?', [$id]);
                 }
+                foreach ($GLOBALS['__gallery_removed'] ?? [] as $p) delete_upload($p);
                 if ($c['after_save']) ($c['after_save'])((int)$id);
                 flash(__('saved'));
                 redirect(!empty($_POST['stay']) ? $self(['id' => $id]) : $self());
@@ -124,5 +128,30 @@ function crud(array $c): void
         'hint' => $c['hint'],
         'hint_link' => $c['hint_link'],
         'new_label' => $c['new_label'],
+        'toolbar' => $c['toolbar'],
     ]);
+}
+
+/**
+ * before_save helper for rows with an address per language: the slug of the edited language, made from the title when empty.
+ * @return array{0: array, 1: array} [data, errors]
+ */
+function crud_slug(string $table, array $data, array $row, array $errors, bool $isNew, string $fallback = ''): array
+{
+    $cl = content_lang();
+    $id = (int)($row['id'] ?? 0);
+    $slug = slugify((string)($data['slug_' . $cl] ?? ''));
+    if ($slug === '') $slug = slugify((string)($data['title_' . $cl] ?? '')) ?: $fallback;
+    $data['slug_' . $cl] = $slug;
+    if ($slug === '') $errors['slug_' . $cl] = __('err_required');     // a title without latin letters
+    elseif (val('SELECT COUNT(*) FROM ' . $table . ' WHERE slug_' . $cl . '=? AND id<>?', [$slug, $id])) $errors['slug_' . $cl] = __('err_slug');
+    if ($isNew) {
+        // the other language gets a provisional slug until it is edited
+        foreach (LANGS as $l) {
+            if ($l === $cl || !empty($data['slug_' . $l])) continue;
+            $taken = val('SELECT COUNT(*) FROM ' . $table . ' WHERE slug_' . $l . '=?', [$slug]);
+            $data['slug_' . $l] = $taken ? $slug . '-' . substr(uid(), 0, 4) : $slug;
+        }
+    }
+    return [$data, $errors];
 }

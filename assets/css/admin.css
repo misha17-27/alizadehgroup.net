@@ -191,6 +191,13 @@ input[type=checkbox]{width:16px;height:16px;accent-color:var(--ink);vertical-ali
 .noimg{font-size:26px;color:var(--muted)}
 .imgctl{flex:1;min-width:0}
 .imgctl input[type=file]{font-size:13px;max-width:100%}
+.galf input[type=file]{font-size:13px;max-width:100%;display:block}
+.galf-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.galf-i{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.galf-i img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#eef1ed}
+.galf-t{display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:6px}
+.galf-t .ib{width:26px;height:26px;font-size:13px}
+.list-filter select{height:36px;max-width:260px;font-size:13px}
 .iconpick{display:flex;gap:8px;align-items:center}
 .iconpick-prev{width:42px;height:42px;border-radius:10px;background:var(--limebg);color:var(--limeink);display:grid;place-items:center;font-size:21px;flex:none}
 .linkpick{display:grid;gap:8px}

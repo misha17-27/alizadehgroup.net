@@ -1,7 +1,10 @@
 <?php
 /** Static pages: H1, the text under it and the main text, SEO title/description, hero image. */
 $names = ['home' => __('page_home'), 'about' => __('page_about'), 'services' => __('page_services'),
-    'partners' => __('page_partners'), 'contact' => __('page_contact')];
+    'partners' => __('page_partners'), 'contact' => __('page_contact'),
+    'products' => __('nav_products'), 'projects' => __('nav_projects'), 'blog' => __('nav_blog')];
+// the pages of hidden optional sections stay out of sight
+$closed = array_filter(SECTIONS, function ($k) { return section_state($k) === 'hidden'; });
 
 // the home page has no page header: its H1 and texts are edited in the slider and the other content sections
 $pageKey = (string)($_GET['id'] ?? $_POST['id'] ?? '');
@@ -22,6 +25,7 @@ if ($pageKey === 'home' || $pageKey === 'about') {
 
 crud([
     'section' => 'pages', 'table' => 'pages', 'pk' => 'k', 'title' => __('nav_pages'),
+    'where' => $closed ? "k NOT IN ('" . implode("','", $closed) . "')" : '1=1',
     'can_create' => false, 'can_delete' => false, 'sortable' => false, 'has_active' => false,
     'order' => "CASE k WHEN 'home' THEN 1 WHEN 'about' THEN 2 WHEN 'services' THEN 3 WHEN 'partners' THEN 4 WHEN 'contact' THEN 5 ELSE 9 END, k",
     'hint' => __('hint_pages'),

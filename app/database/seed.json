@@ -12,7 +12,10 @@
   "map_query": "Çinar Plaza, Heydər Əliyev prospekti, Bakı",
   "turnstile_site": "",
   "turnstile_secret": "",
-  "ga_id": ""
+  "ga_id": "",
+  "sec_products": "hidden",
+  "sec_projects": "hidden",
+  "sec_blog": "hidden"
  },
  "texts": [
   {
@@ -782,6 +785,114 @@
    "grp": "partners",
    "az": "Bütün partnyorlar",
    "en": "All partners"
+  },
+  {
+   "k": "products.nav",
+   "grp": "products",
+   "az": "Məhsullar",
+   "en": "Products"
+  },
+  {
+   "k": "products.title",
+   "grp": "products",
+   "az": "Məhsul kataloqu",
+   "en": "Product catalog"
+  },
+  {
+   "k": "products.all",
+   "grp": "products",
+   "az": "Hamısı",
+   "en": "All"
+  },
+  {
+   "k": "products.categories",
+   "grp": "products",
+   "az": "Kateqoriyalar",
+   "en": "Categories"
+  },
+  {
+   "k": "products.empty",
+   "grp": "products",
+   "az": "Bu bölmədə hələ məhsul yoxdur.",
+   "en": "There are no products here yet."
+  },
+  {
+   "k": "projects.nav",
+   "grp": "projects",
+   "az": "Layihələr",
+   "en": "Projects"
+  },
+  {
+   "k": "projects.title",
+   "grp": "projects",
+   "az": "Layihələrimiz",
+   "en": "Our projects"
+  },
+  {
+   "k": "projects.empty",
+   "grp": "projects",
+   "az": "Hələ layihə əlavə olunmayıb.",
+   "en": "No projects have been added yet."
+  },
+  {
+   "k": "projects.photos",
+   "grp": "projects",
+   "az": "Fotolar",
+   "en": "Photos"
+  },
+  {
+   "k": "projects.videos",
+   "grp": "projects",
+   "az": "Videolar",
+   "en": "Videos"
+  },
+  {
+   "k": "projects.play",
+   "grp": "projects",
+   "az": "Videonu izlə",
+   "en": "Play the video"
+  },
+  {
+   "k": "blog.nav",
+   "grp": "blog",
+   "az": "Bloq",
+   "en": "Blog"
+  },
+  {
+   "k": "blog.title",
+   "grp": "blog",
+   "az": "Bloq",
+   "en": "Blog"
+  },
+  {
+   "k": "blog.empty",
+   "grp": "blog",
+   "az": "Hələ məqalə yoxdur.",
+   "en": "No articles yet."
+  },
+  {
+   "k": "blog.more",
+   "grp": "blog",
+   "az": "Oxumağa davam et",
+   "en": "Read more"
+  },
+  {
+   "k": "sections.pages",
+   "grp": "sections",
+   "az": "Səhifələr",
+   "en": "Pages"
+  },
+  {
+   "k": "sections.prev",
+   "grp": "sections",
+   "az": "Əvvəlki səhifə",
+   "en": "Previous page"
+  },
+  {
+   "k": "sections.next",
+   "grp": "sections",
+   "az": "Növbəti səhifə",
+   "en": "Next page"
   }
  ],
  "services": [
@@ -2575,6 +2686,42 @@
     "en": "Fill in the request form or contact us directly."
    },
    "image": "assets/img/baku-airport.jpg"
+  },
+  {
+   "k": "products",
+   "title": {
+    "az": "Məhsul kataloqu — Alizadeh Group",
+    "en": "Product catalog — Alizadeh Group"
+   },
+   "description": {
+    "az": "Alizadeh Group məhsul kataloqu: kateqoriyalar üzrə məhsullar və onların təsviri.",
+    "en": "Alizadeh Group product catalog: products by category with their descriptions."
+   },
+   "image": "assets/img/documents.jpg"
+  },
+  {
+   "k": "projects",
+   "title": {
+    "az": "Layihələrimiz — Alizadeh Group",
+    "en": "Our projects — Alizadeh Group"
+   },
+   "description": {
+    "az": "Alizadeh Group-un həyata keçirdiyi layihələr: təsvir, fotolar və videolar.",
+    "en": "Projects delivered by Alizadeh Group: descriptions, photos and videos."
+   },
+   "image": "assets/img/vip-interior.jpg"
+  },
+  {
+   "k": "blog",
+   "title": {
+    "az": "Bloq — Alizadeh Group",
+    "en": "Blog — Alizadeh Group"
+   },
+   "description": {
+    "az": "Logistika və korporativ xidmətlər haqqında məqalələr və yeniliklər.",
+    "en": "Articles and news about logistics and corporate services."
+   },
+   "image": "assets/img/dashboard.jpg"
   }
  ]
 }

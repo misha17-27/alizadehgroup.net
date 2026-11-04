@@ -23,6 +23,7 @@ require APP_DIR . '/core/db.php';
 require APP_DIR . '/core/icons.php';
 require APP_DIR . '/core/uploads.php';
 require APP_DIR . '/site/content.php';
+require APP_DIR . '/site/sections.php';
 require APP_DIR . '/site/request.php';
 
 /** config (app/config.php is created by install.php and is not in git) */
@@ -48,7 +49,7 @@ function is_installed(): bool
 }
 
 /** database version this code expects; an older database is upgraded on the first request after a deploy */
-const DB_VERSION = 5;
+const DB_VERSION = 6;
 
 function ensure_db(): void
 {

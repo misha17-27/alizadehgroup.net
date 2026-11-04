@@ -117,6 +117,47 @@
     Object.keys(map).forEach(function (id) { sio.observe(document.getElementById(id)); });
   }
 
+  /* ---------- YouTube: the player loads only after a click ---------- */
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("[data-yt]");
+    if (!a) return;
+    e.preventDefault();
+    var f = document.createElement("iframe");
+    f.src = "https://www.youtube-nocookie.com/embed/" + a.getAttribute("data-yt") + "?autoplay=1&rel=0";
+    f.title = a.getAttribute("aria-label") || "YouTube";
+    f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    a.parentNode.replaceChild(f, a);
+  });
+
+  /* ---------- photo gallery: full size in a dialog ---------- */
+  $$("[data-gal]").forEach(function (gal) {
+    if (!window.HTMLDialogElement) return;
+    var links = $$("a", gal), cur = 0;
+    var d = document.createElement("dialog");
+    d.className = "lb";
+    d.innerHTML = '<img alt=""><button type="button" class="lb-b lb-x" aria-label="×">×</button>' +
+      (links.length > 1 ? '<button type="button" class="lb-b lb-p" aria-label="←">←</button><button type="button" class="lb-b lb-n" aria-label="→">→</button>' : "");
+    document.body.appendChild(d);
+    var img = $("img", d);
+    function show(i) { cur = (i + links.length) % links.length; img.src = links[cur].href; }
+    gal.addEventListener("click", function (e) {
+      var a = e.target.closest("a");
+      if (!a) return;
+      e.preventDefault();
+      show(links.indexOf(a));
+      d.showModal();
+    });
+    d.addEventListener("click", function (e) {
+      if (e.target.closest(".lb-p")) show(cur - 1);
+      else if (e.target.closest(".lb-n")) show(cur + 1);
+      else if (e.target !== img) d.close();
+    });
+    d.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") show(cur - 1);
+      if (e.key === "ArrowRight") show(cur + 1);
+    });
+  });
+
   /* ---------- request form ---------- */
   var form = $("[data-rq]");
   if (!form) return;

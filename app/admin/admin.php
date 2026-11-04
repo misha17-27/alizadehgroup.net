@@ -131,8 +131,20 @@ function admin_nav(): array
             'profile' => ['user', __('nav_profile')],
         ],
     ];
+    if (section_state('products') !== 'hidden') {
+        $nav['g_content']['products'] = ['box', __('nav_products')];
+        $nav['g_content']['categories'] = ['puzzle', __('nav_categories')];
+    }
+    if (section_state('projects') !== 'hidden') $nav['g_content']['projects'] = ['crane', __('nav_projects')];
+    if (section_state('blog') !== 'hidden') $nav['g_content']['blog'] = ['printer', __('nav_blog')];
     if (!is_admin()) unset($nav['g_site']['settings'], $nav['g_system']['users']);
     return $nav;
+}
+
+/** the admin pages of a hidden optional section do not open (Settings › Sections) */
+function require_section(string $key): void
+{
+    if (section_state($key) === 'hidden') redirect(admin_url());
 }
 
 /* ------------------------------------------------------------ rendering */

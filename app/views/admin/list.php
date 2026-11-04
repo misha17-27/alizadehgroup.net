@@ -19,6 +19,7 @@ $small = function (string $do, $id, string $label, string $cls = 'ib', array $ex
 <div class="panel">
   <div class="panel-h">
     <b><?= e(__('total')) ?>: <?= $n ?></b>
+    <?= $toolbar ?? '' ?>
     <?php if ($can_create): ?><a class="btn" href="<?= e($self(['action' => 'new'])) ?>">+ <?= e($new_label) ?></a><?php endif; ?>
   </div>
   <?php if (!$rows): ?>

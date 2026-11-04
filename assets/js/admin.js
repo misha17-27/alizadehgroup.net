@@ -62,6 +62,16 @@
     repCount(rep);
   });
 
+  /* gallery field: order of the photos */
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-gal-left],[data-gal-right]");
+    if (!b) return;
+    var it = b.closest("[data-gal-item]"), list = it.parentNode;
+    if (b.hasAttribute("data-gal-left") && it.previousElementSibling) list.insertBefore(it, it.previousElementSibling);
+    else if (b.hasAttribute("data-gal-right") && it.nextElementSibling) list.insertBefore(it.nextElementSibling, it);
+    markDirty(list.closest("form"));
+  });
+
   /* rich text fields: contenteditable + toolbar, kept in sync with a hidden textarea (cleaned again on the server) */
   $$("[data-rte]").forEach(function (box) {
     var area = $("[data-rte-area]", box), src = $("[data-rte-src]", box);

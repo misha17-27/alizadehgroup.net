@@ -84,6 +84,55 @@ function canonical(string $url, bool $slash): void
     if ($slash && is_get()) redirect($url . query_suffix(), 301);
 }
 
+function item_meta(array $r): array
+{
+    return ['title' => L($r, 'meta_title') ?: L($r, 'title') . ' — Alizadeh Group', 'desc' => L($r, 'meta_desc') ?: L($r, 'short'), 'image' => $r['image']];
+}
+
+function item_alt(string $route, array $r): array
+{
+    return alt_routes($route, ['row' => $r]);
+}
+
+/** the pages of an optional section (app/site/sections.php); $parts: what follows its address */
+function section_page(string $name, array $parts, bool $slash): void
+{
+    if (in_array('', $parts, true)) not_found();
+    $lng = lang();
+    $notOpen = section_state($name) !== 'public';     // a signed-in user looking at a section that visitors do not see yet
+    $vars = ['nav' => $name, 'preview' => $notOpen, 'noindex' => $notOpen];
+    $pg = (int)($_GET['p'] ?? 1);
+    $slug = $parts[0] ?? '';
+
+    if ($name === 'products') {
+        $cat = $slug !== '' ? row_by_slug('product_categories', $slug, $lng) : null;
+        if (count($parts) > 2 || ($slug !== '' && !$cat)) not_found();
+        if (isset($parts[1])) {
+            $r = row(PRODUCT_SELECT . ' AND p.slug_' . $lng . '=? AND p.category_id=?', [$parts[1], $cat['id']]);
+            if (!$r) not_found();
+            canonical(route('product', ['row' => $r]), $slash);
+            render('product', $vars + ['r' => $r, 'meta' => item_meta($r), 'alt' => item_alt('product', $r)]);
+        }
+        canonical($cat ? route('category', ['row' => $cat]) : route('products'), $slash);
+        [$list, $pg, $pages] = paged(PRODUCT_SELECT . ($cat ? ' AND p.category_id=?' : ''), $cat ? [$cat['id']] : [], 'p.sort, p.id', $pg);
+        $meta = $cat ? ['title' => L($cat, 'title') . ' — Alizadeh Group', 'desc' => L($cat, 'text'), 'image' => $cat['image']] : page_meta('products');
+        render('products', $vars + ['cat' => $cat, 'list' => $list, 'pg' => $pg, 'pages' => $pages, 'meta' => $meta,
+            'alt' => $cat ? item_alt('category', $cat) : alt_routes('products')]);
+    }
+
+    [$route, $table, $order] = $name === 'blog' ? ['post', 'posts', 'published_at DESC, id DESC'] : ['project', 'projects', 'sort, id'];
+    if (count($parts) > 1) not_found();
+    if ($slug !== '') {
+        $r = row_by_slug($table, $slug, $lng);
+        if (!$r) not_found();
+        canonical(route($route, ['row' => $r]), $slash);
+        render($route, $vars + ['r' => $r, 'meta' => item_meta($r), 'alt' => item_alt($route, $r)]);
+    }
+    canonical(route($name), $slash);
+    [$list, $pg, $pages] = paged('SELECT * FROM ' . $table . ' WHERE active=1', [], $order, $pg);
+    render($name, $vars + ['list' => $list, 'pg' => $pg, 'pages' => $pages, 'meta' => page_meta($name), 'alt' => alt_routes($name)]);
+}
+
 try {
     ensure_db();
     legacy_redirect($path);
@@ -107,6 +156,7 @@ try {
         foreach (LANGS as $l) {
             foreach (['home', 'about', 'services', 'partners', 'contact'] as $r) $urls[] = route($r, [], $l);
             foreach (services_list() as $s) $urls[] = route('service', ['service' => $s], $l);
+            foreach (section_urls($l) as $u) $urls[] = $u;
         }
         echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
         foreach ($urls as $u) echo '<url><loc>' . e(site_origin() . $u) . '</loc></url>';
@@ -148,6 +198,15 @@ try {
                 'alt' => alt_routes('service', ['service' => $s]),
                 'nav' => 'services',
             ]);
+        }
+    }
+
+    /* ---------- optional sections: a closed one answers like a page that does not exist ---------- */
+    foreach (SECTIONS as $name) {
+        $root = $lng === 'en' ? substr(ROUTES[$name]['en'], 3) : ROUTES[$name]['az'];
+        if ($rel === $root || starts_with($rel, $root . '/')) {
+            if (!section_open($name)) not_found();
+            section_page($name, $rel === $root ? [] : explode('/', substr($rel, strlen($root) + 1)), $slash);
         }
     }
 

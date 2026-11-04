@@ -11,6 +11,7 @@ $ogImage = !empty($meta['image']) ? site_origin() . media($meta['image']) : '';
 $canonical = site_origin() . ($alt[$l] ?? url(''));
 $ga = setting('ga_id');
 $active = function (string $k) use ($nav) { return $nav === $k ? ' class="is-current" aria-current="page"' : ''; };
+$optional = public_sections();
 ?><!doctype html>
 <html lang="<?= e($l) ?>">
 <head>
@@ -61,6 +62,8 @@ $active = function (string $k) use ($nav) { return $nav === $k ? ' class="is-cur
           <?php endforeach; ?>
         </div>
       </div>
+      <?php foreach ($optional as $k => [$label, $href]): ?><a href="<?= e($href) ?>"<?= $active($k) ?>><?= e($label) ?></a>
+      <?php endforeach; ?>
       <a href="<?= e(route('partners')) ?>"<?= $active('partners') ?>><?= e(tx('nav.partners')) ?></a>
       <a href="<?= e(route('contact')) ?>"<?= $active('contact') ?>><?= e(tx('nav.contact')) ?></a>
     </nav>
@@ -81,6 +84,8 @@ $active = function (string $k) use ($nav) { return $nav === $k ? ' class="is-cur
   <div class="msvc">
     <?php foreach ($svcs as $s): ?><a href="<?= e(route('service', ['service' => $s])) ?>"><?= icon($s['icon']) ?><?= e(L($s, 'title')) ?></a><?php endforeach; ?>
   </div>
+  <?php foreach ($optional as [$label, $href]): ?><a class="ml" href="<?= e($href) ?>"><?= e($label) ?></a>
+  <?php endforeach; ?>
   <a class="ml" href="<?= e(route('partners')) ?>"><?= e(tx('nav.partners')) ?></a>
   <a class="ml" href="<?= e(route('contact')) ?>"><?= e(tx('nav.contact')) ?></a>
   <div class="mf">
@@ -105,6 +110,8 @@ $active = function (string $k) use ($nav) { return $nav === $k ? ' class="is-cur
       <div><h4><?= e(tx('footer.menu')) ?></h4><ul>
         <li><a href="<?= e(route('about')) ?>"><?= e(tx('nav.about')) ?></a></li>
         <li><a href="<?= e(route('services')) ?>"><?= e(tx('nav.services')) ?></a></li>
+        <?php foreach ($optional as [$label, $href]): ?><li><a href="<?= e($href) ?>"><?= e($label) ?></a></li>
+        <?php endforeach; ?>
         <li><a href="<?= e(route('partners')) ?>"><?= e(tx('nav.partners')) ?></a></li>
         <li><a href="<?= e(route('contact')) ?>"><?= e(tx('nav.contact')) ?></a></li></ul></div>
       <div><h4><?= e(tx('nav.services')) ?></h4><ul>
@@ -126,5 +133,6 @@ $active = function (string $k) use ($nav) { return $nav === $k ? ' class="is-cur
   </div>
 </footer>
 <?php if ($wa): ?><a class="wa" href="<?= e($wa) ?>" target="_blank" rel="noopener" aria-label="WhatsApp"><?= icon('wa') ?></a><?php endif; ?>
+<?php if (!empty($preview)): ?><div class="prev-note" role="status"><?= $l === 'az' ? 'Önbaxış: bu bölmə ziyarətçilərdən gizlidir' : 'Preview: this section is hidden from visitors' ?></div><?php endif; ?>
 </body>
 </html>

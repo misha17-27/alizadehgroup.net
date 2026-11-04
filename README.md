@@ -17,6 +17,25 @@ Languages: **AZ** (default, `/…`) and **EN** (`/en/…`).
 
 Also: `/sitemap.xml`, `/robots.txt`, 404 page. Request form posts to `/api/request` (AJAX, works without JS too).
 
+### Optional sections (built, hidden by default)
+
+| Section | AZ | EN | Content |
+|---|---|---|---|
+| Product catalog | `/mehsullar`, `/mehsullar/{category}`, `/mehsullar/{category}/{product}` | `/en/products/…` | every product belongs to a category; text, photo, SEO |
+| Projects | `/layiheler`, `/layiheler/{slug}` | `/en/projects/…` | text, main photo, photo gallery, YouTube videos (the player loads after a click) |
+| Blog | `/bloq`, `/bloq/{slug}` | `/en/blog/…` | date, text, photo, SEO; newest first |
+
+Each has its own switch in the admin: **Settings → Site sections**. The content stays in the database whichever state it is in.
+
+| State | On the site | In the admin panel |
+|---|---|---|
+| Hidden (default) | 404, no links, not in the sitemap | not in the menu, not in Pages & SEO or Texts |
+| Admin panel only | 404 for visitors; somebody signed in to the panel sees the pages with a "preview" note (noindex) | in the menu, content can be prepared |
+| Open on the site | in the header, mobile menu, footer and sitemap | in the menu |
+
+Code: `app/site/sections.php` (states, queries), `section_page()` in `index.php` (routes), `app/views/site/` (products, product,
+projects, project, blog, post), `app/admin/sections/` (products, categories, projects, blog). The home page has no blocks for them.
+
 ## Admin panel
 
 `/admin/` — sections: Dashboard (for administrators also the PHP version that runs, the database and the upload limit),
@@ -24,8 +43,9 @@ Requests (status, notes, attachments, delete, CSV export), Slider, Request cards
 About us, Why us, Services (texts per language, image, target groups, offers, process, FAQ, extra block, SEO),
 Partners, Texts (every label on the site, including the request form), Pages & SEO (H1, the text under it and the main
 text with a small editor — headings, lists, links; the two photos of the "About us" block on the home and About pages;
-SEO title/description; header image), Settings (contacts, socials, notification e-mail, Google Analytics,
-Cloudflare Turnstile), Users (admin / editor roles), Profile.
+SEO title/description; header image), Settings (contacts, socials, site sections, notification e-mail, Google Analytics,
+Cloudflare Turnstile), Users (admin / editor roles), Profile. Products, Categories, Projects and Blog appear once their
+section is switched on (see Optional sections).
 Interface language: Azerbaijani or Russian. Content is edited per language with the **AZ / EN** switch in the top bar.
 Only the logo and the favicon (`assets/img/`), the company name in page titles and the fallback photos used when an image
 field is empty are part of the code; the footer copyright line ("© year Alizadehgroup.net All rights reserved. Site by
@@ -45,7 +65,7 @@ Webline") is in Texts › Footer.
 │   ├── bootstrap.php       config, constants, session, autoload of the parts below
 │   ├── config.sample.php   example of app/config.php (the real one is created by install.php)
 │   ├── core/               db.php, helpers.php, uploads.php, icons.php
-│   ├── site/               content.php (routes, languages, repositories), request.php (form)
+│   ├── site/               content.php (routes, languages, repositories), sections.php (optional sections), request.php (form)
 │   ├── admin/              admin.php (auth, roles, render), crud.php, forms.php, sections/, lang/ (az, ru)
 │   ├── database/           migrate.php (schema + seeding), seed.json (initial AZ/EN content)
 │   ├── views/site/         layout, pages, partials/

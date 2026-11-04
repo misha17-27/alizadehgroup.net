@@ -68,16 +68,7 @@ crud([
         $data['skey'] = $key;
         $dup = val('SELECT COUNT(*) FROM services WHERE skey=? AND id<>?', [$key, (int)($row['id'] ?? 0)]);
         if ($key === '' || $dup) $errors['skey'] = __('err_key');
-        // URL slug for the edited language (auto from the title when empty)
-        $slug = slugify((string)($data['slug_' . $cl] ?? ''));
-        if ($slug === '') $slug = slugify((string)($data['title_' . $cl] ?? '')) ?: $key;
-        $data['slug_' . $cl] = $slug;
-        $dupSlug = val('SELECT COUNT(*) FROM services WHERE slug_' . $cl . '=? AND id<>?', [$slug, (int)($row['id'] ?? 0)]);
-        if ($dupSlug) $errors['slug_' . $cl] = __('err_slug');
-        if ($isNew) {
-            // the other language gets a provisional slug until it is edited
-            foreach (LANGS as $l) if ($l !== $cl && empty($data['slug_' . $l])) $data['slug_' . $l] = $slug;
-        }
+        [$data, $errors] = crud_slug('services', $data, $row, $errors, $isNew, $key);
         $data['updated_at'] = now();
         return [$data, $errors];
     },
