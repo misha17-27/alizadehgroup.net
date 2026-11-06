@@ -12,6 +12,10 @@ const SECTION_PER_PAGE = 12;
 const PRODUCT_SELECT = 'SELECT p.*, c.slug_az AS cat_slug_az, c.slug_en AS cat_slug_en, c.title_az AS cat_title_az, c.title_en AS cat_title_en, c.image AS cat_image
     FROM products p JOIN product_categories c ON c.id=p.category_id WHERE p.active=1 AND c.active=1';
 
+/** a project may have no category, or one that is switched off: then it is shown without it */
+const PROJECT_SELECT = 'SELECT p.*, c.slug_az AS cat_slug_az, c.slug_en AS cat_slug_en, c.title_az AS cat_title_az, c.title_en AS cat_title_en
+    FROM projects p LEFT JOIN project_categories c ON c.id=p.category_id AND c.active=1 WHERE p.active=1';
+
 function section_state(string $key): string
 {
     $state = setting('sec_' . $key, 'hidden');
@@ -46,6 +50,31 @@ function product_categories(): array
     return $all;
 }
 
+function project_categories(): array
+{
+    static $all = null;
+    if ($all === null) $all = rows('SELECT * FROM project_categories WHERE active=1 ORDER BY sort, id');
+    return $all;
+}
+
+/** "Sorğu göndər" on a product page opens the request form with ?mehsul=<id>: the name of that product, '' without one */
+function requested_product(): string
+{
+    $id = (int)($_GET['mehsul'] ?? 0);
+    if ($id < 1 || !section_open('products')) return '';
+    $r = row(PRODUCT_SELECT . ' AND p.id=?', [$id]);
+    return $r ? L($r, 'title') : '';
+}
+
+/** the WhatsApp link of a product page, with a message naming the product; '' when no WhatsApp number is set */
+function product_whatsapp_url(array $r): string
+{
+    $wa = whatsapp_url();
+    if ($wa === '') return '';
+    $text = str_replace(['{name}', '{url}'], [L($r, 'title'), site_origin() . route('product', ['row' => $r])], tx('products.wa_text'));
+    return $wa . '?text=' . rawurlencode($text);
+}
+
 /** an active row by its address in a language */
 function row_by_slug(string $table, string $slug, string $lng): ?array
 {
@@ -71,6 +100,9 @@ function section_urls(string $lng): array
         foreach (product_categories() as $c) $urls[] = route('category', ['row' => $c], $lng);
         foreach (rows(PRODUCT_SELECT . ' ORDER BY p.id') as $r) $urls[] = route('product', ['row' => $r], $lng);
     }
+    if (section_state('projects') === 'public') {
+        foreach (project_categories() as $c) $urls[] = route('project_cat', ['row' => $c], $lng);
+    }
     foreach (['projects' => ['project', 'projects'], 'blog' => ['post', 'posts']] as $k => [$route, $table]) {
         if (section_state($k) !== 'public') continue;
         foreach (rows('SELECT slug_az, slug_en FROM ' . $table . ' WHERE active=1 ORDER BY id') as $r) $urls[] = route($route, ['row' => $r], $lng);
@@ -78,10 +110,10 @@ function section_urls(string $lng): array
     return $urls;
 }
 
-/** "12.05.2026", or '' when the post has no date */
-function post_date(array $r): string
+/** "12.05.2026", or '' when there is no date */
+function date_text(?string $d): string
 {
-    $t = strtotime((string)($r['published_at'] ?? ''));
+    $t = strtotime((string)$d);
     return $t ? date('d.m.Y', $t) : '';
 }
 

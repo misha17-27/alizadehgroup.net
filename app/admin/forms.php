@@ -34,11 +34,11 @@ function link_options(): array
     return $o;
 }
 
-/** id → title of the product categories, also the switched-off ones */
-function category_options(bool $empty = true): array
+/** id → title of the product or project categories, also the switched-off ones */
+function category_options(bool $empty = true, string $table = 'product_categories'): array
 {
     $o = $empty ? ['' => '—'] : [];
-    foreach (rows('SELECT id, title_az, title_en FROM product_categories ORDER BY sort, id') as $c) $o[$c['id']] = L($c, 'title', content_lang());
+    foreach (rows('SELECT id, title_az, title_en FROM ' . $table . ' ORDER BY sort, id') as $c) $o[$c['id']] = L($c, 'title', content_lang());
     return $o;
 }
 

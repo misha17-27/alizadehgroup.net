@@ -893,6 +893,48 @@
    "grp": "sections",
    "az": "Növbəti səhifə",
    "en": "Next page"
+  },
+  {
+   "k": "products.whatsapp",
+   "grp": "products",
+   "az": "WhatsApp-a yaz",
+   "en": "Write on WhatsApp"
+  },
+  {
+   "k": "products.wa_text",
+   "grp": "products",
+   "az": "Salam! Bu məhsulla maraqlanıram: {name} — {url}",
+   "en": "Hello! I am interested in this product: {name} — {url}"
+  },
+  {
+   "k": "projects.all",
+   "grp": "projects",
+   "az": "Hamısı",
+   "en": "All"
+  },
+  {
+   "k": "projects.categories",
+   "grp": "projects",
+   "az": "Kateqoriyalar",
+   "en": "Categories"
+  },
+  {
+   "k": "projects.date",
+   "grp": "projects",
+   "az": "Layihənin tarixi",
+   "en": "Project date"
+  },
+  {
+   "k": "projects.category",
+   "grp": "projects",
+   "az": "Layihənin kateqoriyası",
+   "en": "Project category"
+  },
+  {
+   "k": "projects.duration",
+   "grp": "projects",
+   "az": "İcra müddəti",
+   "en": "Duration"
   }
  ],
  "services": [
@@ -904,7 +946,7 @@
    "form_type": "hotel",
    "image": "assets/img/hotel-van.jpg",
    "image2": "assets/img/baku-sunset.jpg",
-   "sort": 1,
+   "sort": 4,
    "active": 1,
    "title": {
     "az": "Qonaq yerləşdirmə",
@@ -1153,7 +1195,7 @@
    "form_type": "transport",
    "image": "assets/img/baku-airport.jpg",
    "image2": "assets/img/vip-interior.jpg",
-   "sort": 2,
+   "sort": 3,
    "active": 1,
    "title": {
     "az": "Nəqliyyat xidməti",
@@ -1408,7 +1450,7 @@
    "form_type": "event",
    "image": "assets/img/conference.jpg",
    "image2": "assets/img/partnership.jpg",
-   "sort": 3,
+   "sort": 2,
    "active": 1,
    "title": {
     "az": "Tədbirlərin təşkili",
@@ -1764,7 +1806,7 @@
    "form_type": "supply",
    "image": "assets/img/dashboard.jpg",
    "image2": "assets/img/documents.jpg",
-   "sort": 4,
+   "sort": 1,
    "active": 1,
    "title": {
     "az": "Təchizat zənciri",
@@ -2092,7 +2134,7 @@
     "en": "Airport transfers, city and intercity trips — book step by step."
    },
    "link": "neqliyyat",
-   "sort": 1
+   "sort": 3
   },
   {
    "grp": "info",
@@ -2120,7 +2162,7 @@
     "en": "Hotel selection for local and international guests — the number of nights is calculated automatically."
    },
    "link": "qonaq",
-   "sort": 3
+   "sort": 4
   },
   {
    "grp": "info",
@@ -2134,7 +2176,7 @@
     "en": "Send several products in one request — we'll prepare a price quote for you."
    },
    "link": "techizat",
-   "sort": 4
+   "sort": 1
   },
   {
    "grp": "about",
@@ -2302,8 +2344,8 @@
   {
    "image": "assets/img/hotel-van.jpg",
    "eyebrow": {
-    "az": "01 · Qonaq yerləşdirmə",
-    "en": "01 · Guest accommodation"
+    "az": "04 · Qonaq yerləşdirmə",
+    "en": "04 · Guest accommodation"
    },
    "title": {
     "az": "Qonaqlarınız üçün uyğun yerləşdirmə həlləri",
@@ -2318,13 +2360,13 @@
     "en": "Learn more"
    },
    "link": "service:qonaq",
-   "sort": 2
+   "sort": 5
   },
   {
    "image": "assets/img/baku-airport.jpg",
    "eyebrow": {
-    "az": "02 · Nəqliyyat xidməti",
-    "en": "02 · Transport services"
+    "az": "03 · Nəqliyyat xidməti",
+    "en": "03 · Transport services"
    },
    "title": {
     "az": "Rahat və planlı korporativ nəqliyyat",
@@ -2339,13 +2381,13 @@
     "en": "Learn more"
    },
    "link": "service:neqliyyat",
-   "sort": 3
+   "sort": 4
   },
   {
    "image": "assets/img/conference.jpg",
    "eyebrow": {
-    "az": "03 · Tədbirlərin təşkili",
-    "en": "03 · Event management"
+    "az": "02 · Tədbirlərin təşkili",
+    "en": "02 · Event management"
    },
    "title": {
     "az": "İdeyadan tədbirin tamamlanmasına qədər",
@@ -2360,13 +2402,13 @@
     "en": "Learn more"
    },
    "link": "service:tedbir",
-   "sort": 4
+   "sort": 3
   },
   {
    "image": "assets/img/dashboard.jpg",
    "eyebrow": {
-    "az": "04 · Təchizat zənciri",
-    "en": "04 · Supply chain"
+    "az": "01 · Təchizat zənciri",
+    "en": "01 · Supply chain"
    },
    "title": {
     "az": "Ehtiyacdan çatdırılmaya qədər təchizat həlləri",
@@ -2381,7 +2423,7 @@
     "en": "Learn more"
    },
    "link": "service:techizat",
-   "sort": 5
+   "sort": 2
   }
  ],
  "partners": [
@@ -2722,6 +2764,26 @@
     "en": "Articles and news about logistics and corporate services."
    },
    "image": "assets/img/dashboard.jpg"
+  }
+ ],
+ "product_categories": [
+  {
+   "slug_az": "techizat-mehsullari",
+   "slug_en": "supply-products",
+   "title": {
+    "az": "Təchizat məhsulları",
+    "en": "Supply products"
+   },
+   "sort": 1
+  },
+  {
+   "slug_az": "restoran-avadanligi",
+   "slug_en": "restaurant-equipment",
+   "title": {
+    "az": "Restoran avadanlığı",
+    "en": "Restaurant equipment"
+   },
+   "sort": 2
   }
  ]
 }

@@ -20,6 +20,7 @@ const ROUTES = [
     'product' => ['az' => 'mehsullar/{cat}/{slug}', 'en' => 'en/products/{cat}/{slug}'],
     'projects' => ['az' => 'layiheler', 'en' => 'en/projects'],
     'project' => ['az' => 'layiheler/{slug}', 'en' => 'en/projects/{slug}'],
+    'project_cat' => ['az' => 'layiheler/kateqoriya/{slug}', 'en' => 'en/projects/category/{slug}'],
     'blog' => ['az' => 'bloq', 'en' => 'en/blog'],
     'post' => ['az' => 'bloq/{slug}', 'en' => 'en/blog/{slug}'],
 ];

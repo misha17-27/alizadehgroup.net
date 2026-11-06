@@ -5,6 +5,7 @@ $evSvc = null;
 foreach ($svcs as $s) { if ($s['form_type'] === 'event') { $evSvc = $s; break; } }
 $evTypes = $evSvc ? array_values(array_filter(array_map(function ($x) { return jl($x, 't'); }, jlist($evSvc['extra_items'])))) : [];
 $pre = (string)($_GET['xidmet'] ?? '');
+$asked = requested_product();   // opened from a product page: site.js puts the name in the first product row
 $req = '<i class="rq-req" aria-hidden="true">*</i>';
 $f = function (string $key, string $control, string $id, string $cls = '', bool $required = false) use ($req) {
     return '<div class="rq-f ' . $cls . '"><label for="' . $id . '">' . e(tx($key)) . ($required ? $req : '') . '</label>' . $control . '</div>';
@@ -19,7 +20,7 @@ foreach (flashes() as [$ft, $fm]): ?>
   <p class="rq-flash rq-flash-<?= e($ft) ?>" role="status"><?= icon($ft === 'ok' ? 'check' : 'x') ?><?= e($fm) ?></p>
 <?php endforeach; ?>
 <form class="rq" id="rq-form" method="post" action="<?= e(url((lang() === 'en' ? 'en/' : '') . 'api/request')) ?>" enctype="multipart/form-data" data-rq novalidate
-      data-msg-err="<?= e(tx('f.err')) ?>" data-msg-server="<?= e(tx('f.err_server')) ?>" data-msg-sending="<?= e(tx('f.sending')) ?>">
+      data-msg-err="<?= e(tx('f.err')) ?>" data-msg-server="<?= e(tx('f.err_server')) ?>" data-msg-sending="<?= e(tx('f.sending')) ?>"<?= $asked !== '' ? ' data-product-name="' . e($asked) . '"' : '' ?>>
   <?= csrf_field() ?>
   <input type="hidden" name="ts" value="<?= time() ?>">
   <div class="rq-hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
@@ -111,7 +112,7 @@ foreach (flashes() as [$ft, $fm]): ?>
       <?= $f('f.company', '<input id="rq-company" name="company" type="text" maxlength="160" autocomplete="organization" placeholder="' . e(tx('f.ph_company')) . '">', 'rq-company') ?>
       <?= $f('f.phone', '<input id="rq-phone" name="phone" type="tel" required maxlength="60" autocomplete="tel" placeholder="' . e(tx('f.ph_phone')) . '">', 'rq-phone', '', true) ?>
       <?= $f('f.email', '<input id="rq-email" name="email" type="email" required maxlength="160" autocomplete="email" placeholder="' . e(tx('f.ph_email')) . '">', 'rq-email', '', true) ?>
-      <?= $f('f.message', '<textarea id="rq-message" name="message" rows="4" maxlength="5000" placeholder="' . e(tx('f.ph_message')) . '"></textarea>', 'rq-message', 'rq-full') ?>
+      <?= $f('f.message', '<textarea id="rq-message" name="message" rows="4" maxlength="5000" placeholder="' . e(tx('f.ph_message')) . '">' . ($pre === 'diger' ? e($asked) : '') . '</textarea>', 'rq-message', 'rq-full') ?>
     </div>
   </div>
   <?php if ($ts): ?>

@@ -135,7 +135,10 @@ function admin_nav(): array
         $nav['g_content']['products'] = ['box', __('nav_products')];
         $nav['g_content']['categories'] = ['puzzle', __('nav_categories')];
     }
-    if (section_state('projects') !== 'hidden') $nav['g_content']['projects'] = ['crane', __('nav_projects')];
+    if (section_state('projects') !== 'hidden') {
+        $nav['g_content']['projects'] = ['crane', __('nav_projects')];
+        $nav['g_content']['project_categories'] = ['puzzle', __('nav_project_categories')];
+    }
     if (section_state('blog') !== 'hidden') $nav['g_content']['blog'] = ['printer', __('nav_blog')];
     if (!is_admin()) unset($nav['g_site']['settings'], $nav['g_system']['users']);
     return $nav;

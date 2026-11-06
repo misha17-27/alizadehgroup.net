@@ -266,6 +266,9 @@
       small.textContent = has ? file.files[0].name : def;
       file.parentNode.classList.toggle("has-file", !!has);
     });
+    /* opened from a product page: the first row already names that product */
+    var asked = form.getAttribute("data-product-name");
+    if (asked && !$("[data-product]", list)) $("[data-field=name]", row).value = asked;
     list.appendChild(row);
     renumber();
     if (focus) $("input", row).focus();

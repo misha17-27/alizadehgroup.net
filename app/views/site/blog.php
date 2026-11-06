@@ -17,7 +17,7 @@ include __DIR__ . '/partials/page_hero.php';
       <?php foreach ($list as $r):
         $c_href = route('post', ['row' => $r]);
         $c_img = $r['image'];
-        $c_meta = post_date($r);
+        $c_meta = date_text($r['published_at']);
         $c_title = L($r, 'title');
         $c_text = L($r, 'short');
         $c_go = tx('blog.more');

@@ -120,17 +120,37 @@ function section_page(string $name, array $parts, bool $slash): void
             'alt' => $cat ? item_alt('category', $cat) : alt_routes('products')]);
     }
 
-    [$route, $table, $order] = $name === 'blog' ? ['post', 'posts', 'published_at DESC, id DESC'] : ['project', 'projects', 'sort, id'];
+    if ($name === 'projects') {
+        $cat = null;
+        if (count($parts) === 2 && $slug === ($lng === 'en' ? 'category' : 'kateqoriya')) {
+            $cat = row_by_slug('project_categories', $parts[1], $lng);
+            if (!$cat) not_found();
+        } elseif (count($parts) > 1) {
+            not_found();
+        } elseif ($slug !== '') {
+            $r = row(PROJECT_SELECT . ' AND p.slug_' . $lng . '=?', [$slug]);
+            if (!$r) not_found();
+            canonical(route('project', ['row' => $r]), $slash);
+            render('project', $vars + ['r' => $r, 'meta' => item_meta($r), 'alt' => item_alt('project', $r)]);
+        }
+        canonical($cat ? route('project_cat', ['row' => $cat]) : route('projects'), $slash);
+        [$list, $pg, $pages] = paged(PROJECT_SELECT . ($cat ? ' AND p.category_id=?' : ''), $cat ? [$cat['id']] : [], 'p.sort, p.id', $pg);
+        $meta = page_meta('projects');
+        if ($cat) $meta = ['title' => L($cat, 'title') . ' — Alizadeh Group', 'image' => $cat['image'] ?: $meta['image']] + $meta;
+        render('projects', $vars + ['cat' => $cat, 'list' => $list, 'pg' => $pg, 'pages' => $pages, 'meta' => $meta,
+            'alt' => $cat ? item_alt('project_cat', $cat) : alt_routes('projects')]);
+    }
+
     if (count($parts) > 1) not_found();
     if ($slug !== '') {
-        $r = row_by_slug($table, $slug, $lng);
+        $r = row_by_slug('posts', $slug, $lng);
         if (!$r) not_found();
-        canonical(route($route, ['row' => $r]), $slash);
-        render($route, $vars + ['r' => $r, 'meta' => item_meta($r), 'alt' => item_alt($route, $r)]);
+        canonical(route('post', ['row' => $r]), $slash);
+        render('post', $vars + ['r' => $r, 'meta' => item_meta($r), 'alt' => item_alt('post', $r)]);
     }
-    canonical(route($name), $slash);
-    [$list, $pg, $pages] = paged('SELECT * FROM ' . $table . ' WHERE active=1', [], $order, $pg);
-    render($name, $vars + ['list' => $list, 'pg' => $pg, 'pages' => $pages, 'meta' => page_meta($name), 'alt' => alt_routes($name)]);
+    canonical(route('blog'), $slash);
+    [$list, $pg, $pages] = paged('SELECT * FROM posts WHERE active=1', [], 'published_at DESC, id DESC', $pg);
+    render('blog', $vars + ['list' => $list, 'pg' => $pg, 'pages' => $pages, 'meta' => page_meta('blog'), 'alt' => alt_routes('blog')]);
 }
 
 try {

@@ -11,6 +11,12 @@ const PAGE_CONTENT_COLS = ["h1_az VARCHAR(255) DEFAULT ''", "h1_en VARCHAR(255) 
 /** the two photos of the "About us" block on the home and About pages — added in DB version 3 */
 const PAGE_PHOTO_COLS = ["photo1 VARCHAR(255) DEFAULT ''", "photo2 VARCHAR(255) DEFAULT ''"];
 
+/** a project's date, category and duration — added in DB version 7 */
+const PROJECT_COLS = ['category_id INT NOT NULL DEFAULT 0', 'project_date DATE NULL', "duration_az VARCHAR(255) DEFAULT ''", "duration_en VARCHAR(255) DEFAULT ''"];
+
+/** the order of the services everywhere they are listed — set once in DB version 7, afterwards it is changed in the admin */
+const SERVICE_ORDER = ['techizat', 'tedbir', 'neqliyyat', 'qonaq'];
+
 /** texts the site no longer shows (their content lives in the slider, Settings and Pages & SEO) — removed in DB version 3 */
 const UNUSED_TEXTS = ['contact.addr', 'contact.follow', 'f.title', 'hero.eyebrow', 'hero.text', 'hero.title', 'meta.title',
     'partners.text', 'services.more', 'ui.call', 'ui.next', 'ui.prev'];
@@ -60,7 +66,8 @@ function schema_sql(string $driver): array
     $t[] = "CREATE TABLE IF NOT EXISTS product_categories (id $id, $item, text_az TEXT, text_en TEXT, sort INT NOT NULL DEFAULT 0)$tail";
     $t[] = "CREATE TABLE IF NOT EXISTS products (id $id, category_id INT NOT NULL DEFAULT 0, $item, $article, sort INT NOT NULL DEFAULT 0)$tail";
     $t[] = "CREATE TABLE IF NOT EXISTS posts (id $id, $item, $article, published_at DATE NULL)$tail";
-    $t[] = "CREATE TABLE IF NOT EXISTS projects (id $id, $item, $article, gallery TEXT, videos TEXT, sort INT NOT NULL DEFAULT 0)$tail";
+    $t[] = "CREATE TABLE IF NOT EXISTS projects (id $id, $item, $article, gallery TEXT, videos TEXT, sort INT NOT NULL DEFAULT 0, " . implode(', ', PROJECT_COLS) . ")$tail";
+    $t[] = "CREATE TABLE IF NOT EXISTS project_categories (id $id, $item, sort INT NOT NULL DEFAULT 0)$tail";
     $t[] = "CREATE UNIQUE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ux_services_skey ON services (skey)";
     $t[] = "CREATE UNIQUE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ux_users_email ON users (email)";
     $t[] = "CREATE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ix_requests_status ON requests (status, created_at)";
@@ -71,6 +78,17 @@ function schema_sql(string $driver): array
     $t[] = "CREATE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ix_products_cat ON products (category_id, sort)";
     $t[] = "CREATE INDEX " . ($my ? '' : 'IF NOT EXISTS ') . "ix_posts_date ON posts (published_at)";
     return $t;
+}
+
+/** a project table from DB version 6 has no category_id yet, so its index is created after the columns */
+function add_project_columns(): void
+{
+    foreach (PROJECT_COLS as $col) add_column('projects', $col);
+    try {
+        db()->exec('CREATE INDEX ' . (db_driver() === 'mysql' ? '' : 'IF NOT EXISTS ') . 'ix_projects_cat ON projects (category_id, sort)');
+    } catch (PDOException $e) {
+        if (strpos($e->getMessage(), 'Duplicate key name') === false) throw $e;
+    }
 }
 
 function migrate(): void
@@ -166,6 +184,7 @@ function seed(): void
 /** bring an installed database up to DB_VERSION (see ensure_db(); runs once after a deploy) */
 function upgrade_db(): void
 {
+    upgrade_lock();
     try {
         if ((int)setting('db_version', '1') < 2) {
             foreach (PAGE_CONTENT_COLS as $col) add_column('pages', $col);
@@ -181,11 +200,27 @@ function upgrade_db(): void
             migrate();          // the tables of the optional sections
             sync_pages();
         }
+        if ((int)setting('db_version', '1') < 7) {
+            migrate();          // project categories
+            add_project_columns();
+            sync_product_categories();
+            apply_service_order();
+        }
         sync_texts();   // texts and settings added to seed.json since the last version (5: the footer copyright line)
         if (val('SELECT COUNT(*) FROM settings WHERE k=?', ['db_version'])) update('settings', ['v' => (string)DB_VERSION], 'k=?', ['db_version']);
         else insert('settings', ['k' => 'db_version', 'v' => (string)DB_VERSION]);
     } catch (Throwable $e) {
         log_line('app.log', 'db upgrade: ' . $e->getMessage());
+    }
+}
+
+/** requests that come in parallel right after a deploy wait for the first one; every upgrade step is safe to repeat once it has finished */
+function upgrade_lock(): void
+{
+    try {
+        if (db_driver() === 'mysql') val("SELECT GET_LOCK('alizadehgroup_db_upgrade', 30)");
+    } catch (PDOException $e) {
+        log_line('app.log', 'db upgrade lock: ' . $e->getMessage());    // not available on this server: go on without it
     }
 }
 
@@ -249,6 +284,34 @@ function sync_pages(): void
         insert('pages', ['k' => $p['k'], 'title_az' => $p['title']['az'], 'title_en' => $p['title']['en'],
             'description_az' => $p['description']['az'], 'description_en' => $p['description']['en'], 'image' => $p['image'],
             'lead_az' => $p['description']['az'], 'lead_en' => $p['description']['en']]);
+    }
+}
+
+/** add the product categories of seed.json that are not there yet (one already made by hand with that address or name stays) */
+function sync_product_categories(): void
+{
+    $d = json_decode((string)file_get_contents(APP_DIR . '/database/seed.json'), true);
+    foreach ($d['product_categories'] ?? [] as $c) {
+        if (val('SELECT COUNT(*) FROM product_categories WHERE slug_az=? OR title_az=?', [$c['slug_az'], $c['title']['az']])) continue;
+        insert('product_categories', ['slug_az' => $c['slug_az'], 'slug_en' => $c['slug_en'], 'title_az' => $c['title']['az'], 'title_en' => $c['title']['en'],
+            'sort' => $c['sort'], 'active' => 1]);
+    }
+}
+
+/**
+ * Puts the services in SERVICE_ORDER, with what follows them: the request cards, the slides (the intro slide stays first)
+ * and the numbers at the start of the slide captions ("02 · Nəqliyyat xidməti"). Other edits of those texts stay.
+ */
+function apply_service_order(): void
+{
+    foreach (SERVICE_ORDER as $i => $key) {
+        update('services', ['sort' => $i + 1], 'skey=?', [$key]);
+        update('items', ['sort' => $i + 1], "grp='info' AND link=?", [$key]);
+        foreach (rows('SELECT id, eyebrow_az, eyebrow_en FROM slides WHERE link=?', ['service:' . $key]) as $s) {
+            $set = ['sort' => $i + 2];
+            foreach (LANGS as $l) $set['eyebrow_' . $l] = preg_replace('~^\d+(?=\s*·)~', sprintf('%02d', $i + 1), (string)$s['eyebrow_' . $l]);
+            update('slides', $set, 'id=?', [$s['id']]);
+        }
     }
 }
 

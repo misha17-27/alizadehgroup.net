@@ -21,8 +21,8 @@ Also: `/sitemap.xml`, `/robots.txt`, 404 page. Request form posts to `/api/reque
 
 | Section | AZ | EN | Content |
 |---|---|---|---|
-| Product catalog | `/mehsullar`, `/mehsullar/{category}`, `/mehsullar/{category}/{product}` | `/en/products/…` | every product belongs to a category; text, photo, SEO |
-| Projects | `/layiheler`, `/layiheler/{slug}` | `/en/projects/…` | text, main photo, photo gallery, YouTube videos (the player loads after a click) |
+| Product catalog | `/mehsullar`, `/mehsullar/{category}`, `/mehsullar/{category}/{product}` | `/en/products/…` | every product belongs to a category (two come with the install: supply products, restaurant equipment); text, photo, SEO; "Send a request" (opens the supply form with the product filled in) and "Write on WhatsApp" (message naming the product) buttons |
+| Projects | `/layiheler`, `/layiheler/kateqoriya/{category}`, `/layiheler/{slug}` | `/en/projects/…`, `/en/projects/category/{category}` | date, optional category, duration, text, main photo, photo gallery, YouTube videos (the player loads after a click) |
 | Blog | `/bloq`, `/bloq/{slug}` | `/en/blog/…` | date, text, photo, SEO; newest first |
 
 Each has its own switch in the admin: **Settings → Site sections**. The content stays in the database whichever state it is in.
@@ -34,7 +34,7 @@ Each has its own switch in the admin: **Settings → Site sections**. The conten
 | Open on the site | in the header, mobile menu, footer and sitemap | in the menu |
 
 Code: `app/site/sections.php` (states, queries), `section_page()` in `index.php` (routes), `app/views/site/` (products, product,
-projects, project, blog, post), `app/admin/sections/` (products, categories, projects, blog). The home page has no blocks for them.
+projects, project, blog, post), `app/admin/sections/` (products, categories, projects, project_categories, blog). The home page has no blocks for them.
 
 ## Admin panel
 

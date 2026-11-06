@@ -6,7 +6,7 @@ $ph_title = L($r, 'title');
 $ph_text = L($r, 'short');
 $ph_image = $r['image'] ?: ($p['image'] ?? '');
 $ph_crumbs = [[tx('blog.nav'), route('blog')], [L($r, 'title'), null]];
-$ph_chip = '<span class="dot"></span>' . e(post_date($r) ?: tx('blog.nav'));
+$ph_chip = '<span class="dot"></span>' . e(date_text($r['published_at']) ?: tx('blog.nav'));
 include __DIR__ . '/partials/page_hero.php';
 ?>
 <?php if ($body !== ''): ?>
