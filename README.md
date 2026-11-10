@@ -115,7 +115,8 @@ The site used to run as a preview in `public_html/yeni/` next to the old WordPre
   pages (`LEGACY_URLS` in `app/site/content.php`), `/page/` → `/page`.
 - WordPress leftovers (anything starting with `wp-`, `xmlrpc.php`, `readme.html`, `license.txt`, `/category/`, `/tag/`,
   `/author/`, `/feed/`) answer **410 Gone**, and `.htaccess` lets PHP run only through `index.php`, `install.php` and
-  `admin/index.php`. Backups and archives (`.zip`, `.sql`, `.gz`, `.bak`, `.ini`, `~` …) are never served.
+  `admin/index.php`. Backups, archives and PHP error logs (`.zip`, `.sql`, `.gz`, `.bak`, `.ini`, `~`, `error_log` …) are
+  never served.
 - `www.alizadehgroup.net` answers with a 301 to `alizadehgroup.net`.
 
 ## Local development
