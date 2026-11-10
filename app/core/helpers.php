@@ -252,7 +252,17 @@ function uid(): string
 
 function log_line(string $file, string $msg): void
 {
-    @file_put_contents(STORAGE_DIR . '/logs/' . $file, '[' . now() . '] ' . $msg . "\n", FILE_APPEND | LOCK_EX);
+    $path = STORAGE_DIR . '/logs/' . $file;
+    rotate_log($path);
+    @file_put_contents($path, '[' . now() . '] ' . $msg . "\n", FILE_APPEND | LOCK_EX);
+}
+
+/** a log never grows past about 5 MB: the full file becomes "<name>.1" (replacing the previous one) and a new one starts */
+const LOG_MAX_BYTES = 5 * 1024 * 1024;
+
+function rotate_log(string $path): void
+{
+    if (@filesize($path) > LOG_MAX_BYTES) @rename($path, $path . '.1');
 }
 
 /** verify Cloudflare Turnstile token (skipped when keys are not configured) */

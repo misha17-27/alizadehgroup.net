@@ -26,6 +26,8 @@ require APP_DIR . '/site/content.php';
 require APP_DIR . '/site/sections.php';
 require APP_DIR . '/site/request.php';
 
+rotate_log(STORAGE_DIR . '/logs/php-error.log');    // PHP's own error log keeps to the same size limit as log_line()
+
 /** config (app/config.php is created by install.php and is not in git) */
 function config(?string $key = null, $default = null)
 {

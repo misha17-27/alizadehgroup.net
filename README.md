@@ -130,6 +130,8 @@ Open `http://127.0.0.1:8000/install.php` and choose **SQLite**.
 ## Notes
 
 - Request notifications use PHP `mail()`; on cPanel the sender is `noreply@<domain>`. Delivery problems are logged in `storage/logs/mail.log`.
+- The logs in `storage/logs/` (`app.log`, `mail.log`, PHP's `php-error.log`) stop at about 5 MB each: the full file
+  becomes `<name>.1`, replacing the previous one, and a new file starts (`rotate_log()` in `app/core/helpers.php`).
 - Attachments from the supply form are stored in `storage/requests/` and are downloadable only from the admin panel.
 - Spam protection: CSRF token, honeypot field, minimum fill time, 5 requests / 10 min per IP; optional Cloudflare Turnstile
   (Settings), verified through curl, or through `allow_url_fopen` where curl is missing.
